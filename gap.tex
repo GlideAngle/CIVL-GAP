@@ -3,17 +3,23 @@
 \documentclass{article}
 \usepackage{civl}
 
-\title{
-    \endgraf\rule{\textwidth}{.4pt}
-    CIVL GAP\\
-    \vspace*{2\baselineskip}
-    Centralised Cross-Country Competition Scoring for\\
-    Hang-Gliding and Paragliding\\
-    \vspace*{2\baselineskip}
-    2016 Edition\\
-    Revision 1.1\\
-}
-\date{Published February 26, 2017}
+% SEE: https://ctan.org/pkg/titlepages
+\newcommand*{\titleGap}{\begingroup
+\raggedleft
+{\Huge CIVL Paragliding and}\\
+{\Huge Hang-Gliding Committees}\\
+\vspace*{16\baselineskip}
+\endgraf\rule{\textwidth}{.4pt}
+\vspace*{\baselineskip}
+{\Huge CIVL GAP}\\
+\vspace*{2\baselineskip}
+{\Large Centralised Cross-Country Competition Scoring for}\\
+{\Large Hang-Gliding and Paragliding}\\
+\vspace*{2\baselineskip}
+2016 Edition\\
+Revision 1.1\\
+Published February 26, 2017\\
+\endgroup}
 
 \import{}{footer}
 \pagestyle{gen}
@@ -21,7 +27,7 @@
 \begin{document}
 
 % SEE: http://tex.stackexchange.com/questions/86249/maketitle-text-before-title
-{\let\newpage\relax\maketitle}\thispagestyle{pageone}
+{\let\newpage\relax\titleGap}\thispagestyle{pageone}
 
 \newpage
 Page 1 content goes here.
