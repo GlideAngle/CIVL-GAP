@@ -114,6 +114,15 @@ Note that any product, process or technology described in the document may be th
 \section{Use of Tracklog Data}
 \subsection{Position}
 \subsection{Distance}
+
+\begin{eqnarray*}
+    distLat = lat_2 - lat_1 \\
+    distLong = long_2 - long_1 \\
+    a = \sin(\frac{distLat}{2})^2 + \cos lat_1 * \cos lat_2 * \sin(\frac{distLong}{2})^2 \\
+    radianDistance = 2 * \arctan(\frac{\sqrt a}{\sqrt{1 - a}}) \\
+    distance = radianDistance * 6371000 \\
+\end{eqnarray*}
+
 \subsection{Altitude}
 \subsection{Time}
 
