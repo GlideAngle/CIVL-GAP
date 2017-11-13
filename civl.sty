@@ -11,6 +11,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}
+\RequirePackage[left=20mm, right=20mm]{geometry}
 
 % SEE: http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
 \hypersetup{
@@ -24,12 +25,13 @@
 \usepackage{datetime}
 
 \pagestyle{fancy} % options: empty , plain , fancy
-\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\renewcommand{\footrulewidth}{0.4pt}
 \lhead{}\chead{}\rhead{}
 \lfoot{}\cfoot{}\rfoot{\thepage}
 
 % SEE: http://texblog.org/2007/11/07/headerfooter-in-latex-with-fancyhdr/
 \fancypagestyle{gen}{
+\chead{CIVL GAP – Centralised Cross-Country Competition Scoring for Hang-Gliding and Paragliding}
 \lfoot{2016 Edition, Revision 1.1}
 \cfoot{\date{\texttt{{\ddmmyyyydate\today} \currenttime}}}
 }
