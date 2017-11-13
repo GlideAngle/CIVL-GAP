@@ -1,8 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{civl}[CIVL package]
 
+\RequirePackage{xcolor}
 \RequirePackage{import}
-
+\RequirePackage{hyperref}
+% SEE: http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \usepackage{datetime}

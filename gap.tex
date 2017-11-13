@@ -1,19 +1,22 @@
 % !TEX TS-program = xelatex
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
-\usepackage{./civl}
+\usepackage{civl}
 
 \title{Title goes here}
 \author{Author goes here}
 \date{12 February 2013}
 
+\import{}{footer}
 \pagestyle{gen}
 
 \begin{document}
 
-\begin{titlepage}
-\maketitle
-\end{titlepage}
+% SEE: http://tex.stackexchange.com/questions/86249/maketitle-text-before-title
+{\let\newpage\relax\maketitle}\thispagestyle{pageone}
 
-Content goes here.
+\newpage
+Page 1 content goes here.
+\newpage
+Page 2 content goes here.
 \end{document}
