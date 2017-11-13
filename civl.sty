@@ -1,9 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{civl}[CIVL package]
 
+\RequirePackage{fontspec} % set input encoding (not needed with XeLaTeX)
+\RequirePackage{tabularx}
+\RequirePackage{multicol}
+\RequirePackage{multirow}
+
+\RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{import}
 \RequirePackage{hyperref}
+\RequirePackage{graphicx}
+
 % SEE: http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
 \hypersetup{
   colorlinks   = true,    % Colours links instead of ugly boxes
@@ -14,7 +22,6 @@
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \usepackage{datetime}
-\usepackage{fontspec}
 
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0pt} % customise the layout...

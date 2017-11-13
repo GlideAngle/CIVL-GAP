@@ -6,11 +6,8 @@
 % SEE: https://ctan.org/pkg/titlepages
 \newcommand*{\titleGap}{\begingroup
 \raggedleft
-{\Huge CIVL Paragliding and}\\
-{\Huge Hang-Gliding Committees}\\
 \vspace*{16\baselineskip}
 \endgraf\rule{\textwidth}{.4pt}
-\vspace*{\baselineskip}
 {\Huge CIVL GAP}\\
 \vspace*{2\baselineskip}
 {\Large Centralised Cross-Country Competition Scoring for}\\
@@ -25,6 +22,7 @@ Published February 26, 2017\\
 \pagestyle{gen}
 
 \begin{document}
+\import{}{header}
 
 % SEE: http://tex.stackexchange.com/questions/86249/maketitle-text-before-title
 {\let\newpage\relax\titleGap}\thispagestyle{pageone}
