@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{civl}[CIVL package]
+
+\RequirePackage{import}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\usepackage{datetime}
+
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{}\rfoot{\thepage}
+
+% SEE: http://texblog.org/2007/11/07/headerfooter-in-latex-with-fancyhdr/
+\fancypagestyle{gen}{
+\lfoot{\date{\texttt{Typeset {\ddmmyyyydate\today} \currenttime}}}
+}
