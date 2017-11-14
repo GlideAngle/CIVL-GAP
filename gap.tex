@@ -115,6 +115,21 @@ Note that any product, process or technology described in the document may be th
 \subsection{Position}
 \subsection{Distance}
 
+In general, task evaluation occurs in the \(x/y\) plain, therefore distance
+measurements are always exclusively horizontal measurements. The earth model used
+is the FAI sphere, with a radius of 6371.0 km.
+
+In paragliding, for final glide decelerators (5.6) and altitude bonus in stopped
+tasks (12.3.6), altitude is also considered, but this does not affect distance
+calculations between two geographic points.
+
+In hang gliding, for altitude bonus in stopped tasks (12.3.6), altitude is also
+considered, but this does not affect distance calculations between two geographic
+points.
+
+The distance between two points, identified by their radian coordinates
+\(lat_1/long_1\) and \(lat_2/long_2\), is calculated using the Haversine formula.
+
 \begin{eqnarray*}
     distLat = lat_2 - lat_1 \\
     distLong = long_2 - long_1 \\
@@ -122,6 +137,11 @@ Note that any product, process or technology described in the document may be th
     radianDistance = 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \\
     distance = radianDistance * 6371000 \\
 \end{eqnarray*}
+
+To reproduce this formula in Excel, the following modification is necessary due to a different
+implementation of the \(arctan2\) function:
+
+\[ radianDistance = pi - 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \]
 
 \subsection{Altitude}
 \subsection{Time}
