@@ -320,6 +320,24 @@ coefficients: Launch validity, distance validity, and time validity.
 \end{equation*}
 
 \subsection{Launch Validity}
+Launch validity depends on nominal launch and the percentage of pilots actually present at take-off who
+launched. If the percentage of pilots on take-off who launch is equal to nominal launch, or higher, then
+launch validity is 1. If, for example, only 20\% of the pilots present at take-off launch, launch validity goes
+down to about 0.1.
+
+The reasoning behind launch validity: Launch conditions may be dangerous, or otherwise unfavourable.
+If a significant number of pilots at launch think that the day is not worth the risk of launching, then the
+gung-ho pilots who did go will not get so many points. This is a safety mechanism.
+
+‘Pilots present’ are pilots arriving on take-off, with their gear, with the intention of flying. For scoring
+purposes, ‘Pilots present’ are all pilots not in the ‘Absent’ status (ABS): Pilots who took off, plus pilots
+present who did not fly (DNF). DNFs need to be attributed carefully. A pilot who does not launch due to
+illness, for instance, is not a DNF, but an ABS.
+\begin{align*}
+    LVR &= \min(1, \frac{NumberOfPilotsFlying}{NumberOfPilotsPresent * NominalLaunch}) \\
+    LaunchValidity &= 0.027 * LVR + 2.917 * LVR^2 - 1.944 * LVR^3
+\end{align*}
+
 \subsection{Distance Validity}
 \subsection{Time Validity}
 
