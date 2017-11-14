@@ -386,6 +386,27 @@ time validity the same way as if it was the time.
 
 \newpage
 \section{Points Allocation}
+The available points for each task are \(1000*TaskValidity\). These points are distributed between distance
+points, time points, leading points and arrival points. The distribution depends on the percentage of
+pilots who reached goal before the task deadline, compared to pilots who launched, as well as the
+chosen goal form. It is expressed in terms of weight factors for each of the four point categories:
+Distance weight, time weight, leading weight and arrival weight. Weight factors are always between 0
+and 1. A weight factor of 0.5 for distance, for example, means that 50\% of the day’s available overall
+points are available for distance points.
+\begin{align*}
+    GoalRatio &= \frac{NumberOfPilotsInGoal}{NumberOfPilotsFlying} \\
+    DistanceWeight &= 0.9 - 1.665 * GoalRatio + 1.713 * GoalRatio^2 - 0.587 * GoalRatio^3 \\
+    LeadingWeight &= \frac{1 - DistanceWeight}{8} * 1.4 \\
+    GoalRatio = 0 : LeadingWeight &= \frac{BestDistance}{TaskDistance} * 0.1 \\
+    GoalRatio > 0 : LeadingWeight &= \frac{1 - DistanceWeight}{8} * 1.4 * 2 \\
+    ArrivalWeight &= \frac{1 - DistanceWeight}{8} \\
+    ArrivalWeight &= 0 \\
+    TimeWeight &= 1 - DistanceWeight - LeadingWeight - ArrivalWeight \\
+    AvailableDistancePoints &= 1000 * TaskValidity  DistanceWeight \\
+    AvailableTimePoints &= 1000 * TaskValidity * TimeWeight \\
+    AvailableLeadingPoints &= 1000 * TaskValidity * LeadingWeight \\
+    AvailableArrivalPoints &= 1000 * TaskValidity * ArrivalWeight
+\end{align*}
 
 \newpage
 \section{Pilot score}
