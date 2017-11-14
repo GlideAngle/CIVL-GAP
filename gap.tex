@@ -339,6 +339,31 @@ illness, for instance, is not a DNF, but an ABS.
 \end{align*}
 
 \subsection{Distance Validity}
+Distance validity depends on nominal distance, nominal goal, the longest distance flown and the sum of
+all distances flown beyond minimum distance. If the task distance is quite short in relation to nominal
+distance, the day is probably not a good measure of pilot skill because there would not be many
+decisions to make.
+
+If a task is longer than nominal distance, the day will not be devalued because of distance validity, even
+if the nominal goal parameter value is not achieved, as long as a fair percentage of pilots fly a good
+distance. This sounds like a vague statement, but the task setter should try to set tasks that are
+reasonable for the day and achievable. If everyone lands in goal, you must ask if this was a valid test of
+skill - it probably was if the fastest time and the distance flown were reasonably long. If everyone lands
+short of goal, was it an unsuitable task but still a good test of pilot skill? You also can have the case
+where a task that is shorter than nominal distance, has a distance validity of almost 1. This will happen
+when a large percentage of the pilots fly a large percentage of the course but, in this case, you still have
+a practical devaluation because there will be little spreading between pilots’ scores.
+
+In the formula below, \(p\) denotes an individual pilot.
+\begin{align*}
+    SumOfFlownDistancesOverMinDist &= \sum_p \max(0, FlownDist_p - MinDist) \\
+    NominalDistanceArea &= \frac{(a + b)}{2} \\
+    a &= (NomGoal + 1) * (NomDist - MinDist) \\
+    b &= \max(0, NomGoal * (BestDist - NomDist) \\
+    DVR &= \frac{SumOfFlownDistancesOverMinDist}{NumberOfPilotsFlying * NominalDistanceArea} \\
+    DistanceValidity &= \min(1, DVR)
+\end{align*}
+
 \subsection{Time Validity}
 
 \newpage
