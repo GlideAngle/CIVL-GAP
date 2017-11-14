@@ -410,6 +410,9 @@ points are available for distance points.
 
 \newpage
 \section{Pilot score}
+Each pilot’s score is the sum of that pilot’s distance, time, leading and arrival points, rounded to the
+nearest whole number, 0.5 being rounded up.
+\[ \forall p : p \in PilotsLaunched : TotalScore_p = DistancePoints_p + TimePoints_p + LeadingPoints_p + ArrivalPoints_p \]
 \subsection{Distance points}
 \subsubsection{Difficulty calculation}
 \subsubsection{Example for difficulty calculation}
