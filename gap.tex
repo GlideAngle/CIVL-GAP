@@ -178,6 +178,7 @@ implementation of the \(arctan2\) function:
 \subsubsection{Elapsed time}
 \subsection{Distances}
 \subsubsection{Task distance}
+\label{sec:task-distance}
 \subsubsection{Speed section distance}
 
 \newpage
@@ -259,8 +260,25 @@ time when the cylinder was reached is determined.
 \subsection{Reaching goal}
 \subsubsection{Goal cylinder}
 \subsubsection{Goal line}
-\subsection{Flown task}
+\subsection{Flown distance}
 \subsubsection{Race task}
+To determine a pilot’s flown distance, a first step determines which turnpoints he reached considering
+all timing restrictions: launch within launch time window, valid start, but only until the task deadline
+time. After the last turnpoint the pilot reached, for every remaining track point, the shortest distance to
+goal is calculated using the method described in section \ref{sec:task-distance}. The flown distance is then calculated as
+task distance minus the shortest distance the pilot still had to fly. Therefore, for scoring, the pilot’s best
+distance along the course line is considered, regardless of where the pilot landed in the end.
+
+If a pilot flies less than minimum distance, he will be scored for this minimum distance. This also applies
+to pilots who are not able to produce a valid GPS tracklog, but for whom launch officials verify launch
+within the launch window.
+
+If a pilot reaches goal, he will be scored for the task distance.
+\begin{align*}
+    \forall p : p \in PilotsLandingBeforeGoal : bestDistance_p &= \max(minimumDistance, taskDistance - shortest) \\
+    shortest &= \min(\forall track_p . point_i shortestDistanceToGoal(track_p . point_i))) \\
+    \forall p : p \in PilotsReachingGoal : bestDistance_p &= taskDistance
+\end{align*}
 \subsubsection{Open distance task}
 \subsection{Time for speed section}
 
