@@ -289,7 +289,26 @@ calculated according to \ref{sec:race-task}. For pilots flying further than the 
 calculated by adding the pilot’s best distance flown in the open distance part of the task (after the last
 control zone) to task distance between launch and the last control zone. If the task gave a direction for
 the open distance leg, then the pilot’s best distance projected onto that direction is considered.
+
 \subsection{Time for speed section}
+The time a pilot took to fly the speed section is determined by his start time (which is influenced by the
+task’s start procedure and the time he crossed the start of speed section cylinder) and the time when he
+crossed the end of speed section after reaching all previous turn points. The smallest unit for time
+measurement is one second.
+
+Pilots who do not reach the end of speed section cylinder do not get a time.
+\begin{align*}
+    \forall p : p \in PilotsReachingESS : time_p &= timeAtESS_p - startTime_p
+\end{align*}
+If AATB is used, pilots receive a time bonus for their altitude above goal when crossing the ESS cylinder.
+The number of seconds they receive for each meter is expressed by the ATTB factor.
+
+By default, the ATTB factor is \(0.45 \ s/m\). Values suggested for use are between \(0.2 \ s/m\) and \(0.7 \ s/m\).
+\begin{align*}
+    \forall p : p \in PilotsReachingESS \\
+    arrivalAltitudeTimeBonus_p &= (crossing_{p.ESS} . altitude - goal . altitude) * ATTBfactor \\
+    time_p &= timeAtESS_p - startTime_p - arrivalAltitudeTimeBonus_p
+\end{align*}
 
 \newpage
 \section{Task Validity}
