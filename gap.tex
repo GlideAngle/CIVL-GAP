@@ -414,6 +414,23 @@ Each pilot’s score is the sum of that pilot’s distance, time, leading and ar
 nearest whole number, 0.5 being rounded up.
 \[ \forall p : p \in PilotsLaunched : TotalScore_p = DistancePoints_p + TimePoints_p + LeadingPoints_p + ArrivalPoints_p \]
 \subsection{Distance points}
+The distance considered for each pilot to calculate distance points is that pilot’s best distance along the
+course line, up until the pilot landed or the task deadline was reached, whichever comes first.
+
+One half of the available distance points are assigned to each pilot linearly, based on the pilot’s distance
+flown in relation to the best distance flown in the task. The other half is assigned taking into
+consideration the difficulty of the kilometers flown.
+\begin{align*}
+    LinearFraction_p &= \frac{Distance_p}{2 * BestDistance} \\
+    i_p &= \lfloor Distance_p * 10 \rfloor \\
+    DifficultyFraction_p &= DiffScore_{i_p} + ((DiffScore_{i_{p + 1}} - DiffScore_{i_p}) * (Distance_p * 10 - i_p)) \\
+    DistancePoints_p &= (LinearFraction_p + DifficultyFraction_p) * AvailableDistancePoints
+\end{align*}
+In the case of a stopped task, a pilot’s distance may be increased by an altitude bonus (see~\ref{sec:distance-stopped-tasks}). The
+available distance points are assigned to each pilot linearly, based on the pilot’s distance flown in
+relation to the best distance flown in the task.
+\[ DistancePoints_p = \frac{Distance_p}{BestDistance} * AvailableDistancePoints \]
+
 \subsubsection{Difficulty calculation}
 \subsubsection{Example for difficulty calculation}
 \subsection{Time points}
