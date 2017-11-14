@@ -260,8 +260,11 @@ time when the cylinder was reached is determined.
 \subsection{Reaching goal}
 \subsubsection{Goal cylinder}
 \subsubsection{Goal line}
+
 \subsection{Flown distance}
+
 \subsubsection{Race task}
+\label{sec:race-task}
 To determine a pilot’s flown distance, a first step determines which turnpoints he reached considering
 all timing restrictions: launch within launch time window, valid start, but only until the task deadline
 time. After the last turnpoint the pilot reached, for every remaining track point, the shortest distance to
@@ -279,7 +282,13 @@ If a pilot reaches goal, he will be scored for the task distance.
     shortest &= \min(\forall track_p . point_i shortestDistanceToGoal(track_p . point_i))) \\
     \forall p : p \in PilotsReachingGoal : bestDistance_p &= taskDistance
 \end{align*}
+
 \subsubsection{Open distance task}
+In an open distance task, if a pilot lands before the last of any given control zones, his flown distance is
+calculated according to \ref{sec:race-task}. For pilots flying further than the last control zone, the flown distance is
+calculated by adding the pilot’s best distance flown in the open distance part of the task (after the last
+control zone) to task distance between launch and the last control zone. If the task gave a direction for
+the open distance leg, then the pilot’s best distance projected onto that direction is considered.
 \subsection{Time for speed section}
 
 \newpage
