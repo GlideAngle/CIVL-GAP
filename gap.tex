@@ -47,7 +47,10 @@ Published February 26, 2017\\
 {\let\newpage\relax\titleGap}\thispagestyle{pageone}
 
 \newpage
-Editor's note: Hang-gliding and paragliding are sports in which both men and women participate. Throughout this document the words "he", "him" or "his" are intended to apply equally to either sex unless it is specifically stated otherwise.\\
+Editor's note: Hang-gliding and paragliding are sports in which both men and
+women participate. Throughout this document the words "he", "him" or "his" are
+intended to apply equally to either sex unless it is specifically stated
+otherwise.\\
 
 \begin{tabularx}{\textwidth}{|l|l|X|}
  \hline
@@ -78,7 +81,10 @@ Editor's note: Hang-gliding and paragliding are sports in which both men and wom
 \section*{FEDERATION AERONAUTIQUE INTERNATIONALE}
 \textbf{Maison du Sport International – Avenue de Rhodanie 54 – CH-1007 Lausanne – Switzerland}\\
 Copyright 2014\\
-All rights reserved. Copyright in this document is owned by the Fédération Aéronautique Internationale (FAI). Any person acting on behalf of the FAI or one of its Members is hereby authorised to copy, print, and distribute this document, subject to the following conditions:\\
+All rights reserved. Copyright in this document is owned by the Fédération
+Aéronautique Internationale (FAI). Any person acting on behalf of the FAI or
+one of its Members is hereby authorised to copy, print, and distribute this
+document, subject to the following conditions:\\
 \textbf{
     \begin{enumerate}
         \item The document may be used for information only and may not be exploited for commercial purposes.\\
@@ -87,7 +93,9 @@ All rights reserved. Copyright in this document is owned by the Fédération Aé
 }
 
 \newpage
-Note that any product, process or technology described in the document may be the subject of other Intellectual Property rights reserved by the Fédération Aéronautique Internationale or other entities and is not licensed hereunder.
+Note that any product, process or technology described in the document may be
+the subject of other Intellectual Property rights reserved by the Fédération
+Aéronautique Internationale or other entities and is not licensed hereunder.
 
 \newpage
 \tableofcontents
@@ -143,8 +151,8 @@ The distance between two points, identified by their radian coordinates
     radianDistance &= 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \\
     distance &= radianDistance * 6371000 \\
 \end{align*}
-To reproduce this formula in Excel, the following modification is necessary due to a different
-implementation of the \(arctan2\) function:
+To reproduce this formula in Excel, the following modification is necessary due
+to a different implementation of the \(arctan2\) function:
 \[ radianDistance = pi - 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \]
 
 \subsection{Altitude}
@@ -191,31 +199,38 @@ implementation of the \(arctan2\) function:
 \section{Task evaluation}
 \subsection{Reaching a control zone}
 \subsubsection{Reaching a turnpoint cylinder}
-A cylinder is considered “reached” by a pilot if that pilot’s track log shows the pilot crossing out of the
-cylinder in the case of an exit cylinder, or into the cylinder in case of an enter cylinder, by containing at
-least one track point closer to the cylinder’s centre than the cylinder radius (enter) or further away from
-the cylinder’s centre than the cylinder radius (exit). During task evaluation, only the \(x/y\) coordinates are
-considered, and a point must lie within (enter) or outside of (exit) the circle representing the turnpoint
-cylinder in the \(x/y\) plain. This is determined by measuring the distance between a track point and the
-turnpoint. This distance must be greater (exit) or smaller (enter) than the cylinder’s radius.
-To compensate for different distance calculations and different earth models in use by today’s GPS
-devices (FAI sphere vs. WGS84 ellipsoid), a 0.5\% tolerance is used for this calculation. This had to be
-introduced so that a pilot reading the distance to the next cylinder centre from his GPS device can rely
-on having reached the turnpoint when the distance displayed by the instrument is smaller than the
+A cylinder is considered “reached” by a pilot if that pilot’s track log shows
+the pilot crossing out of the cylinder in the case of an exit cylinder, or into
+the cylinder in case of an enter cylinder, by containing at least one track
+point closer to the cylinder’s centre than the cylinder radius (enter) or
+further away from the cylinder’s centre than the cylinder radius (exit). During
+task evaluation, only the \(x/y\) coordinates are considered, and a point must
+lie within (enter) or outside of (exit) the circle representing the turnpoint
+cylinder in the \(x/y\) plain. This is determined by measuring the distance
+between a track point and the turnpoint. This distance must be greater (exit)
+or smaller (enter) than the cylinder’s radius.  To compensate for different
+distance calculations and different earth models in use by today’s GPS devices
+(FAI sphere vs. WGS84 ellipsoid), a 0.5\% tolerance is used for this
+calculation. This had to be introduced so that a pilot reading the distance to
+the next cylinder centre from his GPS device can rely on having reached the
+turnpoint when the distance displayed by the instrument is smaller than the
 defined turnpoint cylinder radius.
 
-For enter cylinders, this means that a tracklog point that is closer to the turnpoint than \(r*1.005\) is
-considered proof of reaching the turnpoint. For exit cylinders, this means that a tracklog point that is
-further away from the turnpoint than \(r*0.995\) is considered proof of reaching the turnpoint.
-Starting January 1st, 2015 – provided all distance measurements are then based on the WGS84 ellipsoid
-(see~\ref{sec:distance}) – the tolerance for turnpoint cylinders in CIVL’s FAI Category 1 events will be reduced to 0.01\%
-of the cylinder radius, with a minimum of 5 meter. Organisers of FAI Category 2 events may continue
-using the existing 0.5\% tolerance, to accommodate pilots flying with instruments which calculate
-distance based on the FAI sphere.
+For enter cylinders, this means that a tracklog point that is closer to the
+turnpoint than \(r*1.005\) is considered proof of reaching the turnpoint. For
+exit cylinders, this means that a tracklog point that is further away from the
+turnpoint than \(r*0.995\) is considered proof of reaching the turnpoint.
+Starting January 1st, 2015 – provided all distance measurements are then based
+on the WGS84 ellipsoid (see~\ref{sec:distance}) – the tolerance for turnpoint
+cylinders in CIVL’s FAI Category 1 events will be reduced to 0.01\% of the
+cylinder radius, with a minimum of 5 meter. Organisers of FAI Category 2 events
+may continue using the existing 0.5\% tolerance, to accommodate pilots flying
+with instruments which calculate distance based on the FAI sphere.
 
-The time when a control zone was reached is determined by the time a so-called “crossing” occurred. A
-crossing is defined as a pair of consecutive track points, of which at least one lies inside the band
-determined by the turnpoint’s centre, its radius and the tolerance value.
+The time when a control zone was reached is determined by the time a so-called
+“crossing” occurred. A crossing is defined as a pair of consecutive track
+points, of which at least one lies inside the band determined by the
+turnpoint’s centre, its radius and the tolerance value.
 \begin{align*}
     tolerance &= 0.5\% | 0.01\% \\
     minTolerance &= 0m | 5m \\
@@ -231,8 +246,9 @@ determined by the turnpoint’s centre, its radius and the tolerance value.
     c = distance(center_i, trackpoint_j) &<= outerRadius_i \\
     d = distance(center_i, trackpoint_{j+1}) &>= innerRadius_i \\
 \end{align*}
-The time of a crossing depends on whether it actually cuts across the actual cylinder, or whether both
-points lie within the tolerance band, but on the same side of the actual cylinder.
+The time of a crossing depends on whether it actually cuts across the actual
+cylinder, or whether both points lie within the tolerance band, but on the same
+side of the actual cylinder.
 \begin{align*}
     crossing . time &= trackpoint_{j+1} . time \ when \ A \\
     crossing . time &= trackpoint_j . time \ when \ B \\
@@ -248,11 +264,12 @@ points lie within the tolerance band, but on the same side of the actual cylinde
     c = distance(center_i, trackpoint_j) &> radius_i \\
     d = distance(center_i, trackpoint_{j+1}) &> radius_i \\
 \end{align*}
-The method used to interpolate the crossing time is buried in FS’ code and will have to be documented
-at a later point.
+The method used to interpolate the crossing time is buried in FS’ code and will
+have to be documented at a later point.
 
-Finally, given all n crossings for a turnpoint cylinder, sorted in ascending order by their crossing time, the
-time when the cylinder was reached is determined.
+Finally, given all n crossings for a turnpoint cylinder, sorted in ascending
+order by their crossing time, the time when the cylinder was reached is
+determined.
 \begin{align*}
     turnpoint_i &= SSS : reachingTime_i = crossing_n . time \\
     turnpoint_i &\neq SSS : reachingTime_i = crossing_0 . time
@@ -266,16 +283,19 @@ time when the cylinder was reached is determined.
 
 \subsubsection{Race task}
 \label{sec:race-task}
-To determine a pilot’s flown distance, a first step determines which turnpoints he reached considering
-all timing restrictions: launch within launch time window, valid start, but only until the task deadline
-time. After the last turnpoint the pilot reached, for every remaining track point, the shortest distance to
-goal is calculated using the method described in section \ref{sec:task-distance}. The flown distance is then calculated as
-task distance minus the shortest distance the pilot still had to fly. Therefore, for scoring, the pilot’s best
-distance along the course line is considered, regardless of where the pilot landed in the end.
+To determine a pilot’s flown distance, a first step determines which turnpoints
+he reached considering all timing restrictions: launch within launch time
+window, valid start, but only until the task deadline time. After the last
+turnpoint the pilot reached, for every remaining track point, the shortest
+distance to goal is calculated using the method described in section
+\ref{sec:task-distance}. The flown distance is then calculated as task distance
+minus the shortest distance the pilot still had to fly. Therefore, for scoring,
+the pilot’s best distance along the course line is considered, regardless of
+where the pilot landed in the end.
 
-If a pilot flies less than minimum distance, he will be scored for this minimum distance. This also applies
-to pilots who are not able to produce a valid GPS tracklog, but for whom launch officials verify launch
-within the launch window.
+If a pilot flies less than minimum distance, he will be scored for this minimum
+distance. This also applies to pilots who are not able to produce a valid GPS
+tracklog, but for whom launch officials verify launch within the launch window.
 
 If a pilot reaches goal, he will be scored for the task distance.
 \begin{align*}
@@ -285,17 +305,19 @@ If a pilot reaches goal, he will be scored for the task distance.
 \end{align*}
 
 \subsubsection{Open distance task}
-In an open distance task, if a pilot lands before the last of any given control zones, his flown distance is
-calculated according to \ref{sec:race-task}. For pilots flying further than the last control zone, the flown distance is
-calculated by adding the pilot’s best distance flown in the open distance part of the task (after the last
-control zone) to task distance between launch and the last control zone. If the task gave a direction for
-the open distance leg, then the pilot’s best distance projected onto that direction is considered.
+In an open distance task, if a pilot lands before the last of any given control
+zones, his flown distance is calculated according to \ref{sec:race-task}. For
+pilots flying further than the last control zone, the flown distance is
+calculated by adding the pilot’s best distance flown in the open distance part
+of the task (after the last control zone) to task distance between launch and
+the last control zone. If the task gave a direction for the open distance leg,
+then the pilot’s best distance projected onto that direction is considered.
 
-\subsection{Time for speed section}
-The time a pilot took to fly the speed section is determined by his start time (which is influenced by the
-task’s start procedure and the time he crossed the start of speed section cylinder) and the time when he
-crossed the end of speed section after reaching all previous turn points. The smallest unit for time
-measurement is one second.
+\subsection{Time for speed section} The time a pilot took to fly the speed
+section is determined by his start time (which is influenced by the task’s
+start procedure and the time he crossed the start of speed section cylinder)
+and the time when he crossed the end of speed section after reaching all
+previous turn points. The smallest unit for time measurement is one second.
 
 Pilots who do not reach the end of speed section cylinder do not get a time.
 \begin{align*}
@@ -313,47 +335,56 @@ By default, the ATTB factor is \(0.45 \ s/m\). Values suggested for use are betw
 
 \newpage
 \section{Task Validity}
-The task validity is a value between 0 and 1 and measures how suitable a competition task is to evaluate
-pilots’ skills. It is calculated for each task after the task has been flown, by multiplying the three validity
+The task validity is a value between 0 and 1 and measures how suitable
+a competition task is to evaluate pilots’ skills. It is calculated for each
+task after the task has been flown, by multiplying the three validity
 coefficients: Launch validity, distance validity, and time validity.
 \begin{equation*}
     TaskValidity = LaunchValidity * DistanceValidity * TimeValidity
 \end{equation*}
 
 \subsection{Launch Validity}
-Launch validity depends on nominal launch and the percentage of pilots actually present at take-off who
-launched. If the percentage of pilots on take-off who launch is equal to nominal launch, or higher, then
-launch validity is 1. If, for example, only 20\% of the pilots present at take-off launch, launch validity goes
-down to about 0.1.
+Launch validity depends on nominal launch and the percentage of pilots actually
+present at take-off who launched. If the percentage of pilots on take-off who
+launch is equal to nominal launch, or higher, then launch validity is 1. If,
+for example, only 20\% of the pilots present at take-off launch, launch
+validity goes down to about 0.1.
 
-The reasoning behind launch validity: Launch conditions may be dangerous, or otherwise unfavourable.
-If a significant number of pilots at launch think that the day is not worth the risk of launching, then the
-gung-ho pilots who did go will not get so many points. This is a safety mechanism.
+The reasoning behind launch validity: Launch conditions may be dangerous, or
+otherwise unfavourable.  If a significant number of pilots at launch think that
+the day is not worth the risk of launching, then the gung-ho pilots who did go
+will not get so many points. This is a safety mechanism.
 
-‘Pilots present’ are pilots arriving on take-off, with their gear, with the intention of flying. For scoring
-purposes, ‘Pilots present’ are all pilots not in the ‘Absent’ status (ABS): Pilots who took off, plus pilots
-present who did not fly (DNF). DNFs need to be attributed carefully. A pilot who does not launch due to
-illness, for instance, is not a DNF, but an ABS.
+‘Pilots present’ are pilots arriving on take-off, with their gear, with the
+intention of flying. For scoring purposes, ‘Pilots present’ are all pilots not
+in the ‘Absent’ status (ABS): Pilots who took off, plus pilots present who did
+not fly (DNF). DNFs need to be attributed carefully. A pilot who does not
+launch due to illness, for instance, is not a DNF, but an ABS.
 \begin{align*}
     LVR &= \min(1, \frac{NumberOfPilotsFlying}{NumberOfPilotsPresent * NominalLaunch}) \\
     LaunchValidity &= 0.027 * LVR + 2.917 * LVR^2 - 1.944 * LVR^3
 \end{align*}
 
 \subsection{Distance Validity}
-Distance validity depends on nominal distance, nominal goal, the longest distance flown and the sum of
-all distances flown beyond minimum distance. If the task distance is quite short in relation to nominal
-distance, the day is probably not a good measure of pilot skill because there would not be many
+Distance validity depends on nominal distance, nominal goal, the longest
+distance flown and the sum of all distances flown beyond minimum distance. If
+the task distance is quite short in relation to nominal distance, the day is
+probably not a good measure of pilot skill because there would not be many
 decisions to make.
 
-If a task is longer than nominal distance, the day will not be devalued because of distance validity, even
-if the nominal goal parameter value is not achieved, as long as a fair percentage of pilots fly a good
-distance. This sounds like a vague statement, but the task setter should try to set tasks that are
-reasonable for the day and achievable. If everyone lands in goal, you must ask if this was a valid test of
-skill - it probably was if the fastest time and the distance flown were reasonably long. If everyone lands
-short of goal, was it an unsuitable task but still a good test of pilot skill? You also can have the case
-where a task that is shorter than nominal distance, has a distance validity of almost 1. This will happen
-when a large percentage of the pilots fly a large percentage of the course but, in this case, you still have
-a practical devaluation because there will be little spreading between pilots’ scores.
+If a task is longer than nominal distance, the day will not be devalued because
+of distance validity, even if the nominal goal parameter value is not achieved,
+as long as a fair percentage of pilots fly a good distance. This sounds like
+a vague statement, but the task setter should try to set tasks that are
+reasonable for the day and achievable. If everyone lands in goal, you must ask
+if this was a valid test of skill - it probably was if the fastest time and the
+distance flown were reasonably long. If everyone lands short of goal, was it an
+unsuitable task but still a good test of pilot skill? You also can have the
+case where a task that is shorter than nominal distance, has a distance
+validity of almost 1. This will happen when a large percentage of the pilots
+fly a large percentage of the course but, in this case, you still have
+a practical devaluation because there will be little spreading between pilots’
+scores.
 
 In the formula below, \(p\) denotes an individual pilot.
 \begin{align*}
@@ -366,17 +397,19 @@ In the formula below, \(p\) denotes an individual pilot.
 \end{align*}
 
 \subsection{Time Validity}
-Time validity depends on the fastest time to complete the speed section, in relation to nominal time. If
-the fastest time to complete the speed section is longer than nominal time, then time validity is always
-equal to 1.
+Time validity depends on the fastest time to complete the speed section, in
+relation to nominal time. If the fastest time to complete the speed section is
+longer than nominal time, then time validity is always equal to 1.
 
-If the fastest time is quite short, the day is probably not a good measure of pilot skill because there
-would not be many decisions to make and, because of this, luck can distort scores as there will be little
-possibility to recover any accidental loss of time.
+If the fastest time is quite short, the day is probably not a good measure of
+pilot skill because there would not be many decisions to make and, because of
+this, luck can distort scores as there will be little possibility to recover
+any accidental loss of time.
 
-If no pilot finishes the speed section, then time validity is not based on time but on distance: The
-distance of the pilot who flies the furthest in relation to nominal distance is then used to calculate the
-time validity the same way as if it was the time.
+If no pilot finishes the speed section, then time validity is not based on time
+but on distance: The distance of the pilot who flies the furthest in relation
+to nominal distance is then used to calculate the time validity the same way as
+if it was the time.
 \begin{align*}
     if \ one \ pilot \ reached \ ESS \\
     TVR &= \min(1, \frac{BestTime}{NominalTime}) \\
@@ -387,13 +420,15 @@ time validity the same way as if it was the time.
 
 \newpage
 \section{Points Allocation}
-The available points for each task are \(1000*TaskValidity\). These points are distributed between distance
-points, time points, leading points and arrival points. The distribution depends on the percentage of
-pilots who reached goal before the task deadline, compared to pilots who launched, as well as the
-chosen goal form. It is expressed in terms of weight factors for each of the four point categories:
-Distance weight, time weight, leading weight and arrival weight. Weight factors are always between 0
-and 1. A weight factor of 0.5 for distance, for example, means that 50\% of the day’s available overall
-points are available for distance points.
+The available points for each task are \(1000*TaskValidity\). These points are
+distributed between distance points, time points, leading points and arrival
+points. The distribution depends on the percentage of pilots who reached goal
+before the task deadline, compared to pilots who launched, as well as the
+chosen goal form. It is expressed in terms of weight factors for each of the
+four point categories: Distance weight, time weight, leading weight and arrival
+weight. Weight factors are always between 0 and 1. A weight factor of 0.5 for
+distance, for example, means that 50\% of the day’s available overall points
+are available for distance points.
 \begin{align*}
     GoalRatio &= \frac{NumberOfPilotsInGoal}{NumberOfPilotsFlying} \\
     DistanceWeight &= 0.9 - 1.665 * GoalRatio + 1.713 * GoalRatio^2 - 0.587 * GoalRatio^3 \\
@@ -411,44 +446,50 @@ points are available for distance points.
 
 \newpage
 \section{Pilot score}
-Each pilot’s score is the sum of that pilot’s distance, time, leading and arrival points, rounded to the
-nearest whole number, 0.5 being rounded up.
+Each pilot’s score is the sum of that pilot’s distance, time, leading and
+arrival points, rounded to the nearest whole number, 0.5 being rounded up.
 \[ \forall p : p \in PilotsLaunched : TotalScore_p = DistancePoints_p + TimePoints_p + LeadingPoints_p + ArrivalPoints_p \]
 \subsection{Distance points}
-The distance considered for each pilot to calculate distance points is that pilot’s best distance along the
-course line, up until the pilot landed or the task deadline was reached, whichever comes first.
+The distance considered for each pilot to calculate distance points is that
+pilot’s best distance along the course line, up until the pilot landed or the
+task deadline was reached, whichever comes first.
 
-One half of the available distance points are assigned to each pilot linearly, based on the pilot’s distance
-flown in relation to the best distance flown in the task. The other half is assigned taking into
-consideration the difficulty of the kilometers flown.
+One half of the available distance points are assigned to each pilot linearly,
+based on the pilot’s distance flown in relation to the best distance flown in
+the task. The other half is assigned taking into consideration the difficulty
+of the kilometers flown.
 \begin{align*}
     LinearFraction_p &= \frac{Distance_p}{2 * BestDistance} \\
     i_p &= \lfloor Distance_p * 10 \rfloor \\
     DifficultyFraction_p &= DiffScore_{i_p} + ((DiffScore_{i_{p + 1}} - DiffScore_{i_p}) * (Distance_p * 10 - i_p)) \\
     DistancePoints_p &= (LinearFraction_p + DifficultyFraction_p) * AvailableDistancePoints
 \end{align*}
-In the case of a stopped task, a pilot’s distance may be increased by an altitude bonus (see~\ref{sec:distance-stopped-tasks}). The
-available distance points are assigned to each pilot linearly, based on the pilot’s distance flown in
-relation to the best distance flown in the task.
+In the case of a stopped task, a pilot’s distance may be increased by an
+altitude bonus (see~\ref{sec:distance-stopped-tasks}). The available distance
+points are assigned to each pilot linearly, based on the pilot’s distance flown
+in relation to the best distance flown in the task.
 \[ DistancePoints_p = \frac{Distance_p}{BestDistance} * AvailableDistancePoints \]
 
 \subsubsection{Difficulty calculation}
 \label{sec:difficulty-calculation}
-To measure the relative difficulty of each 100 meters of the task, we consider the number of pilots who
-landed in the successive few kilometers, and the distance flown.
+To measure the relative difficulty of each 100 meters of the task, we consider
+the number of pilots who landed in the successive few kilometers, and the
+distance flown.
 
-In a first step, for each 100-meter section of the task, the number of pilots who landed in that section is
-counted. Pilots who landed before minimum distance are counted as having landed at minimum
-distance. Only pilots who landed out are considered for this calculation, pilots who reached goal are not
+In a first step, for each 100-meter section of the task, the number of pilots
+who landed in that section is counted. Pilots who landed before minimum
+distance are counted as having landed at minimum distance. Only pilots who
+landed out are considered for this calculation, pilots who reached goal are not
 counted.
 \begin{align*}
     \forall i : i < \lfloor MinDist * 10 \rfloor : PilotsLanded_i &= 0 \\
     PilotsLanded_{\lfloor MinDist * 10 \rfloor} &= \sum_{\forall Pilot : \lfloor PilotDistance * 10 \rfloor \leq \lfloor MinDist * 10 \rfloor} 1 \\
     \forall i : i > \lfloor MinDist * 10 \rfloor \land i \leq \lfloor MaxDist * 10 \rfloor : PilotsLanded_i &= \sum_{\forall q : q \in PilotsLandedOut : \lfloor Distance_q * 10 \rfloor = i} 1
 \end{align*}
-Then the difficulty for each 100-meter section of the task is calculated by counting the number of pilots
-who landed further along the task. If 100 pilots land out on a flight of 100 km, the next 3 km are
-considered. If 10 pilots land out in 100 km, the next 30 km are considered. The variable LookAheadDist
+Then the difficulty for each 100-meter section of the task is calculated by
+counting the number of pilots who landed further along the task. If 100 pilots
+land out on a flight of 100 km, the next 3 km are considered. If 10 pilots land
+out in 100 km, the next 30 km are considered. The variable LookAheadDist
 contains the number of 100 meter slots to look ahead for this.
 \begin{align*}
     LookAheadDist &= \max(30, round(\frac{30 * BestDistanceFlown}{NumberOfPilotsLandedOut}, 0)) \\
@@ -467,20 +508,22 @@ Finally, we can calculate the difficulty score percentage for each 100-meter slo
 The difficulty calculation does not apply to paragliding.
 
 \subsubsection{Example for difficulty calculation}
-For an example of how the difficulty calculation works, see Figure 8: Note how the slope of the green
-curve (the total Distance points) becomes steeper before an area where many pilots landed and flatter
-just after. The red circles show these areas before the big group at the 41 km mark, and after the 46 km
-mark. There are two reasons for this:
+For an example of how the difficulty calculation works, see Figure 8: Note how
+the slope of the green curve (the total Distance points) becomes steeper before
+an area where many pilots landed and flatter just after. The red circles show
+these areas before the big group at the 41 km mark, and after the 46 km mark.
+There are two reasons for this:
 \begin{enumerate}
     \item For safety and retrieval reasons, we do not want to encourage pilots to fly only a short distance past a group of landed pilots.
     \item If a pilot lands somewhere, he or she probably got into trouble just before, and then glided a while before landing.
 \end{enumerate}
 
 \subsection{Time points}
-Time points are assigned to the pilot as a function of best time and pilot time – the time the pilot took to
-complete the speed section. Slow pilots will get zero points for speed if their time to complete the speed
-section is equal to or longer than the fastest time plus the square root of the fastest time. All times are
-measured in hours.
+Time points are assigned to the pilot as a function of best time and pilot time
+– the time the pilot took to complete the speed section. Slow pilots will get
+zero points for speed if their time to complete the speed section is equal to
+or longer than the fastest time plus the square root of the fastest time. All
+times are measured in hours.
 \begin{align*}
     SpeedFraction_p &= \max(0, 1 - \sqrt[3]{\frac{Time_p - BestTime}{\sqrt{BestTime}}}^2) \\
     TimePoints_p &= SpeedFraction_p * AvailableTimePoints
@@ -507,8 +550,9 @@ For three examples of Time Point distributions for tasks with different best tim
 \end{table}
 
 \subsection{Leading points}
-Leading points are awarded to encourage pilots to start early and to reward the risk involved in flying in
-the leading group. Pilots will get leading points even if they landed before goal or the end of speed
+Leading points are awarded to encourage pilots to start early and to reward the
+risk involved in flying in the leading group. Pilots will get leading points
+even if they landed before goal or the end of speed
 section.
 \begin{align*}
     LC_{min} &= \min(\forall p : p \in PilotsFlown : LC_p) \\
@@ -519,17 +563,20 @@ To get an impression of the way leading points are awarded depending on a task�
 coefficient, see Figure 10.
 
 \subsubsection{Leading coefficient}
-Each started pilot’s track log is used to calculate the leading coefficient (LC), by calculating the area
-underneath a graph defined by each track point’s time, and the distance to ESS at that time. The times
-used for this calculation are given in seconds from the moment when the first pilot crossed SSS, to the
-time when the last pilot reached ESS. For pilots who land out after the last pilot reached ESS, the
-calculation keeps going until they land. The distances used for the LC calculation are given in kilometers
-and are the distance from each point’s position to ESS, starting from SSS, but never more than any
-previously reached distance. This means that the graph never “goes back”: even if the pilot flies away
-from goal for a while, the corresponding points in the graph will use the previously reached best
-distance towards ESS.
+Each started pilot’s track log is used to calculate the leading coefficient
+(LC), by calculating the area underneath a graph defined by each track point’s
+time, and the distance to ESS at that time. The times used for this calculation
+are given in seconds from the moment when the first pilot crossed SSS, to the
+time when the last pilot reached ESS. For pilots who land out after the last
+pilot reached ESS, the calculation keeps going until they land. The distances
+used for the LC calculation are given in kilometers and are the distance from
+each point’s position to ESS, starting from SSS, but never more than any
+previously reached distance. This means that the graph never “goes back”: even
+if the pilot flies away from goal for a while, the corresponding points in the
+graph will use the previously reached best distance towards ESS.
 
-Calculation of the leading coefficient (LC) for each pilot follows this formula:
+Calculation of the leading coefficient (LC) for each pilot follows this
+formula:
 \begin{align*}
     LC_p &= \\
     \frac{\sum_{i : tp_i \in TrackPointsInSS_p} taskTime(tp_i) * (bestDistToESS(tp_{i - 1})^2 - bestDistToESS(tp_i)^2)}{1800 * LengthOfSpeedSection^2} \\
@@ -549,36 +596,42 @@ Calculation of the leading coefficient (LC) for each pilot follows this formula:
     \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \\
     \min(bestDistToESS(tp_{i - 1}), LenghtOfSpeedSection - distanceFlown(tp_i))
 \end{align*}
-In tasks where CESS is used, the CESS’s centre point is considered the last point of the speed section. For
-LC calculations, any pilot crossing into the CESS’s cone is immediately awarded the remaining distance
-to the cone’s centre.
+In tasks where CESS is used, the CESS’s centre point is considered the last
+point of the speed section. For LC calculations, any pilot crossing into the
+CESS’s cone is immediately awarded the remaining distance to the cone’s centre.
 
 \subsubsection{Example}
-Blue was the first to enter the speed section, but Black was the first pilot to cross the end of speed
-section. Green started at the same time as Blue, but landed short, after about 23km and just over 40
-minutes of flight inside the speed section.
+Blue was the first to enter the speed section, but Black was the first pilot to
+cross the end of speed section. Green started at the same time as Blue, but
+landed short, after about 23km and just over 40 minutes of flight inside the
+speed section.
 
-Black was fastest, therefore will get the most time points, but he started late, probably had pilots out
-front to show the way during the first 22km, but was leading after that.
+Black was fastest, therefore will get the most time points, but he started
+late, probably had pilots out front to show the way during the first 22km, but
+was leading after that.
 
-If a pilot lands along the course (Green), or if his track log is interrupted (Orange), his track log is
-completed as shown by the dotted lines: Missing parts are calculated as if the dotted line was the actual
-track log, so LC becomes bigger, lowering the leading points for that pilot, compared to a track where
-that part is not missing. A pilot landing just short of goal will be less penalised and could even get full
-leading points if he led for a long while.
+If a pilot lands along the course (Green), or if his track log is interrupted
+(Orange), his track log is completed as shown by the dotted lines: Missing
+parts are calculated as if the dotted line was the actual track log, so LC
+becomes bigger, lowering the leading points for that pilot, compared to a track
+where that part is not missing. A pilot landing just short of goal will be less
+penalised and could even get full leading points if he led for a long while.
 
-The pilot who used best the earliest part of the day (i.e. Black, who has the smallest area below the
-track log graph) gets all the available leading points, while the others gets their points according to the
-same formula used for the time points for the same reasons. If the task in the example is fully valid, and
-30\% of pilots reached goal, then Black will get all of the available 81 leading points and full time points,
-as he was fastest; Blue gets 45 leading points because he started early but was slower; Orange receives
-only 18 leading points as he was slow and had a gap in his track log; Green gets 0 points even though he
-started early, because he was the slowest and landed fairly short.
+The pilot who used best the earliest part of the day (i.e. Black, who has the
+smallest area below the track log graph) gets all the available leading points,
+while the others gets their points according to the same formula used for the
+time points for the same reasons. If the task in the example is fully valid,
+and 30\% of pilots reached goal, then Black will get all of the available 81
+leading points and full time points, as he was fastest; Blue gets 45 leading
+points because he started early but was slower; Orange receives only 18 leading
+points as he was slow and had a gap in his track log; Green gets 0 points even
+though he started early, because he was the slowest and landed fairly short.
 
 \subsection{Arrival points}
-Arrival points depend on the position at which a pilot crosses ESS: The first pilot completing the speed
-section receives the maximum available arrival points, while the others are awarded arrival points
-according to the number of pilots who reached ESS before them. The last pilot to reach ESS will always
+Arrival points depend on the position at which a pilot crosses ESS: The first
+pilot completing the speed section receives the maximum available arrival
+points, while the others are awarded arrival points according to the number of
+pilots who reached ESS before them. The last pilot to reach ESS will always
 receive at least 20\% of the available arrival points.
 \begin{align*}
     AC_p &= 1 - \frac{PositionAtESS - 1}{NumberOfPilotsReachingESS} \\
@@ -590,42 +643,48 @@ No arrival points are awarded in Paragliding.
 \newpage
 \section{Special cases}
 \subsection{ESS but not goal}
-In a task where ESS and goal are not identical, a pilot may reach ESS, but not goal. The way this case is
-handled differs between hang-gliding and paragliding competitions:
+In a task where ESS and goal are not identical, a pilot may reach ESS, but not
+goal. The way this case is handled differs between hang-gliding and paragliding
+competitions:
 
-In paragliding competitions, reaching goal is seen as “validating” one’s speed section performance. A
-pilot who does not reach goal after reaching ESS will lose his time points. He will only score distance
-points for the distance actually covered, and leading points. This is seen as a safety measure, since it
-encourages pilots to plan their final glide to ESS with enough altitude to safely reach goal. This
-discourages high-speed final glides low to the ground.
+In paragliding competitions, reaching goal is seen as “validating” one’s speed
+section performance. A pilot who does not reach goal after reaching ESS will
+lose his time points. He will only score distance points for the distance
+actually covered, and leading points. This is seen as a safety measure, since
+it encourages pilots to plan their final glide to ESS with enough altitude to
+safely reach goal. This discourages high-speed final glides low to the ground.
 \begin{align*}
     \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
     DistancePoints_p + LeadingPoints_p + 0 * (TimePoints_p + ArrivalPoints_p)
 \end{align*}
-In hang-gliding competitions, landing between ESS and goal is seen as a slight mishap, which incurs a
-penalty on the pilot’s total score: Of the time and arrival points scored on the speed section, the pilot
-will only receive 80\%\footnote{Note that this „rule” is not defined in S7A, but is implemented in FS. Some clarification on the rightfulness of this
-will be required.}.
+In hang-gliding competitions, landing between ESS and goal is seen as a slight
+mishap, which incurs a penalty on the pilot’s total score: Of the time and
+arrival points scored on the speed section, the pilot will only receive
+80\%\footnote{Note that this „rule” is not defined in S7A, but is implemented
+in FS. Some clarification on the rightfulness of this will be required.}.
 \begin{align*}
     \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
     DistancePoints_p + LeadingPoints_p + 0.8 * (TimePoints_p + ArrivalPoints_p)
 \end{align*}
 
 \subsection{Early start}
-An early start occurs if a pilot’s last SSS cylinder boundary crossing in start direction (enter or exit)
-occurred before the first (or only) start gate time.
+An early start occurs if a pilot’s last SSS cylinder boundary crossing in start
+direction (enter or exit) occurred before the first (or only) start gate time.
 
-In paragliding, pilots who perform an early start are only scored for the distance between the launch
-point and the SSS cylinder, as calculated when determining the complete task distance (see ~\ref{sec:task-distance}).
+In paragliding, pilots who perform an early start are only scored for the
+distance between the launch point and the SSS cylinder, as calculated when
+determining the complete task distance (see ~\ref{sec:task-distance}).
 
-In hang-gliding, the so-called “Jump the Gun”-rule applies: If the early start occurred within a time that
-is close to the first (or only) start gate time, the pilot is scored for his complete flight, but a penalty is
-then applied to his total score.
+In hang-gliding, the so-called “Jump the Gun”-rule applies: If the early start
+occurred within a time that is close to the first (or only) start gate time,
+the pilot is scored for his complete flight, but a penalty is then applied to
+his total score.
 
-The penalty calculation is based on two values X and Y, which are set in S7A, but can be changed at the
-task briefing (presumably by the meet director and/or the task committee). For each X seconds a pilot
-starts early, he incurs a 1 point penalty, up to a maximum of Y seconds. If a pilot starts more than Y
-seconds early, he will only be scored for minimum distance.
+The penalty calculation is based on two values X and Y, which are set in S7A,
+but can be changed at the task briefing (presumably by the meet director and/or
+the task committee). For each X seconds a pilot starts early, he incurs
+a 1 point penalty, up to a maximum of Y seconds. If a pilot starts more than
+Y seconds early, he will only be scored for minimum distance.
 \begin{align*}
     X_{default} &= 2 \\
     Y_{default} &= 300 \\
@@ -638,31 +697,36 @@ seconds early, he will only be scored for minimum distance.
 
 \subsection{Stopped tasks}
 \subsubsection{Stop task time}
-A task can be stopped at any time by the meet director. The time when a stop was announced for the
-first time is the “task stop announcement time”. This time must be recorded to score the task
-appropriately. For scoring purposes, a “task stop” time is calculated. This is the time which determines
-whether a task will be scored at all. Pilots’ flight will only be scored up to this task stop time.
+A task can be stopped at any time by the meet director. The time when a stop
+was announced for the first time is the “task stop announcement time”. This
+time must be recorded to score the task appropriately. For scoring purposes,
+a “task stop” time is calculated. This is the time which determines whether
+a task will be scored at all. Pilots’ flight will only be scored up to this
+task stop time.
 
-In hang-gliding, stopped tasks are “scored back” by a time that is determined by the number of start
-gates and the start gate interval: The task stop time is one start gate interval, or 15 minutes in case of a
-single start gate, before the task stop announcement time.
+In hang-gliding, stopped tasks are “scored back” by a time that is determined
+by the number of start gates and the start gate interval: The task stop time is
+one start gate interval, or 15 minutes in case of a single start gate, before
+the task stop announcement time.
 \begin{align*}
     numberOfStartGates = 1 : taskStopTime &= taskStopAnnouncementTime - 15min \\
     numberOfStartGates > 1 : taskStopTime &= taskStopAnnouncementTime - startGateInterval \\
 \end{align*}
-In paragliding the score-back time is set as part of the competition parameters (see section ~\ref{sec:score-back-time}).
+In paragliding the score-back time is set as part of the competition parameters
+(see section ~\ref{sec:score-back-time}).
 \begin{align*}
     taskStopTime &= taskStopAnnouncementTime - competitionScoreBackTime \\
 \end{align*}
 
 \subsubsection{Requirements to score a stopped task}
-For a stopped task to be scored, it must fulfil certain requirements, which differ between the two
-disciplines:
+For a stopped task to be scored, it must fulfil certain requirements, which
+differ between the two disciplines:
 
-In hang gliding, a stopped task can only be scored if either a pilot reached goal or the race had been
-going on for a certain minimum time. The minimum time depends on whether the competition is the
-Women’s World Championship or not. The race start time is defined as the time when the first valid
-start was taken by a competition pilot.
+In hang gliding, a stopped task can only be scored if either a pilot reached
+goal or the race had been going on for a certain minimum time. The minimum time
+depends on whether the competition is the Women’s World Championship or not.
+The race start time is defined as the time when the first valid start was taken
+by a competition pilot.
 \begin{align*}
     typeOfCompetition = Women's : minimumTime &= 60min \\
     typeOfCompetition \neq Women's : minimumTime &= 90min \\
@@ -670,13 +734,14 @@ start was taken by a competition pilot.
     taskStopTime - timeOfFirstStart < minimumTime \land numberOfPilotsInGoal(taskStopTime) = 0 : \\
     taskValidity &= 0
 \end{align*}
-Note that this rule is currently not enforced by FS: The decision whether a stopped task is cancelled or
-scored must be taken by the score keeper.
+Note that this rule is currently not enforced by FS: The decision whether
+a stopped task is cancelled or scored must be taken by the score keeper.
 
-In paragliding, a stopped task will be scored if the flying time was one hour or more. For Race to Goal
-tasks, this means that the Task Stop Time must be one hour or more after the race start time. For all
-other tasks, in order for them to be scored, the task stop time must be one hour or more after the last
-pilot started.
+In paragliding, a stopped task will be scored if the flying time was one hour
+or more. For Race to Goal tasks, this means that the Task Stop Time must be one
+hour or more after the race start time. For all other tasks, in order for them
+to be scored, the task stop time must be one hour or more after the last pilot
+started.
 \begin{align*}
     minimumTime &= 60min \\
     \\
@@ -690,12 +755,12 @@ pilot started.
 \end{align*}
 
 \subsubsection{Stopped task validity}
-For stopped tasks, an additional validity value, the Stopped Task Validity, is calculated and applied to the
-Task Validity.
+For stopped tasks, an additional validity value, the Stopped Task Validity, is
+calculated and applied to the Task Validity.
 \[ DayQuality_{stopped} = LaunchValidity * DistanceValidity * TimeValidity * StoppedTaskValidity \]
-Stopped Task Validity is calculated taking into account the task distance, the flown distances of all pilots,
-the number of launched pilots and the number of pilots still flying at the time when the task was
-stopped.
+Stopped Task Validity is calculated taking into account the task distance, the
+flown distances of all pilots, the number of launched pilots and the number of
+pilots still flying at the time when the task was stopped.
 \begin{align*}
     NumberOfPilotsReachedESS > 0 : StoppedTaskValidity &= 1 \\
     NumberOfPilotsReachedESS = 0 : StoppedTaskValidity &= \min(1, a + b^3) \\
@@ -706,38 +771,43 @@ stopped.
 \end{align*}
 
 \subsubsection{Scored time window}
-For stopped Race to Goal tasks with a single start gate, scoring considers the same time window for all
-pilots: The time between the race start and the task stop time.
+For stopped Race to Goal tasks with a single start gate, scoring considers the
+same time window for all pilots: The time between the race start and the task
+stop time.
 \begin{align*}
     typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \forall p : p \in StartedPilots : \\
     scoreTimeWindow_p &= (startTime, taskStopTime)
 \end{align*}
-For stopped Race to Goal tasks with multiple start gates, as well as Elapsed Time races, must be treated
-slightly differently: Only the time window available to the last pilot started is considered for scoring. This
-time window is defined as the amount of time t between the last pilot’s start and the task stop time. For
-all pilots, only this time t after their respective start is considered for scoring.
+For stopped Race to Goal tasks with multiple start gates, as well as Elapsed
+Time races, must be treated slightly differently: Only the time window
+available to the last pilot started is considered for scoring. This time window
+is defined as the amount of time t between the last pilot’s start and the task
+stop time. For all pilots, only this time t after their respective start is
+considered for scoring.
 \begin{align*}
     typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
     scoreTime = taskStopTime - \max(\forall p : p \in StartedPilots : startTime_p) : \\
     \forall p : p \in StartedPilots : \\ 
     scoreTimeWindow_p &= (startTime_p, startTime_p + scoreTime)
 \end{align*}
-This means that if the last pilot started and then flew for, for example, 75 minutes until the task was
-stopped, all tracks are only scored for the first 75 minutes each pilot flew after taking their respective
-start.
+This means that if the last pilot started and then flew for, for example, 75
+minutes until the task was stopped, all tracks are only scored for the first 75
+minutes each pilot flew after taking their respective start.
 
 \subsubsection{Time points for pilots at or after ESS}
-Pilots who were at a position between ESS and goal at the task stop time will be scored for their
-complete flight, including the portion flown after the task stop time. This is to remove any discontinuity
-between pilots just before goal and pilots who had just reached goal at task stop time.
+Pilots who were at a position between ESS and goal at the task stop time will
+be scored for their complete flight, including the portion flown after the task
+stop time. This is to remove any discontinuity between pilots just before goal
+and pilots who had just reached goal at task stop time.
 
-If a Conical ESS is used, then all pilots who have crossed into the cone before or at the task stop time will
-be scored for being in goal.
+If a Conical ESS is used, then all pilots who have crossed into the cone before
+or at the task stop time will be scored for being in goal.
 
-A fixed amount of points is subtracted from the time points of each pilot that makes goal in a stopped
-task. This amount is the amount of time points a pilot would receive if he had reached ESS exactly at the
-task stop time. This is to remove any discontinuity between pilots just before ESS and pilots who had
-just reached ESS at task stop time.
+A fixed amount of points is subtracted from the time points of each pilot that
+makes goal in a stopped task. This amount is the amount of time points a pilot
+would receive if he had reached ESS exactly at the task stop time. This is to
+remove any discontinuity between pilots just before ESS and pilots who had just
+reached ESS at task stop time.
 \begin{align*}
     typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \\
     timePointsReduction &= timePoints(taskStopTime - startTime) \\
@@ -751,14 +821,17 @@ just reached ESS at task stop time.
 
 \subsubsection{Distance points with altitude bonus}
 \label{sec:distance-stopped-tasks}
-To compensate for altitude differences at the time when a task is stopped, a bonus distance is
-calculated for each point in the pilots’ track logs, based on that point’s altitude above goal. This bonus
-distance is added to the distance achieved at that point. All altitude values used for this calculation are
-GPS altitude values, as received from the pilots’ GPS devices (no compensation for different earth
-models applied by those devices). For all distance point calculations, including the difficulty calculations
-in hang-gliding (see ~\ref{sec:difficulty-calculation}), these new stopped distance values are being used to determine the pilots’
-best distance values. Time and leading point calculations remain the same: they are not affected by the
-altitude bonus or stopped distance values.
+To compensate for altitude differences at the time when a task is stopped,
+a bonus distance is calculated for each point in the pilots’ track logs, based
+on that point’s altitude above goal. This bonus distance is added to the
+distance achieved at that point. All altitude values used for this calculation
+are GPS altitude values, as received from the pilots’ GPS devices (no
+compensation for different earth models applied by those devices). For all
+distance point calculations, including the difficulty calculations in
+hang-gliding (see ~\ref{sec:difficulty-calculation}), these new stopped
+distance values are being used to determine the pilots’ best distance values.
+Time and leading point calculations remain the same: they are not affected by
+the altitude bonus or stopped distance values.
 \begin{align*}
     GlideRatio &= 5.0 \\
     GlideRatio &= 4.0 \\
@@ -768,50 +841,84 @@ altitude bonus or stopped distance values.
 \[ xs = \forall track_p . point_i : shortestDistanceToGoal(track_p . point_i) - (track_p . point_i . altitude - GoalAltitude) * GlideRatio \\ \]
 
 \subsection{Penalties}
-Penalties for various actions are defined in the rules. These penalties are either expressed as an absolute
-number (e.g. “100 points”) or as a percentage (e.g. “10\% of the pilot’s score in the task where he
-performed the punishable action”). The corresponding number of points is then deducted from the
-punished pilot’s total score to calculate his final score.
+Penalties for various actions are defined in the rules. These penalties are
+either expressed as an absolute number (e.g. “100 points”) or as a percentage
+(e.g. “10\% of the pilot’s score in the task where he performed the punishable
+action”). The corresponding number of points is then deducted from the punished
+pilot’s total score to calculate his final score.
 \begin{align*}
     finalScore_p &= score_p - absolutePenalty \\
     finalScore_p &= score_p - (1 - percentagePenalty_p)
 \end{align*}
-These penalties are completely independent of any “Jump the Gun”-Penalty a pilot may have incurred.
+These penalties are completely independent of any “Jump the Gun”-Penalty
+a pilot may have incurred.
 
-The penalty mechanism can also be used to award bonus points to a pilot for some actions like helping a
-pilot in distress. In that case the penalty must be given as a negative number.
+The penalty mechanism can also be used to award bonus points to a pilot for
+some actions like helping a pilot in distress. In that case the penalty must be
+given as a negative number.
 
-Any rounding up of scores is to be done after the application of penalties. The lowest score a pilot can
-attain in a task, regardless of any incurred penalties, is zero points.
+Any rounding up of scores is to be done after the application of penalties. The
+lowest score a pilot can attain in a task, regardless of any incurred
+penalties, is zero points.
 
 \newpage
 \section{Task ranking}
 \subsection{Overall task ranking}
-Pilots are ranked by their final score, in descending order. Pilots with the same score are ranked in the same position.
+Pilots are ranked by their final score, in descending order. Pilots with the
+same score are ranked in the same position.
 
 \subsection{Female task ranking}
-A female task ranking is generated by exclusively listing female pilots, with the score they achieved in the overall task ranking. Female pilots with the same score are ranked in the same position.
+A female task ranking is generated by exclusively listing female pilots, with
+the score they achieved in the overall task ranking. Female pilots with the
+same score are ranked in the same position.
 
 \subsection{Nation task ranking}
-For the nation task ranking, except for the Women’s World Championships, the scores of the three best-ranked pilots of each national team are added up to create each nation’s task score. For the nation task ranking at the Women’s World Championships, the scores of the two best-ranked pilots of each national team are added up to create each nation’s task score. The nations are then ranked by their score, in descending order. Nations with the same score are ranked in the same position.
+For the nation task ranking, except for the Women’s World Championships, the
+scores of the three best-ranked pilots of each national team are added up to
+create each nation’s task score. For the nation task ranking at the Women’s
+World Championships, the scores of the two best-ranked pilots of each national
+team are added up to create each nation’s task score. The nations are then
+ranked by their score, in descending order. Nations with the same score are
+ranked in the same position.
 
-For the nation task ranking, the scores of the two best-ranked pilots of each national team are added up to create each nation’s task score. The nations are then ranked by
+For the nation task ranking, the scores of the two best-ranked pilots of each
+national team are added up to create each nation’s task score. The nations are
+then ranked by
 
 \newpage
 \section{Competition ranking}
 \subsection{Overall competition ranking}
-The competition overall score of a pilot is calculated by adding up all of his task scores. Pilots are then ranked according to their overall total score, in descending order, for the overall competition ranking. Pilots with the same score are ranked in the same position.
+The competition overall score of a pilot is calculated by adding up all of his
+task scores. Pilots are then ranked according to their overall total score, in
+descending order, for the overall competition ranking. Pilots with the same
+score are ranked in the same position.
 
-The overall score of a pilot is calculated by using the FTV algorithm described in section ~\ref{sec:fixed-total-validity}. For competitions with up to 6 planned tasks, an FTV factor of 0.2 is used. For competitions with 7 or more planned tasks, an FTV factor of 0.25 is used. Pilots are then ranked according to their overall score, in descending order, for the overall competition ranking.\footnote{Organisers of Category 2 competitions are free to choose whether they want to use FTV for overall scores. Especially for shorter competitions with fewer than 4 tasks, using the traditional method (adding up all task scores for each pilot) may be more suitable.}
+The overall score of a pilot is calculated by using the FTV algorithm described
+in section ~\ref{sec:fixed-total-validity}. For competitions with up to
+6 planned tasks, an FTV factor of 0.2 is used. For competitions with 7 or more
+planned tasks, an FTV factor of 0.25 is used. Pilots are then ranked according
+to their overall score, in descending order, for the overall competition
+ranking.\footnote{Organisers of Category 2 competitions are free to choose
+whether they want to use FTV for overall scores. Especially for shorter
+competitions with fewer than 4 tasks, using the traditional method (adding up
+all task scores for each pilot) may be more suitable.}
 
 \subsection{Female competition ranking}
-The female competition ranking is generated by exclusively listing female pilots, with the score they achieved in the overall competition ranking.
+The female competition ranking is generated by exclusively listing female
+pilots, with the score they achieved in the overall competition ranking.
 
 \subsection{Nation competition ranking}
-The competition score of a nation is calculated by adding up all of that nation’s task scores. Nations are then ranked according to their competition total score, in descending order, for the nation competition ranking.
+The competition score of a nation is calculated by adding up all of that
+nation’s task scores. Nations are then ranked according to their competition
+total score, in descending order, for the nation competition ranking.
 
 \subsection{Ties}
-If the scores of the first, second or third in the overall, female or nation ranking are identical, the tie shall be broken by adding up the task positions of the tied pilots, or teams. The pilot or team with the lowest sum is declared the winner. If this does not break the tie, joint champions will be declared. For all other ranking positions, pilots or nations with the same score are ranked in the same position.
+If the scores of the first, second or third in the overall, female or nation
+ranking are identical, the tie shall be broken by adding up the task positions
+of the tied pilots, or teams. The pilot or team with the lowest sum is declared
+the winner. If this does not break the tie, joint champions will be declared.
+For all other ranking positions, pilots or nations with the same score are
+ranked in the same position.
 
 \newpage
 \section{FTV - Fixed Total Validity}
