@@ -13,6 +13,7 @@
 \RequirePackage{booktabs}
 \RequirePackage[left=20mm, right=20mm, top=20mm, bottom=20mm]{geometry}
 \RequirePackage{amsmath}
+\RequirePackage{array}
 
 % SEE: http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
 \hypersetup{
@@ -51,3 +52,7 @@
 
 \definecolor{hgc}{RGB}{146,205,220}
 \definecolor{pgc}{RGB}{250,191,143}
+
+% SEE: https://tex.stackexchange.com/questions/89166/centering-in-tabularx-and-x-columns
+% SEE: https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}

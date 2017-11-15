@@ -484,6 +484,26 @@ measured in hours.
     TimePoints_p &= SpeedFraction_p * AvailableTimePoints
 \end{align*}
 
+\textit{Examples}
+
+For three examples of Time Point distributions for tasks with different best times, see Figure 9 and Table~\ref{tab:time-points}.
+
+\begin{table}[h!]
+    \begin{tabularx}{\textwidth}{|r|r|r|R|}
+    \hline
+        \textbf{Fastest Time} & \textbf{80\% Time Points time} & \textbf{50\% Time Points time} & \textbf{0 Time Points time} \\
+    \hline
+        1:00 & 1:05 & 1:21 & 2:00 \\
+    \hline
+        2:00 & 2:08 & 2:30 & 3:24 (3.4 hours) \\
+    \hline
+        3:00 & 3:09 & 3:37 & 4:42 (4.7 hours) \\
+    \hline
+    \end{tabularx}
+    \caption{Sample time points distribution (all times in hours:minutes)}
+    \label{tab:time-points}
+\end{table}
+
 \subsection{Leading points}
 \subsubsection{Leading coefficient}
 \subsubsection{Example}
