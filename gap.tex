@@ -475,6 +475,15 @@ mark. There are two reasons for this:
 \end{enumerate}
 
 \subsection{Time points}
+Time points are assigned to the pilot as a function of best time and pilot time – the time the pilot took to
+complete the speed section. Slow pilots will get zero points for speed if their time to complete the speed
+section is equal to or longer than the fastest time plus the square root of the fastest time. All times are
+measured in hours.
+\begin{align*}
+    SpeedFraction_p &= \max(0, 1 - \sqrt[3]{\frac{Time_p - BestTime}{\sqrt{BestTime}}}^2) \\
+    TimePoints_p &= SpeedFraction_p * AvailableTimePoints
+\end{align*}
+
 \subsection{Leading points}
 \subsubsection{Leading coefficient}
 \subsubsection{Example}
