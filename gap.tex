@@ -655,6 +655,39 @@ In paragliding the score-back time is set as part of the competition parameters 
 \end{align*}
 
 \subsubsection{Requirements to score a stopped task}
+For a stopped task to be scored, it must fulfil certain requirements, which differ between the two
+disciplines:
+
+In hang gliding, a stopped task can only be scored if either a pilot reached goal or the race had been
+going on for a certain minimum time. The minimum time depends on whether the competition is the
+Women’s World Championship or not. The race start time is defined as the time when the first valid
+start was taken by a competition pilot.
+\begin{align*}
+    typeOfCompetition = Women's : minimumTime &= 60min \\
+    typeOfCompetition \neq Women's : minimumTime &= 90min \\
+    \\
+    taskStopTime - timeOfFirstStart < minimumTime \land numberOfPilotsInGoal(taskStopTime) = 0 : \\
+    taskValidity &= 0
+\end{align*}
+Note that this rule is currently not enforced by FS: The decision whether a stopped task is cancelled or
+scored must be taken by the score keeper.
+
+In paragliding, a stopped task will be scored if the flying time was one hour or more. For Race to Goal
+tasks, this means that the Task Stop Time must be one hour or more after the race start time. For all
+other tasks, in order for them to be scored, the task stop time must be one hour or more after the last
+pilot started.
+\begin{align*}
+    minimumTime &= 60min \\
+    \\
+    typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \\
+    taskStopTime - startTime < minimumTime : \\
+    taskValidity &= 0 \\
+    \\
+    typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
+    taskStopTime - \max(\forall p : p \in StartedPilots . startTime_p) < minimumTime : \\
+    taskValidity &= 0
+\end{align*}
+
 \subsubsection{Stopped task validity}
 \subsubsection{Scored time window}
 \subsubsection{Time points for pilots at or after ESS}
