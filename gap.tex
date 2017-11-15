@@ -505,6 +505,17 @@ For three examples of Time Point distributions for tasks with different best tim
 \end{table}
 
 \subsection{Leading points}
+Leading points are awarded to encourage pilots to start early and to reward the risk involved in flying in
+the leading group. Pilots will get leading points even if they landed before goal or the end of speed
+section.
+\begin{align*}
+    LC_{min} &= \min(\forall p : p \in PilotsFlown : LC_p) \\
+    LeadingFactor_p &= \max(0, 1 - \sqrt[3]{\frac{LC_p - LC_{min}}{\sqrt{LC_{min}}}}^2) \\
+    LeadingPoints_p &= LeadingFactor_p * AvailableLeadingPoints
+\end{align*}
+To get an impression of the way leading points are awarded depending on a task’s minimal leading
+coefficient, see Figure 10.
+
 \subsubsection{Leading coefficient}
 \subsubsection{Example}
 \subsection{Arrival points}
