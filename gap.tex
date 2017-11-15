@@ -517,6 +517,40 @@ To get an impression of the way leading points are awarded depending on a task�
 coefficient, see Figure 10.
 
 \subsubsection{Leading coefficient}
+Each started pilot’s track log is used to calculate the leading coefficient (LC), by calculating the area
+underneath a graph defined by each track point’s time, and the distance to ESS at that time. The times
+used for this calculation are given in seconds from the moment when the first pilot crossed SSS, to the
+time when the last pilot reached ESS. For pilots who land out after the last pilot reached ESS, the
+calculation keeps going until they land. The distances used for the LC calculation are given in kilometers
+and are the distance from each point’s position to ESS, starting from SSS, but never more than any
+previously reached distance. This means that the graph never “goes back”: even if the pilot flies away
+from goal for a while, the corresponding points in the graph will use the previously reached best
+distance towards ESS.
+
+Calculation of the leading coefficient (LC) for each pilot follows this formula:
+\begin{align*}
+    LC_p &= \\
+    \frac{\sum_{i : tp_i \in TrackPointsInSS_p} taskTime(tp_i) * (bestDistToESS(tp_{i - 1})^2 - bestDistToESS(tp_i)^2)}{1800 * LengthOfSpeedSection^2} \\
+    \\
+    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < ESSTime_{LastPilotAtESS} : LC_p &= \\
+    LC_p + LastTime_{LastPilotAtESS} * bestDistToESS(tp_{max})^2 \\
+    \\
+    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq ESSTime_{LastPilotAtESS} : LC_p &= \\
+    LC_p + taskTime(tp_{max}) * bestDistToESS(tp_{max})^2 \\
+    \\
+    taskTime(tp) &= \\
+    \min(TaskDeadline, time(tp)) \\
+    \\
+    bestDistToESS(tp_0) &= \\
+    LengthOfSpeedSection \\
+    \\
+    \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \\
+    \min(bestDistToESS(tp_{i - 1}), LenghtOfSpeedSection - distanceFlown(tp_i))
+\end{align*}
+In tasks where CESS is used, the CESS’s centre point is considered the last point of the speed section. For
+LC calculations, any pilot crossing into the CESS’s cone is immediately awarded the remaining distance
+to the cone’s centre.
+
 \subsubsection{Example}
 \subsection{Arrival points}
 
