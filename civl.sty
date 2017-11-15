@@ -56,3 +56,27 @@
 % SEE: https://tex.stackexchange.com/questions/89166/centering-in-tabularx-and-x-columns
 % SEE: https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% SEE: https://tex.stackexchange.com/questions/29060/newenvironment-issues-with-environment-comment
+\newsavebox{\coloredbgbox}
+\newenvironment{pg}
+{
+    \begin{lrbox}{\coloredbgbox}\begin{minipage}{\textwidth}
+}
+{
+    \end{minipage}
+    \end{lrbox}
+    \colorbox{pgc}{\usebox{\coloredbgbox}}
+    \marginpar{\includegraphics[scale=0.6]{pg.png}\hfill}
+}
+
+\newenvironment{hg}
+{
+    \begin{lrbox}{\coloredbgbox}\begin{minipage}{\textwidth}
+}
+{
+    \end{minipage}
+    \end{lrbox}
+    \colorbox{hgc}{\usebox{\coloredbgbox}}
+    \marginpar{\includegraphics[scale=1.2]{hg.png}\hfill}
+}
