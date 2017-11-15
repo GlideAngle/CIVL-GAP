@@ -689,6 +689,22 @@ pilot started.
 \end{align*}
 
 \subsubsection{Stopped task validity}
+For stopped tasks, an additional validity value, the Stopped Task Validity, is calculated and applied to the
+Task Validity.
+\[ DayQuality_{stopped} = LaunchValidity * DistanceValidity * TimeValidity * StoppedTaskValidity \]
+Stopped Task Validity is calculated taking into account the task distance, the flown distances of all pilots,
+the number of launched pilots and the number of pilots still flying at the time when the task was
+stopped.
+\begin{align*}
+    NumberOfPilotsReachedESS > 0 : StoppedTaskValidity &= 1 \\
+    NumberOfPilotsReachedESS = 0 : StoppedTaskValidity &= \min(1, a + b^3) \\
+\end{align*}
+\begin{align*}
+    a &= \sqrt{\frac{BestDistFlown - avg(\forall i : DistFlown_i)}{DistLaunchToESS - BestDistFlown + 1} * \sqrt{\frac{stddev(\forall i : DistFlown)}{5}}} \\
+    b &= \frac{NumPilotsLandedBeforeStopTime}{NumPilotsLaunched}
+\end{align*}
+
+
 \subsubsection{Scored time window}
 \subsubsection{Time points for pilots at or after ESS}
 \subsubsection{Distance points with altitude bonus}
