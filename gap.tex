@@ -574,6 +574,16 @@ only 18 leading points as he was slow and had a gap in his track log; Green gets
 started early, because he was the slowest and landed fairly short.
 
 \subsection{Arrival points}
+Arrival points depend on the position at which a pilot crosses ESS: The first pilot completing the speed
+section receives the maximum available arrival points, while the others are awarded arrival points
+according to the number of pilots who reached ESS before them. The last pilot to reach ESS will always
+receive at least 20\% of the available arrival points.
+\begin{align*}
+    AC_p &= 1 - \frac{PositionAtESS - 1}{NumberOfPilotsReachingESS} \\
+    ArrivalFraction_p &= 0.2 + 0.037 * AC_p + 0.13 * AC_p^2 + 0.633 * AC_p^3 \\
+    ArrivalPoints_p &= ArrivalFraction_p * AvailableArrivalPoints
+\end{align*}
+No arrival points are awarded in Paragliding.
 
 \newpage
 \section{Special cases}
