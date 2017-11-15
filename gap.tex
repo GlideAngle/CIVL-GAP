@@ -610,6 +610,30 @@ will be required.}.
 \end{align*}
 
 \subsection{Early start}
+An early start occurs if a pilot’s last SSS cylinder boundary crossing in start direction (enter or exit)
+occurred before the first (or only) start gate time.
+
+In paragliding, pilots who perform an early start are only scored for the distance between the launch
+point and the SSS cylinder, as calculated when determining the complete task distance (see ~\ref{sec:task-distance}).
+
+In hang-gliding, the so-called “Jump the Gun”-rule applies: If the early start occurred within a time that
+is close to the first (or only) start gate time, the pilot is scored for his complete flight, but a penalty is
+then applied to his total score.
+
+The penalty calculation is based on two values X and Y, which are set in S7A, but can be changed at the
+task briefing (presumably by the meet director and/or the task committee). For each X seconds a pilot
+starts early, he incurs a 1 point penalty, up to a maximum of Y seconds. If a pilot starts more than Y
+seconds early, he will only be scored for minimum distance.
+\begin{align*}
+    X_{default} &= 2 \\
+    Y_{default} &= 300 \\
+    timeDiff_p &= firstStartGateTime - lastStartTime_p \\
+    timeDiff_p \leq 0 : jumpTheGunPenalty_p &= 0 \\
+    timeDiff_p > Y : jumpTheGunPenalty_p &= 0, totalScore_p = scoreForMinDistance \\
+    0 < timeDiff_p \leq Y : jumpTheGunPenalty_p &= \frac{timeDiff_p}{X} \\
+    totalScore_p &= \max(totalScore_p - jumpTheGunPenalty_p, scoreForMinDistance)
+\end{align*}
+
 \subsection{Stopped tasks}
 \subsubsection{Stop task time}
 \subsubsection{Requirements to score a stopped task}
