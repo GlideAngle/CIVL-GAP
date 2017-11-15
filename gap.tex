@@ -726,6 +726,28 @@ stopped, all tracks are only scored for the first 75 minutes each pilot flew aft
 start.
 
 \subsubsection{Time points for pilots at or after ESS}
+Pilots who were at a position between ESS and goal at the task stop time will be scored for their
+complete flight, including the portion flown after the task stop time. This is to remove any discontinuity
+between pilots just before goal and pilots who had just reached goal at task stop time.
+
+If a Conical ESS is used, then all pilots who have crossed into the cone before or at the task stop time will
+be scored for being in goal.
+
+A fixed amount of points is subtracted from the time points of each pilot that makes goal in a stopped
+task. This amount is the amount of time points a pilot would receive if he had reached ESS exactly at the
+task stop time. This is to remove any discontinuity between pilots just before ESS and pilots who had
+just reached ESS at task stop time.
+\begin{align*}
+    typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \\
+    timePointsReduction &= timePoints(taskStopTime - startTime) \\
+    \\
+    typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
+    timePointsReduction &= \\
+    timePoints(taskStopTime - \max(\forall p : p \in StartedPilots : startTime_p)) \\
+    \\
+    \forall p : p \in PilotsInGoal : finalTimePoints_p &= timePoints_p - timePointsReduction
+\end{align*}
+
 \subsubsection{Distance points with altitude bonus}
 \label{sec:distance-stopped-tasks}
 \subsection{Penalties}
