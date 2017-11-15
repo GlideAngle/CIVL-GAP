@@ -572,6 +572,24 @@ scores according to this logic.
 
 \subsubsection{Definition of conical end of speed section}
 \label{sec:define-CESS}
+A conical end of speed section is defined as:
+\begin{enumerate}
+    \item A centre point \(c\), given as GPS coordinates and altitude
+    \item
+        An incline \(i\), given as a ratio of altitude/distance to the centre
+        point
+    \item
+        A radius \(r\), indicating the size of the circle resulting from the
+        intersection between the cone and a horizontal plane at goal altitude
+\end{enumerate}
+
+A conical end of speed section is given as the cone resulting from an axis of
+inclination \(i\) through the centre point \(c'\), which is equal to point
+\(c\), but has its altitude lowered by \(r/i\) metres compared to \(c\).  The
+incline is chosen for each task. The default value is 1:3.5. Values suggested
+for use are between
+1:2.5 and 1:4.
+
 \subsection{Definiton of goal}
 \subsubsection{Goal line}
 \subsection{Start procedures}
