@@ -690,6 +690,20 @@ at 15:48:28 has a start time of 15:48:28.
 \subsection{Distances}
 \subsubsection{Task distance}
 \label{sec:task-distance}
+Task distance is defined as the path of shortest distance from the start point
+to goal that touches all turnpoint cylinders. The method to calculate this
+distance is buried in FS’ code and will be documented at a later time.
+
+Currently, this method mistreats the case where after ESS one or several
+turnpoints have to be reached with centres different from ESS’ centre point:
+The two legs to and from ESS are optimized for distance as well, which can
+result in a longer last leg before ESS than what pilots experience in reality.
+As a result, pilots can reach ESS with a shorter flown distance than what FS
+indicates is the distance required to reach ESS. This only affects pilots
+landing between ESS and goal, but does not represent a disadvantage to those
+pilots. The speed section distance calculation used for scoring (see below) is
+not affected by this.
+
 \subsubsection{Speed section distance}
 
 \newpage
