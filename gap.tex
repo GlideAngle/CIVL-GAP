@@ -588,6 +588,26 @@ No arrival points are awarded in Paragliding.
 \newpage
 \section{Special cases}
 \subsection{ESS but not goal}
+In a task where ESS and goal are not identical, a pilot may reach ESS, but not goal. The way this case is
+handled differs between hang-gliding and paragliding competitions:
+
+In paragliding competitions, reaching goal is seen as “validating” one’s speed section performance. A
+pilot who does not reach goal after reaching ESS will lose his time points. He will only score distance
+points for the distance actually covered, and leading points. This is seen as a safety measure, since it
+encourages pilots to plan their final glide to ESS with enough altitude to safely reach goal. This
+discourages high-speed final glides low to the ground.
+\begin{align*}
+    \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
+    DistancePoints_p + LeadingPoints_p + 0 * (TimePoints_p + ArrivalPoints_p)
+\end{align*}
+In hang-gliding competitions, landing between ESS and goal is seen as a slight mishap, which incurs a
+penalty on the pilot’s total score: Of the time and arrival points scored on the speed section, the pilot
+will only receive 80\%.
+\begin{align*}
+    \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
+    DistancePoints_p + LeadingPoints_p + 0.8 * (TimePoints_p + ArrivalPoints_p)
+\end{align*}
+
 \subsection{Early start}
 \subsection{Stopped tasks}
 \subsubsection{Stop task time}
