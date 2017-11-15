@@ -548,6 +548,28 @@ The three types of control zones are the turnpoint cylinder, the conical end of
 speed section and the goal semi-circle.
 
 \subsubsection{Definition of a turnpoint cylinder}
+A turnpoint cylinder is defined as:
+\begin{enumerate}
+    \item A centre point \(c\), given as GPS coordinates
+    \item A radius \(r\), given in meters
+    \item
+        An indication whether the cylinder is an “exit” or an “enter” cylinder.
+        This defines whether the corresponding turnpoint is considered reached
+        by a pilot when crossing the cylinder’s boundary from its inside to the
+        outside, or from its outside to the inside.
+\end{enumerate}
+
+A turnpoint cylinder is then given as the cylinder with radius \(r\) around the
+axis which cuts the \(x/y\) plain orthogonally at the cylinder’s centre point
+\(c\).  For task evaluation purposes, only the cylinder’s projection in the
+\(x/y\) plain is considered: a circle of radius \(r\) around \(c\).
+
+Note that for start cylinders (SSS), “enter” only makes sense if the following
+turnpoint cylinder lies within the SSS cylinder. Likewise, an “exit” only makes
+sense if the first turnpoint lies outside of the SSS cylinder. Currently, the
+start direction cannot be set within FS. Instead the program automatically
+scores according to this logic.
+
 \subsubsection{Definition of conical end of speed section}
 \label{sec:define-CESS}
 \subsection{Definiton of goal}
