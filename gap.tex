@@ -160,6 +160,7 @@ implementation of the \(arctan2\) function:
 \subsection{Final Glide Decelerator}
 \label{sec:final-glide-decelerators}
 \subsection{Score-back Time}
+\label{sec:score-back-time}
 
 \newpage
 \section{Task Setting}
@@ -636,6 +637,23 @@ seconds early, he will only be scored for minimum distance.
 
 \subsection{Stopped tasks}
 \subsubsection{Stop task time}
+A task can be stopped at any time by the meet director. The time when a stop was announced for the
+first time is the “task stop announcement time”. This time must be recorded to score the task
+appropriately. For scoring purposes, a “task stop” time is calculated. This is the time which determines
+whether a task will be scored at all. Pilots’ flight will only be scored up to this task stop time.
+
+In hang-gliding, stopped tasks are “scored back” by a time that is determined by the number of start
+gates and the start gate interval: The task stop time is one start gate interval, or 15 minutes in case of a
+single start gate, before the task stop announcement time.
+\begin{align*}
+    numberOfStartGates = 1 : taskStopTime &= taskStopAnnouncementTime - 15min \\
+    numberOfStartGates > 1 : taskStopTime &= taskStopAnnouncementTime - startGateInterval \\
+\end{align*}
+In paragliding the score-back time is set as part of the competition parameters (see section ~\ref{sec:score-back-time}).
+\begin{align*}
+    taskStopTime &= taskStopAnnouncementTime - competitionScoreBackTime \\
+\end{align*}
+
 \subsubsection{Requirements to score a stopped task}
 \subsubsection{Stopped task validity}
 \subsubsection{Scored time window}
