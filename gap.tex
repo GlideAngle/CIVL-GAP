@@ -923,5 +923,41 @@ ranked in the same position.
 \newpage
 \section{FTV - Fixed Total Validity}
 \label{sec:fixed-total-validity}
+Fixed Total Validity (FTV) is a procedure to score pilots on their best task
+performances, rather than all their tasks. Fixed Total Validity means the sum
+(total) of available points (validity) is set (fixed) to the same value for
+each competitor.
+\begin{align*}
+    FTVfactor &= 0.2 \lor 0.25 \\
+    CalculatedFTV &= (1 - FTVfactor) * \sum_{t : Task}\frac{AvailablePoints_t}{1000}
+\end{align*}
+To calculate a pilot’s FTV score, for all his flights:
+\begin{enumerate}
+    \item
+        Calculate a performance percentage for each day by dividing the pilot's
+        day score by the day’s available points
+    \item
+        Arrange all flights in descending order of performance percentage
+    \item
+        Total up the flights' raw day scores (not performance percentages) in
+        order of performance percentage until the sum of validities for those
+        scores reaches the pre-decided Fixed Total Validity value.
+\end{enumerate}
+If the last score added takes that pilot's total validity above the Fixed Total Validity, then only a fraction
+of that score is used so that the pilot's total validity is equal to the Fixed Total Validity.
+\begin{align*}
+    \forall t : t \in ScoredTasks : Performance_{p, t} &= \frac{Score_{p, t}}{AvailablePoints_t} \\
+    \\
+    SortedPerformance_p &= sortDescending(\forall t : t \in ScoredTasks : Performance_{p, t}) \\
+    \\
+    OrderedValidities_p &= orderByPerformance(SortedPerformance_p, xs) \\
+    xs &= \forall t : t \in ScoredTasks : \frac{AvailablePoints_t}{1000} \\
+    \\
+    OrderedScores_p &= orderByPerformance(SortedPerformance_p, ys) \\
+    ys &= \forall t : t \in ScoredTasks : Score_{p, t} \\
+    \\
+    FTVScore_p &= \sum_{u = 0}^{numberOfTasks} OrderedScores_{p, u} * \max(1, \frac{\min(0, a)}{OrderValidites_{p, u}}) \\
+    a &= CalculatedFTV - (u > 0 : \sum_{v = 0}^{\min(0, u - 1)} OrderedValidites_{p, v})
+\end{align*}
 
 \end{document}
