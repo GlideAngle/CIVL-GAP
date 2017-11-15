@@ -704,8 +704,27 @@ stopped.
     b &= \frac{NumPilotsLandedBeforeStopTime}{NumPilotsLaunched}
 \end{align*}
 
-
 \subsubsection{Scored time window}
+For stopped Race to Goal tasks with a single start gate, scoring considers the same time window for all
+pilots: The time between the race start and the task stop time.
+\begin{align*}
+    typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \forall p : p \in StartedPilots : \\
+    scoreTimeWindow_p &= (startTime, taskStopTime)
+\end{align*}
+For stopped Race to Goal tasks with multiple start gates, as well as Elapsed Time races, must be treated
+slightly differently: Only the time window available to the last pilot started is considered for scoring. This
+time window is defined as the amount of time t between the last pilot’s start and the task stop time. For
+all pilots, only this time t after their respective start is considered for scoring.
+\begin{align*}
+    typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
+    scoreTime = taskStopTime - \max(\forall p : p \in StartedPilots : startTime_p) : \\
+    \forall p : p \in StartedPilots : \\ 
+    scoreTimeWindow_p &= (startTime_p, startTime_p + scoreTime)
+\end{align*}
+This means that if the last pilot started and then flew for, for example, 75 minutes until the task was
+stopped, all tracks are only scored for the first 75 minutes each pilot flew after taking their respective
+start.
+
 \subsubsection{Time points for pilots at or after ESS}
 \subsubsection{Distance points with altitude bonus}
 \label{sec:distance-stopped-tasks}
