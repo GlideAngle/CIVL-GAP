@@ -432,6 +432,38 @@ relation to the best distance flown in the task.
 \[ DistancePoints_p = \frac{Distance_p}{BestDistance} * AvailableDistancePoints \]
 
 \subsubsection{Difficulty calculation}
+To measure the relative difficulty of each 100 meters of the task, we consider the number of pilots who
+landed in the successive few kilometers, and the distance flown.
+
+In a first step, for each 100-meter section of the task, the number of pilots who landed in that section is
+counted. Pilots who landed before minimum distance are counted as having landed at minimum
+distance. Only pilots who landed out are considered for this calculation, pilots who reached goal are not
+counted.
+\begin{align*}
+    \forall i : i < \lfloor MinDist * 10 \rfloor : PilotsLanded_i &= 0 \\
+    PilotsLanded_{\lfloor MinDist * 10 \rfloor} &= \sum_{\forall Pilot : \lfloor PilotDistance * 10 \rfloor \leq \lfloor MinDist * 10 \rfloor} 1 \\
+    \forall i : i > \lfloor MinDist * 10 \rfloor \land i \leq \lfloor MaxDist * 10 \rfloor : PilotsLanded_i &= \sum_{\forall q : q \in PilotsLandedOut : \lfloor Distance_q * 10 \rfloor = i} 1
+\end{align*}
+Then the difficulty for each 100-meter section of the task is calculated by counting the number of pilots
+who landed further along the task. If 100 pilots land out on a flight of 100 km, the next 3 km are
+considered. If 10 pilots land out in 100 km, the next 30 km are considered. The variable LookAheadDist
+contains the number of 100 meter slots to look ahead for this.
+\begin{align*}
+    LookAheadDist &= \max(30, round(\frac{30 * BestDistanceFlown}{NumberOfPilotsLandedOut}, 0)) \\
+    \forall i : i < \lfloor MinDist * 10 \rfloor : Difficulty_i &= \sum_{j = i}^{j = \min(i + LookAheadDist, \lfloor BestDistanceFlown * 10 \rfloor)} PilotsLanded_j \\
+    SumOfDifficulty = \sum_i Difficulty_i
+\end{align*}
+Relative difficulty is then calculated by dividing each 100-meter slot’s difficulty by twice the sum of all
+difficulty values.
+\[ \forall i : i \leq \lfloor MaxDist * 10 \rfloor : RelativeDifficulty_i = \frac{Difficulty_i}{2 * SumOfDifficulty} \]
+Finally, we can calculate the difficulty score percentage for each 100-meter slot.
+\begin{align*}
+    \forall i : i < \lfloor MinDist * 10 \rfloor : DiffScore_i &= \sum_{j = 0}^{j = \lfloor MinDist * 10 \rfloor)} RelativeDifficulty_j \\
+    \forall i : i > \lfloor MinDist * 10 \rfloor \land i < \lfloor BestDistanceFlown * 10 \rfloor : DiffScore_i &= \sum_{j = 0}^{j = i} RelativeDifficulty_j \\
+    \forall i : i \geq \lfloor BestDistanceFlown * 10 \rfloor : DiffScore_i &= 0.5
+\end{align*}
+The difficulty calculation does not apply to paragliding.
+
 \subsubsection{Example for difficulty calculation}
 \subsection{Time points}
 \subsection{Leading points}
