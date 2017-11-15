@@ -768,6 +768,21 @@ altitude bonus or stopped distance values.
 \[ xs = \forall track_p . point_i : shortestDistanceToGoal(track_p . point_i) - (track_p . point_i . altitude - GoalAltitude) * GlideRatio \\ \]
 
 \subsection{Penalties}
+Penalties for various actions are defined in the rules. These penalties are either expressed as an absolute
+number (e.g. “100 points”) or as a percentage (e.g. “10\% of the pilot’s score in the task where he
+performed the punishable action”). The corresponding number of points is then deducted from the
+punished pilot’s total score to calculate his final score.
+\begin{align*}
+    finalScore_p &= score_p - absolutePenalty \\
+    finalScore_p &= score_p - (1 - percentagePenalty_p)
+\end{align*}
+These penalties are completely independent of any “Jump the Gun”-Penalty a pilot may have incurred.
+
+The penalty mechanism can also be used to award bonus points to a pilot for some actions like helping a
+pilot in distress. In that case the penalty must be given as a negative number.
+
+Any rounding up of scores is to be done after the application of penalties. The lowest score a pilot can
+attain in a task, regardless of any incurred penalties, is zero points.
 
 \newpage
 \section{Task ranking}
