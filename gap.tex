@@ -750,6 +750,22 @@ just reached ESS at task stop time.
 
 \subsubsection{Distance points with altitude bonus}
 \label{sec:distance-stopped-tasks}
+To compensate for altitude differences at the time when a task is stopped, a bonus distance is
+calculated for each point in the pilots’ track logs, based on that point’s altitude above goal. This bonus
+distance is added to the distance achieved at that point. All altitude values used for this calculation are
+GPS altitude values, as received from the pilots’ GPS devices (no compensation for different earth
+models applied by those devices). For all distance point calculations, including the difficulty calculations
+in hang-gliding (see 11.1.1), these new stopped distance values are being used to determine the pilots’
+best distance values. Time and leading point calculations remain the same: they are not affected by the
+altitude bonus or stopped distance values.
+\begin{align*}
+    GlideRatio &= 5.0 \\
+    GlideRatio &= 4.0 \\
+    \forall p : p \in PilotsLandedBeforeGoal : bestDistance_p &= max(minimumDistance, taskDistance - \min(xs)) \\
+    \forall p : p \in PilotsReachedGoal : bestDistance_p &= taskDistance
+\end{align*}
+\[ xs = \forall track_p . point_i : shortestDistanceToGoal(track_p . point_i) - (track_p . point_i . altitude - GoalAltitude) * GlideRatio \\ \]
+
 \subsection{Penalties}
 
 \newpage
