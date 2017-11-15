@@ -433,6 +433,7 @@ relation to the best distance flown in the task.
 \[ DistancePoints_p = \frac{Distance_p}{BestDistance} * AvailableDistancePoints \]
 
 \subsubsection{Difficulty calculation}
+\label{sec:difficulty-calculation}
 To measure the relative difficulty of each 100 meters of the task, we consider the number of pilots who
 landed in the successive few kilometers, and the distance flown.
 
@@ -755,7 +756,7 @@ calculated for each point in the pilots’ track logs, based on that point’s a
 distance is added to the distance achieved at that point. All altitude values used for this calculation are
 GPS altitude values, as received from the pilots’ GPS devices (no compensation for different earth
 models applied by those devices). For all distance point calculations, including the difficulty calculations
-in hang-gliding (see 11.1.1), these new stopped distance values are being used to determine the pilots’
+in hang-gliding (see ~\ref{sec:difficulty-calculation}), these new stopped distance values are being used to determine the pilots’
 best distance values. Time and leading point calculations remain the same: they are not affected by the
 altitude bonus or stopped distance values.
 \begin{align*}
