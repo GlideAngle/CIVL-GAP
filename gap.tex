@@ -998,11 +998,11 @@ are available for distance points.
 \begin{align*}
     GoalRatio &= \frac{NumberOfPilotsInGoal}{NumberOfPilotsFlying} \\
     DistanceWeight &= 0.9 - 1.665 * GoalRatio + 1.713 * GoalRatio^2 - 0.587 * GoalRatio^3 \\
-    LeadingWeight &= \frac{1 - DistanceWeight}{8} * 1.4 \\
-    GoalRatio = 0 : LeadingWeight &= \frac{BestDistance}{TaskDistance} * 0.1 \\
-    GoalRatio > 0 : LeadingWeight &= \frac{1 - DistanceWeight}{8} * 1.4 * 2 \\
-    ArrivalWeight &= \frac{1 - DistanceWeight}{8} \\
-    ArrivalWeight &= 0 \\
+    \hgh{LeadingWeight} &= \frac{1 - DistanceWeight}{8} * 1.4 \\
+    \pgh{GoalRatio = 0 : LeadingWeight} &= \frac{BestDistance}{TaskDistance} * 0.1 \\
+    \pgh{GoalRatio > 0 : LeadingWeight} &= \frac{1 - DistanceWeight}{8} * 1.4 * 2 \\
+    \hgh{ArrivalWeight} &= \frac{1 - DistanceWeight}{8} \\
+    \pgh{ArrivalWeight} &= 0 \\
     TimeWeight &= 1 - DistanceWeight - LeadingWeight - ArrivalWeight \\
     AvailableDistancePoints &= 1000 * TaskValidity  DistanceWeight \\
     AvailableTimePoints &= 1000 * TaskValidity * TimeWeight \\
