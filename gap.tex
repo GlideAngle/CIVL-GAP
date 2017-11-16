@@ -1247,13 +1247,14 @@ safely reach goal. This discourages high-speed final glides low to the ground.
 In hang-gliding competitions, landing between ESS and goal is seen as a slight
 mishap, which incurs a penalty on the pilot’s total score: Of the time and
 arrival points scored on the speed section, the pilot will only receive
-80\%\footnote{Note that this „rule” is not defined in S7A, but is implemented
-in FS. Some clarification on the rightfulness of this will be required.}.
+80\%\footnotemark
 \begin{align*}
     \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
     DistancePoints_p + LeadingPoints_p + 0.8 * (TimePoints_p + ArrivalPoints_p)
 \end{align*}
 \end{hg}
+\footnotetext{Note that this „rule” is not defined in S7A, but is implemented
+in FS. Some clarification on the rightfulness of this will be required.}.
 
 \subsection{Early start}
 \label{sec:early-start}
