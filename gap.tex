@@ -142,9 +142,13 @@ crossing the start line too early. Where not explicitly stated otherwise, the
 contents of this document always apply to both disciplines. Definitions
 applying only to one, but not the other, are clearly marked as such.
 
+\begin{hg}
 Text marked in blue applies exclusively to hang-gliding.
+\end{hg}
 
+\begin{pg}
 Text marked in orange applies exclusively to paragliding.
+\end{pg}
 
 \newpage
 \section{The GAP Philosophy}
@@ -413,6 +417,7 @@ the formula from distinguishing between demanding, high quality tasks and
 quick, easy low quality tasks which are sometimes the only option due to
 weather conditions.
 
+\begin{pg}
 In paragliding competitions, the following must also be defined by the same
 person or group who defines the first five competition parameters above:
 \begin{enumerate}
@@ -420,6 +425,7 @@ person or group who defines the first five competition parameters above:
     \item Final glide decelerator
     \item Score-back time for stopped task
 \end{enumerate}
+\end{pg}
 
 \subsection{Nominal Launch}
 When pilots do not take off for safety reasons, to avoid difficult launch
@@ -468,7 +474,9 @@ Nominal time should be set to the expected “normal” task duration for the
 competition site, and nominal distance / nominal time should be a bit higher
 than typical average speeds for the area.
 
+\begin{pg}
 \subsection{Final Glide Decelerator}
+\label{sec:final-glide-decelerators}
 The concept of a final glide decelerator was introduced to counteract
 a development in competition paraglider design which favoured stability at high
 speeds over stability at trim speed. The two final glide decelerators available
@@ -486,14 +494,16 @@ are:
 \end{description}
 A meet director may choose to use no final glide decelerator, or use either of
 the two outlined above.
+\end{pg}
 
-\label{sec:final-glide-decelerators}
+\begin{pg}
 \subsection{Score-back Time}
 \label{sec:score-back-time}
 In a stopped task, this value defines the amount of time before the task stop
 was announced that will not be considered for scoring. The default is
 5 minutes, but depending on local meteorological circumstances, it may be set
 to a longer period for a whole competition. See also section~\ref{sec:stop-task-time}.
+\end{pg}
 
 \newpage
 \section{Task Setting}
@@ -519,10 +529,12 @@ A race task definition consists of:
     \item Optionally, a task deadline
 \end{enumerate}
 
+\begin{pg}
 In exceptional circumstances, with regard to restricted launch areas and poor
 flying conditions, to ensure the task is fair for 2/3rds of the pilots, a task
 may be run without leading/departure points. This is to be declared at the task
 briefing.
+\end{pg}
 
 \subsubsection{Open distance task}
 An open distance task definition consists of:
@@ -540,10 +552,14 @@ An open distance task definition consists of:
 Control zones are geographical areas which must be reached by the pilots in the
 course of a task.
 
+\begin{hg}
 The only control zone type is the turnpoint cylinder.
+\end{hg}
 
+\begin{pg}
 The three types of control zones are the turnpoint cylinder, the conical end of
 speed section and the goal semi-circle.
+\end{pg}
 
 \subsubsection{Definition of a turnpoint cylinder}
 A turnpoint cylinder is defined as:
@@ -568,6 +584,7 @@ sense if the first turnpoint lies outside of the SSS cylinder. Currently, the
 start direction cannot be set within FS. Instead the program automatically
 scores according to this logic.
 
+\begin{pg}
 \subsubsection{Definition of conical end of speed section}
 \label{sec:define-CESS}
 A conical end of speed section is defined as:
@@ -587,6 +604,7 @@ inclination \(i\) through the centre point \(c'\), which is equal to point
 incline is chosen for each task. The default value is 1:3.5. Values suggested
 for use are between
 1:2.5 and 1:4.
+\end{pg}
 
 \subsection{Definiton of goal}
 A goal can be
@@ -599,10 +617,12 @@ A goal can be
     \end{enumerate}
 \end{enumerate}
 
+\begin{pg}
 If CESS is used, goal must either be a line at the cone’s centre point,
 a cylinder at the cone’s centre point with a radius smaller than radius r of
 the cone definition, or be located at a point that is different from the cone’s
 centre point.
+\end{pg}
 
 \subsubsection{Goal line}
 A goal line is defined as a band of \(x/y\) width \(l\) through the centre
@@ -618,10 +638,12 @@ for \(l/2\) into both directions from the centre point.
 Goal lines must be crossed in the direction of flight when coming from the last
 cylinder before goal with a different centre point than goal.
 
+\begin{pg}
 In paragliding, the goal control zone consists of the semi-circle with radius
 \(l/2\) behind the goal line, when coming from the last turn point that is
 different from the goal line centre. Entering that zone without prior crossing
 of the goal line is equivalent to crossing the goal line.
+\end{pg}
 
 Physical lines can be used in addition to the official, virtual goal line as
 defined by GPS coordinates, to increase attractiveness for spectators and
@@ -862,6 +884,8 @@ Pilots who do not reach the end of speed section cylinder do not get a time.
 \begin{align*}
     \forall p : p \in PilotsReachingESS : time_p &= timeAtESS_p - startTime_p
 \end{align*}
+
+\begin{pg}
 If AATB is used, pilots receive a time bonus for their altitude above goal when crossing the ESS cylinder.
 The number of seconds they receive for each meter is expressed by the ATTB factor.
 
@@ -871,6 +895,7 @@ By default, the ATTB factor is \(0.45 \ s/m\). Values suggested for use are betw
     arrivalAltitudeTimeBonus_p &= (crossing_{p.ESS} . altitude - goal . altitude) * ATTBfactor \\
     time_p &= timeAtESS_p - startTime_p - arrivalAltitudeTimeBonus_p
 \end{align*}
+\end{pg}
 
 \newpage
 \section{Task Validity}
