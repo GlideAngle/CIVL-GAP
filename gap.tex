@@ -1020,6 +1020,7 @@ The distance considered for each pilot to calculate distance points is that
 pilot’s best distance along the course line, up until the pilot landed or the
 task deadline was reached, whichever comes first.
 
+\begin{hg}
 One half of the available distance points are assigned to each pilot linearly,
 based on the pilot’s distance flown in relation to the best distance flown in
 the task. The other half is assigned taking into consideration the difficulty
@@ -1030,14 +1031,19 @@ of the kilometers flown.
     DifficultyFraction_p &= DiffScore_{i_p} + ((DiffScore_{i_{p + 1}} - DiffScore_{i_p}) * (Distance_p * 10 - i_p)) \\
     DistancePoints_p &= (LinearFraction_p + DifficultyFraction_p) * AvailableDistancePoints
 \end{align*}
+\end{hg}
+
+\begin{pg}
 In the case of a stopped task, a pilot’s distance may be increased by an
 altitude bonus (see~\ref{sec:distance-stopped-tasks}). The available distance
 points are assigned to each pilot linearly, based on the pilot’s distance flown
 in relation to the best distance flown in the task.
 \[ DistancePoints_p = \frac{Distance_p}{BestDistance} * AvailableDistancePoints \]
+\end{pg}
 
 \subsubsection{Difficulty calculation}
 \label{sec:difficulty-calculation}
+\begin{hg}
 To measure the relative difficulty of each 100 meters of the task, we consider
 the number of pilots who landed in the successive few kilometers, and the
 distance flown.
@@ -1071,7 +1077,11 @@ Finally, we can calculate the difficulty score percentage for each 100-meter slo
     \forall i : i > \lfloor MinDist * 10 \rfloor \land i < \lfloor BestDistanceFlown * 10 \rfloor : DiffScore_i &= \sum_{j = 0}^{j = i} RelativeDifficulty_j \\
     \forall i : i \geq \lfloor BestDistanceFlown * 10 \rfloor : DiffScore_i &= 0.5
 \end{align*}
+\end{hg}
+
+\begin{pg}
 The difficulty calculation does not apply to paragliding.
+\end{pg}
 
 \subsubsection{Example for difficulty calculation}
 For an example of how the difficulty calculation works, see Figure 8: Note how
@@ -1162,9 +1172,11 @@ formula:
     \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \\
     \min(bestDistToESS(tp_{i - 1}), LenghtOfSpeedSection - distanceFlown(tp_i))
 \end{align*}
+\begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
 point of the speed section. For LC calculations, any pilot crossing into the
 CESS’s cone is immediately awarded the remaining distance to the cone’s centre.
+\end{pg}
 
 \subsubsection{Example}
 Blue was the first to enter the speed section, but Black was the first pilot to
@@ -1194,6 +1206,7 @@ points as he was slow and had a gap in his track log; Green gets 0 points even
 though he started early, because he was the slowest and landed fairly short.
 
 \subsection{Arrival points}
+\begin{hg}
 Arrival points depend on the position at which a pilot crosses ESS: The first
 pilot completing the speed section receives the maximum available arrival
 points, while the others are awarded arrival points according to the number of
@@ -1204,7 +1217,11 @@ receive at least 20\% of the available arrival points.
     ArrivalFraction_p &= 0.2 + 0.037 * AC_p + 0.13 * AC_p^2 + 0.633 * AC_p^3 \\
     ArrivalPoints_p &= ArrivalFraction_p * AvailableArrivalPoints
 \end{align*}
+\end{hg}
+
+\begin{pg}
 No arrival points are awarded in Paragliding.
+\end{pg}
 
 \newpage
 \section{Special cases}
@@ -1213,6 +1230,7 @@ In a task where ESS and goal are not identical, a pilot may reach ESS, but not
 goal. The way this case is handled differs between hang-gliding and paragliding
 competitions:
 
+\begin{pg}
 In paragliding competitions, reaching goal is seen as “validating” one’s speed
 section performance. A pilot who does not reach goal after reaching ESS will
 lose his time points. He will only score distance points for the distance
@@ -1223,6 +1241,9 @@ safely reach goal. This discourages high-speed final glides low to the ground.
     \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
     DistancePoints_p + LeadingPoints_p + 0 * (TimePoints_p + ArrivalPoints_p)
 \end{align*}
+\end{pg}
+
+\begin{hg}
 In hang-gliding competitions, landing between ESS and goal is seen as a slight
 mishap, which incurs a penalty on the pilot’s total score: Of the time and
 arrival points scored on the speed section, the pilot will only receive
@@ -1232,16 +1253,20 @@ in FS. Some clarification on the rightfulness of this will be required.}.
     \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
     DistancePoints_p + LeadingPoints_p + 0.8 * (TimePoints_p + ArrivalPoints_p)
 \end{align*}
+\end{hg}
 
 \subsection{Early start}
 \label{sec:early-start}
 An early start occurs if a pilot’s last SSS cylinder boundary crossing in start
 direction (enter or exit) occurred before the first (or only) start gate time.
 
+\begin{pg}
 In paragliding, pilots who perform an early start are only scored for the
 distance between the launch point and the SSS cylinder, as calculated when
 determining the complete task distance (see ~\ref{sec:task-distance}).
+\end{pg}
 
+\begin{hg}
 In hang-gliding, the so-called “Jump the Gun”-rule applies: If the early start
 occurred within a time that is close to the first (or only) start gate time,
 the pilot is scored for his complete flight, but a penalty is then applied to
@@ -1259,8 +1284,11 @@ Y seconds early, he will only be scored for minimum distance.
     timeDiff_p \leq 0 : jumpTheGunPenalty_p &= 0 \\
     timeDiff_p > Y : jumpTheGunPenalty_p &= 0, totalScore_p = scoreForMinDistance \\
     0 < timeDiff_p \leq Y : jumpTheGunPenalty_p &= \frac{timeDiff_p}{X} \\
-    totalScore_p &= \max(totalScore_p - jumpTheGunPenalty_p, scoreForMinDistance)
+    \\
+    totalScore_p &= \\
+    \max(totalScore_p - jumpTheGunPenalty_p, scoreForMinDistance)
 \end{align*}
+\end{hg}
 
 \subsection{Stopped tasks}
 \subsubsection{Stop task time}
@@ -1272,6 +1300,7 @@ a “task stop” time is calculated. This is the time which determines whether
 a task will be scored at all. Pilots’ flight will only be scored up to this
 task stop time.
 
+\begin{hg}
 In hang-gliding, stopped tasks are “scored back” by a time that is determined
 by the number of start gates and the start gate interval: The task stop time is
 one start gate interval, or 15 minutes in case of a single start gate, before
@@ -1280,16 +1309,21 @@ the task stop announcement time.
     numberOfStartGates = 1 : taskStopTime &= taskStopAnnouncementTime - 15min \\
     numberOfStartGates > 1 : taskStopTime &= taskStopAnnouncementTime - startGateInterval \\
 \end{align*}
+\end{hg}
+
+\begin{pg}
 In paragliding the score-back time is set as part of the competition parameters
 (see section ~\ref{sec:score-back-time}).
 \begin{align*}
     taskStopTime &= taskStopAnnouncementTime - competitionScoreBackTime \\
 \end{align*}
+\end{pg}
 
 \subsubsection{Requirements to score a stopped task}
 For a stopped task to be scored, it must fulfil certain requirements, which
 differ between the two disciplines:
 
+\begin{hg}
 In hang gliding, a stopped task can only be scored if either a pilot reached
 goal or the race had been going on for a certain minimum time. The minimum time
 depends on whether the competition is the Women’s World Championship or not.
@@ -1304,7 +1338,9 @@ by a competition pilot.
 \end{align*}
 Note that this rule is currently not enforced by FS: The decision whether
 a stopped task is cancelled or scored must be taken by the score keeper.
+\end{hg}
 
+\begin{pg}
 In paragliding, a stopped task will be scored if the flying time was one hour
 or more. For Race to Goal tasks, this means that the Task Stop Time must be one
 hour or more after the race start time. For all other tasks, in order for them
@@ -1321,6 +1357,7 @@ started.
     taskStopTime - \max(\forall p : p \in StartedPilots . startTime_p) < minimumTime : \\
     taskValidity &= 0
 \end{align*}
+\end{pg}
 
 \subsubsection{Stopped task validity}
 For stopped tasks, an additional validity value, the Stopped Task Validity, is
@@ -1368,8 +1405,10 @@ be scored for their complete flight, including the portion flown after the task
 stop time. This is to remove any discontinuity between pilots just before goal
 and pilots who had just reached goal at task stop time.
 
+\begin{pg}
 If a Conical ESS is used, then all pilots who have crossed into the cone before
 or at the task stop time will be scored for being in goal.
+\end{pg}
 
 A fixed amount of points is subtracted from the time points of each pilot that
 makes goal in a stopped task. This amount is the amount of time points a pilot
@@ -1401,8 +1440,8 @@ distance values are being used to determine the pilots’ best distance values.
 Time and leading point calculations remain the same: they are not affected by
 the altitude bonus or stopped distance values.
 \begin{align*}
-    GlideRatio &= 5.0 \\
-    GlideRatio &= 4.0 \\
+    \hgh{GlideRatio} &= 5.0 \\
+    \pgh{GlideRatio} &= 4.0 \\
     \forall p : p \in PilotsLandedBeforeGoal : bestDistance_p &= max(minimumDistance, taskDistance - \min(xs)) \\
     \forall p : p \in PilotsReachedGoal : bestDistance_p &= taskDistance
 \end{align*}
@@ -1418,8 +1457,11 @@ pilot’s total score to calculate his final score.
     finalScore_p &= score_p - absolutePenalty \\
     finalScore_p &= score_p - (1 - percentagePenalty_p)
 \end{align*}
+
+\begin{hg}
 These penalties are completely independent of any “Jump the Gun”-Penalty
 a pilot may have incurred.
+\end{hg}
 
 The penalty mechanism can also be used to award bonus points to a pilot for
 some actions like helping a pilot in distress. In that case the penalty must be
@@ -1441,6 +1483,7 @@ the score they achieved in the overall task ranking. Female pilots with the
 same score are ranked in the same position.
 
 \subsection{Nation task ranking}
+\begin{hg}
 For the nation task ranking, except for the Women’s World Championships, the
 scores of the three best-ranked pilots of each national team are added up to
 create each nation’s task score. For the nation task ranking at the Women’s
@@ -1448,19 +1491,26 @@ World Championships, the scores of the two best-ranked pilots of each national
 team are added up to create each nation’s task score. The nations are then
 ranked by their score, in descending order. Nations with the same score are
 ranked in the same position.
+\end{hg}
 
+\begin{pg}
 For the nation task ranking, the scores of the two best-ranked pilots of each
 national team are added up to create each nation’s task score. The nations are
-then ranked by
+then ranked by their score, in descending order. Nations with the same score
+are ranked in the same position.
+\end{pg}
 
 \newpage
 \section{Competition ranking}
 \subsection{Overall competition ranking}
+\begin{hg}
 The competition overall score of a pilot is calculated by adding up all of his
 task scores. Pilots are then ranked according to their overall total score, in
 descending order, for the overall competition ranking. Pilots with the same
 score are ranked in the same position.
+\end{hg}
 
+\begin{pg}
 The overall score of a pilot is calculated by using the FTV algorithm described
 in section ~\ref{sec:fixed-total-validity}. For competitions with up to
 6 planned tasks, an FTV factor of 0.2 is used. For competitions with 7 or more
@@ -1470,6 +1520,7 @@ ranking.\footnote{Organisers of Category 2 competitions are free to choose
 whether they want to use FTV for overall scores. Especially for shorter
 competitions with fewer than 4 tasks, using the traditional method (adding up
 all task scores for each pilot) may be more suitable.}
+\end{pg}
 
 \subsection{Female competition ranking}
 The female competition ranking is generated by exclusively listing female
