@@ -834,6 +834,25 @@ determined.
     turnpoint_i &\neq SSS : reachingTime_i = crossing_0 . time
 \end{align*}
 \subsection{Reaching a conical end of speed section}
+\begin{pg}
+A conical end of speed section is considered “reached” by a pilot if that
+pilot’s track log contains at least one point where the required glide angle to
+the cone’s centre point is equal to or smaller than the cone’s incline.
+\begin{align*}
+    crossing_i : \exists j : \\
+    \frac{trackpoint_j . altitude - center_{CESS} . altitude}{center_{CESS}, trackpoint_{j}} \leq incline \\
+    \land \frac{trackpoint_{j - 1} . altitude - center_{CESS} . altitude}{distance(center_{CESS}, trackpoint_{j - 1})} > incline \\
+    \\
+    crossing_i . time &= interpolateTime(trackpoint_{j + 1}, trackpoint_{j + 1})
+\end{align*}
+Given all n crossings for a CESS, sorted in ascending order by their crossing
+time, the time when CESS was reached is determined.
+\[ reachingTime_{CESS} = crossing_0 . time \]
+If goal is at the CESS centre point, and a pilot reaches goal without
+previously entering the CESS, he is considered having reached CESS at the time
+when he crossed the goal line.
+\end{pg}
+
 \subsection{Reaching goal}
 \subsubsection{Goal cylinder}
 \subsubsection{Goal line}
