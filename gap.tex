@@ -1083,6 +1083,25 @@ are available for distance points.
     AvailableArrivalPoints &= 1000 * TaskValidity * ArrivalWeight
 \end{align*}
 
+\begin{hg}
+From the above it follows that in hang-gliding, if nobody reaches ESS, then
+a maximum of 900 points are available for distance and 18 points for leading
+but, of course, no points for time nor arrival. This is also the maximum
+possible number of points for an open distance task.
+\end{hg}
+
+\begin{align*}
+    numberOfPilotsAtESS = 0 : \\
+    \\
+    AvaliableDistancePoints &= 1000 * TaskValidity * DistanceWeight \\
+    AvailableTimePoints &= 0 \\
+    AvailableLeadingPoints &= 1000 * TaskValidity * LeadingWeight \\
+    AvailableArrivalPoints &= 0 \\
+    \max(AvailableDistancePoints) &= 900 \\ 
+    \max(availableLeadingPoints) &= 18 \\
+    \max(availableTotalPoints) &= 918
+\end{align*}
+
 \newpage
 \section{Pilot score}
 Each pilot’s score is the sum of that pilot’s distance, time, leading and
