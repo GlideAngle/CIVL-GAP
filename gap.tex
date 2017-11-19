@@ -202,7 +202,9 @@ the same formula. The changes were:
         Final glide decelerator, see~\ref{sec:final-glide-decelerator}
         (paragliding)
     \item Goal shape, see~\ref{sec:goal-definition} (paragliding)
-    \item Purely linear distance points, see 11.1 (paragliding)
+    \item
+        Purely linear distance points, see~\ref{sec:distance-points}
+        (paragliding)
     \item Adjusted formula for leading points, see 11.3 (paragliding)
     \item No more arrival points, see 11.4 (paragliding)
     \item Scoring of stopped tasks, see 12.3 (hang gliding and paragliding)
@@ -1126,6 +1128,7 @@ Each pilot’s score is the sum of that pilot’s distance, time, leading and
 arrival points, rounded to the nearest whole number, 0.5 being rounded up.
 \[ \forall p : p \in PilotsLaunched : TotalScore_p = DistancePoints_p + TimePoints_p + LeadingPoints_p + ArrivalPoints_p \]
 \subsection{Distance points}
+\label{sec:distance-points}
 The distance considered for each pilot to calculate distance points is that
 pilot’s best distance along the course line, up until the pilot landed or the
 task deadline was reached, whichever comes first.
