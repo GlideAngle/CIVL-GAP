@@ -17,8 +17,8 @@ LaTeX has markup for equations and charts. Its plain-text source works in well
 with source control and related tooling.
 
 GAP scoring is well documented.  Currently, the current source format is *.docx
-and the published format *.pdf, a single file running to about fify pages. In
-it, there many equations and charts lots of description.
+and the published format *.pdf, a single file running to about fify pages with
+very many equations and quite a few charts.
 
 Scoring is not simple. Hang-gliding and paragliding are scored similarly but
 there are quite a few differences. Over the years scoring has evolved and it is
