@@ -1,19 +1,19 @@
 \begin{tikzpicture}[node distance=2cm]
 
 \node (start) [startstop] {Start};
-\node (comp) [io, below of=start, xshift=7cm] {1: Define competition parameters};
-\node (task) [io, below of=comp, xshift=-7cm] {2: Define task};
+\node (comp) [io, below of=start, xshift=3cm] {1: Define competition parameters};
+\node (task) [io, below of=comp, xshift=-6cm] {2: Define task};
 \node (fly) [process, below of=task] {3: Fly task};
 \node (track) [decision, below of=fly] {4: Evaluate track logs};
 \node (valid) [decision, below of=track] {5: Calculate task validity};
 \node (points) [decision, below of=valid] {6: Allocate available points};
 \node (score) [decision, below of=points] {7: Score flights};
-\node (ranktask) [decision, below of=score] {8: Rank task};
-\node (rankcomp) [decision, below of=ranktask] {9: Rank competition};
+\node (ranktask) [rank, below of=score] {8: Rank task};
+\node (rankcomp) [rank, below of=ranktask] {9: Rank competition};
 \node (stop) [startstop, below of=rankcomp] {Stop};
 
 \draw [arrow] (start) -| (comp);
-\draw [arrow] (start) -- (task);
+\draw [arrow] (start) -| (task);
 \draw [arrow] (task) -- node[anchor=west] {task definition} (fly);
 \draw [arrow] (fly) -- node[anchor=west] {track logs} (track);
 \draw [arrow] (track) -- node[anchor=west] {for all pilots: distance, time to ESS} (valid);
