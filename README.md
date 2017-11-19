@@ -1,10 +1,17 @@
 # CIVL-GAP
 
-Not all of the GAP scoring is documented. There are many formulae.
+GAP scoring is well documented. There many equations, many charts and quite
+a lot of description, the document running to about fifty pages. Scoring is not
+simple. Hang-gliding and paragliding are scored similarly but there are quite
+a few differences. Over the years scoring has evolved and it is getting more
+complex. I'm not sure about this but I expect that only the latest rules are
+documented.
 
-As the holes are plugged into the document, as rules are added and errors
-corrected it would be good for anyone working on scoring to be able to see past
-changes or contribute.
+Some of the documentation has surely been written about after being implemented
+and some of what is implemented has no documentation. There are places where
+readers are advised to consult the code or warned that the code differs from
+the rules or worse yet that we're not sure what the code does exactly.
 
-This is an experiment to see if I can reproduce the current document in
-LaTeX and then typeset this to PDF.
+The source format is *.docx and the published format is *.pdf.  This is an
+experiment to see if I can reproduce the docs, starting in LaTeX. The reasons
+for trying this are;
