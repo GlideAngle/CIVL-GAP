@@ -15,6 +15,8 @@
 \RequirePackage{amsmath}
 \RequirePackage{array}
 \RequirePackage[titles]{tocloft}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
 
 % SEE: http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
 \hypersetup{
@@ -99,3 +101,49 @@
 \setlength{\cftbeforesecskip}{-1.4ex}
 \setlength{\cftbeforesubsecskip}{-1.4ex}
 \setlength{\cftbeforesubsubsecskip}{-1.5ex}
+
+\tikzstyle{startstop} =
+[ rectangle
+, rounded corners
+, minimum width=3cm
+, minimum height=1cm
+,text centered
+, draw=black
+, fill=red!30
+]
+
+\tikzstyle{io} =
+[ trapezium
+, trapezium left angle=70
+, trapezium right angle=110
+, minimum width=3cm
+, minimum height=1cm
+, text centered
+, draw=black
+, fill=blue!30
+]
+
+\tikzstyle{process} =
+[ rectangle
+, minimum width=3cm
+, minimum height=1cm
+, text centered
+, text width=3cm
+, draw=black
+, fill=orange!30
+]
+
+\tikzstyle{decision} =
+[ rectangle
+, minimum width=3cm
+, minimum height=1cm
+, text centered
+, draw=black
+, fill=green!30
+]
+
+\tikzstyle{arrow} =
+[ thick
+, ->
+, >=stealth
+]
