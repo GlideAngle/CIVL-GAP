@@ -2,6 +2,7 @@
 *.log
 *.synctex.gz
 *.synctex.gz(busy)
+*.synctex(busy)
 *.aux
 *.out
 *.toc
