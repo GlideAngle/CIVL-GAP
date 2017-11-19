@@ -9,9 +9,24 @@ documented.
 
 Some of the documentation has surely been written about after being implemented
 and some of what is implemented has no documentation. There are places where
-readers are advised to consult the code or warned that the code differs from
+readers are advised to consult the code and warned that the code differs from
 the rules or worse yet that we're not sure what the code does exactly.
 
 The source format is *.docx and the published format is *.pdf.  This is an
-experiment to see if I can reproduce the docs, starting in LaTeX. The reasons
-for trying this are;
+experiment to see if I can reproduce the docs, starting in LaTeX. LaTeX has
+markup for equations and charts. Its plain-text source works in well with
+source control and related tooling. For instance an issue might reference and
+highlight a line number range in the source, authors can work at the same time
+on different parts of it without having conflicts and if their contributions
+do overlap then there is merge tooling for resolving conflicts. Version history,
+differences, tagged versions and published releases are also available.
+
+> ### LaTeX – A document preparation system
+
+> LaTeX is a high-quality typesetting system; it includes features designed
+> for the production of technical and scientific documentation. 
+
+> LaTeX is the de facto standard for the communication and publication of
+> scientific documents. LaTeX is available as free software.
+
+SOURCE: [https://www.latex-project.org/](https://www.latex-project.org/)
