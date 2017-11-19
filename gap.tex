@@ -427,12 +427,15 @@ to a different implementation of the \(arctan2\) function:
 \[ radianDistance = pi - 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \]
 
 \subsection{Altitude}
-All altitude evaluation is primarily based on barometric altitude, as given in
-the flight instrument tracklog (QNH). Pilots may submit a GPS altitude log as
-a backup log only in case of problems with the primary barometric log.
+All altitude evaluation is primarily based on barometric altitude, as recorded
+in the flight instrument tracklog (the International Standard Atmosphere
+pressure altitude QNE) and then when necessary corrected by the scoring
+software for the pressure conditions of the task (QNH). GNSS altitude may be
+taken into consideration (from the primary tracklog or a backup log) only in
+case of problems with barometric logging.
 
-Organisers may choose to use the less accurate GPS altitude instead of
-barometric altitude.
+Category 2 Organisers may choose to use the less accurate GPS altitude instead
+of barometric altitude.
 
 \subsection{Time}
 Time evaluation is based on GPS time, as given in GPS tracklogs. For better
