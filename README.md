@@ -17,8 +17,9 @@ LaTeX has markup for equations and charts. Its plain-text source works in well
 with source control and related tooling.
 
 GAP scoring is well documented.  Currently, the source format is *.docx and it
-is published as a single *.pdf file running to about fify pages with very many
-equations and quite a few charts.
+is published as a single *.pdf file, [Sporting Code Section 7A - Annex
+GAP](https://www.fai.org/sites/default/files/documents/sporting_code_s7a-xc-civl_gap_annex_1.pdf),
+running to about fify pages with very many equations and quite a few charts.
 
 Scoring is not simple. Hang-gliding and paragliding are scored similarly but
 there are quite a few differences. Over the years scoring has evolved and it is
