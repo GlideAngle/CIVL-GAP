@@ -24,6 +24,7 @@
             , domain=0:1
             , samples=100
             ]{1 - ((0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4 * 2))};
+    \node at (axis cs:0.03,0.01) [anchor=south west] {* when $bestDist/taskDist*0.1 = 0.08$ };
     \legend{Distance, Leading when pilots in goal, Leading when no pilots in goal, Time} 
 \end{axis}
 \end{tikzpicture}
