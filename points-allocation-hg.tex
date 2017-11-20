@@ -8,30 +8,28 @@
             , legend cell align={left}
             ]
     \addplot[ blue
-            , dashed
             , domain=0.1:1
             , samples=100
             ]{0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3};
     \addplot[ blue
+            , dashed
             , domain=0:0.1
             , samples=10
             ]{0.9};
     \addplot[ red
-            , dashed
             , domain=0.1:1
             , samples=100
             ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4};
     \addplot[ red
+            , dashed
             , domain=0:0.1
             , samples=10
             ]{(1 - 0.9)/8 * 1.4};
     \addplot[ purple
-            , dashed
             , domain=0.1:1
             , samples=100
             ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8};
     \addplot[ green
-            , dashed
             , domain=0.1:1
             , samples=100
             ]{1 - ((0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8))};

@@ -12,13 +12,13 @@
             , samples=100
             ]{0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3};
     \addplot[ red
-            , dashed
             , domain=0.1:1
             , samples=100
             ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4 * 2};
     \addplot[ red
+            , dashed
             , domain=0:0.1
-            , samples=100
+            , samples=10
             ]{0.08};
     \addplot[ green
             , domain=0:1
