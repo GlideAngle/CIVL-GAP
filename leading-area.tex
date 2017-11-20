@@ -1,0 +1,34 @@
+\begin{tikzpicture}
+\begin{axis}[ xlabel=Distance in SS
+            , ylabel=Time in SS
+            , x unit=km
+            , y unit=seconds
+            , width=0.8\textwidth
+            , title=Track log evaluation for leading coefficient calculation
+            , xtick={ 0, 10, 20, 30, 40, 50, 60 }
+            ]
+    \addplot[ green
+            , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-green.csv};
+    \addplot[ orange
+            , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-orange-1.csv};
+    \addplot[ orange
+            , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-orange-2.csv};
+    \addplot[ black
+            , y filter/.code={\pgfmathparse{#1*80-200}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-black.csv};
+    \addplot[ blue
+            , y filter/.code={\pgfmathparse{#1*80}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-blue.csv};
+    \addplot[ green
+            , dotted
+            , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-green-dotted.csv};
+    \addplot[ orange
+            , dotted
+            , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
+            ] table[col sep=comma] {leading-area-orange-dotted.csv};
+\end{axis}
+\end{tikzpicture}
