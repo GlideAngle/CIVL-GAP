@@ -1,28 +1,46 @@
 \begin{tikzpicture}
 \begin{axis}[ xlabel=Pilots in goal
             , ylabel=Available Points
-            , x unit=fraction
+            , x unit=fraction \ of \ 10 \ pilots \ in \ comp
             , y unit=fraction
             , width=0.8\textwidth
             , xtick={0, 0.1, 0.3, 0.4, 1}
             , legend cell align={left}
             ]
     \addplot[ blue
-            , domain=0:1
+            , dashed
+            , domain=0.1:1
             , samples=100
             ]{0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3};
+    \addplot[ blue
+            , domain=0:0.1
+            , samples=10
+            ]{0.9};
     \addplot[ red
-            , domain=0:1
+            , dashed
+            , domain=0.1:1
             , samples=100
             ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4};
+    \addplot[ red
+            , domain=0:0.1
+            , samples=10
+            ]{(1 - 0.9)/8 * 1.4};
     \addplot[ purple
-            , domain=0:1
+            , dashed
+            , domain=0.1:1
             , samples=100
             ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8};
     \addplot[ green
-            , domain=0:1
+            , dashed
+            , domain=0.1:1
             , samples=100
             ]{1 - ((0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8))};
-    \legend{Distance, Leading, Arrival, Time} 
+    \legend{ Distance when pilots in goal
+           , Distance when no pilots in goal
+           , Leading when pilots in goal
+           , Leading when no pilots in goal
+           , Arrival when pilots in goal
+           , Time when pilots in goal
+           } 
 \end{axis}
 \end{tikzpicture}
