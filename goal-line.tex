@@ -1,22 +1,24 @@
 \begin{tikzpicture}
 \tkzDefPoint(-4,-4){P}
 \tkzDefPoint(-6,-6){B}
-\tkzDrawCircle[ color=red
-              , fill=red!40
+\tkzDrawCircle[ color=blue
+              , fill=blue!40
               , opacity=.5
               ](P,B)
 \tkzDefPoint(4,4){C}
 \tkzDefPoint(2,6){A}
 \tkzDefPointBy[rotation= center C angle 180](A)
 \tkzGetPoint{B}
-\tkzDrawArc[ color=orange
-           , fill=orange!40
+\tkzDrawArc[ color=green
+           , fill=green!40
            , opacity=.5
            ](C,B)(A)
-\tkzDrawLines[color=orange, add = 0 and 0](C,A C,B)
+\tkzDrawLines[color=green, add = 0 and 0](C,A C,B)
 \tkzDrawPoints(C,P)
 \tkzDrawSegment(C,P)
-\tkzLabelPoints[below](C,P)
-\tkzLabelSegment[below](C,A){$l/2$}
-\tkzLabelSegment[below](C,B){$l/2$}
+\tkzLabelPoints[above right](C)
+\tkzLabelPoints[below left](P)
+\tkzLabelSegment[below, shift={(-0.5, -0.5)}](C,A){$l/2$}
+\tkzLabelSegment[below, shift={(-0.5, -0.5)}](C,B){$l/2$}
+\tkzMarkRightAngle(P,C,A)
 \end{tikzpicture}
