@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+\begin{axis}[ xlabel=Pilots in goal
+            , ylabel=Available Points
+            , x unit=fraction
+            , y unit=fraction
+            , width=0.8\textwidth
+            ]
+    \addplot[ blue
+            , domain=0:1
+            , samples=100
+            ]{0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3};
+    \addplot[ red
+            , domain=0:1
+            , samples=100
+            ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4};
+    \addplot[ purple
+            , domain=0:1
+            , samples=100
+            ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8};
+    \addplot[ green
+            , domain=0:1
+            , samples=100
+            ]{1 - ((0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8))};
+    \legend{Distance, Leading, Arrival, Time} 
+\end{axis}
+\end{tikzpicture}
