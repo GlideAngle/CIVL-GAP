@@ -6,6 +6,9 @@
             , x unit=km
             , y unit=fraction \ of \ available
             , axis y line=left
+            , ymin=-0.1
+            , ymax=1.1
+            , ytick={0, 0.2, 0.4, 0.6, 0.8, 1}
             ]
     \addplot[ blue
             , domain=0:72
@@ -22,6 +25,8 @@
             , axis x line=none
             , axis y line=right
             , legend pos=north west
+            , ymin=0
+            , ymax=10
             ]
     \addlegendimage{/pgfplots/refstyle=plot_one}\addlegendentry{$Linear \ reference$}
     \addlegendimage{/pgfplots/refstyle=plot_two}\addlegendentry{$Linear \ points/2$}
