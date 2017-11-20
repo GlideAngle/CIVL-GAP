@@ -32,3 +32,10 @@
             ] table[col sep=comma] {leading-area-orange-dotted.csv};
 \end{axis}
 \end{tikzpicture}
+
+% NOTE: I used excel to generate y=x+max(0, e) where e is random ± 5.
+% In the A column, rows 0 .. 62 with values 0 .. 62
+% In B1
+% =A1+MAX(0, RANDBETWEEN(-5,5))
+% In B2:B62
+% =MAX(B1, A2+MAX(0, RANDBETWEEN(-5,5)))
