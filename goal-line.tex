@@ -1,19 +1,19 @@
 \begin{tikzpicture}
 \tkzDefPoint(-4,-4){P}
-\tkzDefPoint(-6,-6){B}
+\tkzDefPoint(-6,-6){Q}
 \tkzDrawCircle[ color=blue
               , fill=blue!40
               , opacity=.5
-              ](P,B)
+              ](P,Q)
 \tkzDefPoint(4,4){C}
 \tkzDefPoint(2,6){A}
 \tkzDefPointBy[rotation= center C angle 180](A)
 \tkzGetPoint{B}
-\tkzDrawArc[ color=green
-           , fill=green!40
+\tkzDrawArc[ color=red
+           , fill=red!40
            , opacity=.5
            ](C,B)(A)
-\tkzDrawLines[color=green, add = 0 and 0](C,A C,B)
+\tkzDrawLines[color=red, add = 0 and 0](C,A C,B)
 \tkzDrawPoints(C,P)
 \tkzDrawSegment(C,P)
 \tkzLabelPoints[above right](C)
@@ -21,4 +21,12 @@
 \tkzLabelSegment[below, shift={(-0.5, -0.5)}](C,A){$l/2$}
 \tkzLabelSegment[below, shift={(-0.5, -0.5)}](C,B){$l/2$}
 \tkzMarkRightAngle(P,C,A)
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](P,Q)(135){last turnpoint}
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](C,A)(-135){goal semi-circle}
 \end{tikzpicture}
