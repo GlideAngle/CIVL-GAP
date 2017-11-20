@@ -1,0 +1,58 @@
+%SEE: https://tex.stackexchange.com/questions/198997/pgfplots-two-y-axis-with-three-plots-and-one-legend
+\begin{tikzpicture}
+\pgfplotsset{ scale only axis, xmin=0, xmax=75, width=0.8\textwidth}
+\begin{axis}[ xlabel=Distance Flown
+            , ylabel=Distance Points
+            , x unit=km
+            , y unit=fraction \ of \ available
+            , axis y line=left
+            ]
+    \addplot[ blue
+            , domain=0:72
+            , samples=25
+            ]{x/72};
+    \label{plot_one}
+    \addplot[ red
+            , domain=0:72
+            , samples=2
+            ]{x/72/2};
+    \label{plot_two}
+\end{axis}
+\begin{axis}[ ylabel=Number of pilots landed
+            , axis x line=none
+            , axis y line=right
+            , legend pos=north west
+            ]
+    \addlegendimage{/pgfplots/refstyle=plot_one}\addlegendentry{$Linear \ reference$}
+    \addlegendimage{/pgfplots/refstyle=plot_two}\addlegendentry{$Linear \ points/2$}
+    \addplot[ cyan
+            , ybar
+            , bar width=2pt
+            , fill
+            ] coordinates {
+                (11, 5)
+                (14, 1)
+                (17, 3)
+                (21, 2)
+                (22, 2)
+                (27, 5)
+                (28, 2)
+                (29, 7)
+                (31, 4)
+                (32, 1)
+                (33, 1)
+                (40, 8)
+                (41, 5)
+                (42, 6)
+                (43, 2)
+                (44, 1)
+                (45, 5)
+                (55, 1)
+                (69, 3)
+                (70, 2)
+                (71, 1)
+                (72, 1)
+    };
+    \addlegendentry{$Pilots \ landed$}
+\end{axis}
+\end{tikzpicture}
