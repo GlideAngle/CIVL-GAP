@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+\begin{axis}[ xlabel=Pilots in goal
+            , ylabel=Available Points
+            , x unit=fraction \ of \ 10 \ pilots \ in \ comp
+            , y unit=fraction
+            , width=0.8\textwidth
+            , xtick={0, 0.1, 0.5, 0.6, 1}
+            ]
+    \addplot[ blue
+            , domain=0:1
+            , samples=100
+            ]{0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3};
+    \addplot[ red
+            , dotted
+            , domain=0.1:1
+            , samples=100
+            ]{(1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4 * 2};
+    \addplot[ red
+            , domain=0:0.1
+            , samples=100
+            ]{0.08};
+    \addplot[ green
+            , domain=0:1
+            , samples=100
+            ]{1 - ((0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3) + (1 - (0.9 - 1.665*x + 1.713*x^2 - 0.587*x^3))/8 * 1.4 * 2))};
+    \legend{Distance, Leading when pilots in goal, Leading when no pilots in goal, Time} 
+\end{axis}
+\end{tikzpicture}
