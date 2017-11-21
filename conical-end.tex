@@ -8,6 +8,7 @@
 \tkzDefPoint(6,3){A'}
 \tkzDefPoint(-6,3){B'}
 \tkzDrawVectors(C',A' C',B' C',R)
+\tkzDrawVectors[dashed, color=red](C,B)
 \tkzMarkAngle[fill=yellow, size=3.8cm, opacity=.5](R,C',A)
 \tkzFillPolygon[red!30, opacity=0.25](A',B',C')
 \tkzLabelAngle[pos=2.5](R,C',A){$\arctan(i)$}
@@ -16,6 +17,9 @@
 \tkzDrawPoints[shape=cross out,size=24,color=red](C)
 \tkzDrawPoints[color=blue](C')
 \tkzShowTransformation[symmetry=center C, length=1, color=red](B)
-\tkzDrawSegment(A,B)
 \tkzLabelSegment[above](C,B){$r$}
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](C',A)(15){conical end of speed section}
 \end{tikzpicture}
