@@ -23,11 +23,11 @@
             , y filter/.code={\pgfmathparse{#1*80}\pgfmathresult}
             ] table[col sep=comma] {leading-area-blue.csv};
     \addplot[ green
-            , dotted
+            , dashed
             , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
             ] table[col sep=comma] {leading-area-green-dotted.csv};
     \addplot[ orange
-            , dotted
+            , dashed
             , y filter/.code={\pgfmathparse{#1*100}\pgfmathresult}
             ] table[col sep=comma] {leading-area-orange-dotted.csv};
 \end{axis}
