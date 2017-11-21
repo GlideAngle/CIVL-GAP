@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=1.4]
+\tkzInit[xmin=-6,xmax=4,ymin=-1,ymax=3]
+\tkzDefPoint(4,0){R}
+\tkzDefPoint(0,2){C}
+\tkzDefPoint(0,0){C'}
+\tkzDefPoint(4,2){A}
+\tkzDefPoint(-4,2){B}
+\tkzDefPoint(6,3){A'}
+\tkzDefPoint(-6,3){B'}
+\tkzDrawVectors(C',A' C',B' C',R)
+\tkzMarkAngle[fill=yellow, size=2.8cm, opacity=.5](R,C',A)
+\tkzFillPolygon[red!30,opacity=0.25](A',B',C')
+\tkzLabelAngle[pos=1.5](R,C',A){$\arctan(i)$}
+\tkzLabelPoints[below](C,C')
+\tkzLabelPoints[below](C,C')
+\tkzDrawPoints[shape=cross out,size=24,color=red](C)
+\tkzDrawPoints[color=blue](C')
+\tkzShowTransformation[symmetry=center C, length=1, color=red](B)
+\tkzDrawSegment(A,B)
+\tkzLabelSegment[above](C,B){$r$}
+\end{tikzpicture}
