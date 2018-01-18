@@ -1667,4 +1667,75 @@ of that score is used so that the pilot's total validity is equal to the Fixed T
     a &= CalculatedFTV - (u > 0 : \sum_{v = 0}^{\min(0, u - 1)} OrderedValidites_{p, v})
 \end{align*}
 
+\newpage
+\appendix
+\section{Shortest Route}
+\subsection{Line-Circle Intersections on a Plane}
+
+Generally the algorithm does the following:
+
+\begin{enumerate}
+    \item
+        Converts all coordinates to planar.  Planar coordinates are UTM Easting
+        and Northing. The UTM Zone is automatically determined from the
+        Longitude of the first point in the task definition. Then all other
+        conversions are forced to be in the very same UTM Zone even if they are
+        outside. This avoids anomalies when a competition is run in area
+        covering two adjacent UTM Zones.
+    \item
+        Finds the shortest route in the projection plane, an adjustment made in
+        three steps;
+\begin{enumerate}
+    \item
+        Take the previous touching point \(A\).
+    \item
+        Take the next touching point \(B\).
+    \item
+        Calculate a point \(R\) on the circle so the distance
+        $\overleftrightarrow{ARB}$ is shortest possible, considering three
+        possible crossings by line of the circle;
+\begin{enumerate}
+    \item
+        Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in 1 point.}\\
+The point \(R\) is the intersection of $\overleftrightarrow{AB}$
+and the circle.
+    \item
+        Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in 2 points.}\\
+The point \(R\) is the intersection of the circle and the line segment
+$\overleftrightarrow{AC'}$ where \(C'\) is the closest point on
+$\overleftrightarrow{AB}$ to the center of the circle.
+    \item
+        Line segment $\overleftrightarrow{AB}$ \textbf{doesn’t cross the circle.}\\
+The new point \(R\) is the intersection of the circle and line
+$\overleftrightarrow{CK}$ where \(K\) is point on $\overleftrightarrow{AB}$ so
+\(|AK| / |BK| = |AT| / |BT|\) (\(T\) is current best touching point). \(|AR|
++ |BR|\) is minimum when angles ARC and BRC are equal. Angles are equal when
+\(|AK| / |BK| = |AR| / |BR|\).
+\end{enumerate}
+\end{enumerate}
+
+The algorithm is iterative, with every iteration it finds new route that is
+(potentially) shorter than the one from previous iteration. When no further
+shortening is possible the algorithm stops. For every Turnpoint in the route
+is calculated best touching point. With every iteration the best touching
+points are adjusted in the same order as the turnpoints in the task. Initially
+the touching points are at the turnpoints and after 1st iteration they are at
+the circles defining control zones.
+
+After some iterations \(T\) and \(R\) become at the same place. The same is
+valid if \(A\) and \(B\) are inside the circle.
+
+If the current control zone is goal line then the best touching point is just
+the point on the line closer to point \(A\) because the goal line can
+be only at the end of the task, there is no point \(B\).
+
+    \item
+        Converts the coordinates of the shortest route back to geodetic.
+Nothing special, just UTM to Latitude, Longitude conversion.
+    \item
+        Calculates the route distance according to geodetic coordinates.
+Final distance calculation is made with the current FAI distance formula
+between two points defined with geodetic coordinates.
+\end{enumerate}
+
 \end{document}
