@@ -1,27 +1,22 @@
-\begin{tikzpicture}[scale=1]
-\tkzInit[xmax=5,ymax=4]
+\begin{tikzpicture}
 \tkzDefPoint(1,1){C}
-\tkzDefPoint(0,4){A}
+\tkzDefPoint(2,2){A}
 \tkzDefPoint(5,0){B}
 \tkzDefPoint(3,3){D}
 
 
-\tkzDefPointBy[projection=onto A--B](C) \tkzGetPoint{C'}
-
 \tkzInterLC(A,B)(C,D)
-\tkzGetPoints{R}{E}
+\tkzGetPoints{E}{R}
 
 \tkzDrawCircle(C,D)
 
 \tkzDrawPoints[color=blue, size=12](C,A,B)
-\tkzDrawPoints[color=red, size=12](R,C')
+\tkzDrawPoints[color=red, size=12](R)
 
 \tkzDrawSegment(A,B)
-\tkzDrawSegment[style=dashed](C,C')
-\tkzMarkRightAngle(A,C',C)
 
 \tkzLabelPoints[above left](A)
 \tkzLabelPoints[below right](B)
-\tkzLabelPoints[above right](R,C')
+\tkzLabelPoints[above right](R)
 \tkzLabelPoints[below left](C)
 \end{tikzpicture}
