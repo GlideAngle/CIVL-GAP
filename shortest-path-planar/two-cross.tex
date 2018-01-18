@@ -1,0 +1,27 @@
+\begin{tikzpicture}[scale=1]
+\tkzInit[xmax=5,ymax=4]
+\tkzDefPoint(1,1){C}
+\tkzDefPoint(0,4){A}
+\tkzDefPoint(5,0){B}
+\tkzDefPoint(3,3){D}
+
+
+\tkzDefPointBy[projection=onto A--B](C) \tkzGetPoint{C'}
+
+\tkzInterLC(A,B)(C,D)
+\tkzGetPoints{R}{E}
+
+\tkzDrawCircle(C,D)
+
+\tkzDrawPoints[color=blue, size=12](C,A,B)
+\tkzDrawPoints[color=red, size=12](R,C')
+
+\tkzDrawSegment(A,B)
+\tkzDrawSegment[style=dashed](C,C')
+\tkzMarkRightAngle(A,C',C)
+
+\tkzLabelPoints[above left](A)
+\tkzLabelPoints[below right](B)
+\tkzLabelPoints[above right](R,C')
+\tkzLabelPoints[below left](C)
+\end{tikzpicture}

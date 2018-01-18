@@ -1700,17 +1700,17 @@ Generally the algorithm does the following:
 \begin{enumerate}
     \item
         Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in
-        1 point}, see Fig~\ref{fig:planar-two-point}.\\The point \(R\) is the
+        1 point}, see Fig~\ref{fig:planar-one-cross}.\\The point \(R\) is the
           intersection of $\overleftrightarrow{AB}$ and the circle.
     \item
         Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in
-        2 points.}, see Fig~\ref{fig:planar-two-point}.\\ The point \(R\) is
+        2 points.}, see Fig~\ref{fig:planar-two-cross}.\\ The point \(R\) is
           the intersection of the circle and the line segment
           $\overleftrightarrow{AC'}$ where \(C'\) is the closest point on
           $\overleftrightarrow{AB}$ to the center of the circle.
     \item
         Line segment $\overleftrightarrow{AB}$ \textbf{doesn’t cross the
-        circle}, see Fig~\ref{fig:planar-two-point}.\\ The new point \(R\) is
+        circle}, see Fig~\ref{fig:planar-no-cross}.\\ The new point \(R\) is
         the intersection of the circle and line $\overleftrightarrow{CK}$ where
         \(K\) is point on $\overleftrightarrow{AB}$ so that \(|AK| / |BK|
         = |AT| / |BT|\) where \(T\) is current best touching point.  The sum
@@ -1747,8 +1747,22 @@ between two points defined with geodetic coordinates.
 \begin{figure}[h]
     \centering
     \input{shortest-path-planar/one-cross}
-    \caption{Line segment crosses the circle in one point}
-    \label{fig:planar-two-point}
+    \caption{Line segment crosses the circle in 1 point}
+    \label{fig:planar-one-cross}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \input{shortest-path-planar/two-cross}
+    \caption{Line segment crosses the circle in 2 points}
+    \label{fig:planar-two-cross}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \input{shortest-path-planar/no-cross}
+    \caption{Line segment doesn't cross the circle}
+    \label{fig:planar-no-cross}
 \end{figure}
 
 \end{document}
