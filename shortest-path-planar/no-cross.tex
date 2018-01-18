@@ -1,25 +1,31 @@
 \begin{tikzpicture}
 \tkzDefPoint(1,1){C}
-\tkzDefPoint(0,4){A}
-\tkzDefPoint(5,0){B}
+\tkzDefPoint(0,5){A}
+\tkzDefPoint(6,6){B}
 \tkzDefPoint(3,3){D}
 
-\tkzDefPointBy[projection=onto A--B](C) \tkzGetPoint{C'}
+\tkzDefBarycentricPoint(A=3,B=1)
+\tkzGetPoint{K}
 
-\tkzInterLC(A,B)(C,D)
-\tkzGetPoints{R}{E}
+\tkzDefBarycentricPoint(A=6,B=1)
+\tkzGetPoint{E}
+
+\tkzInterLC(C,K)(C,D)
+\tkzGetPoints{Q}{R}
+
+\tkzInterLC(C,E)(C,D)
+\tkzGetPoints{S}{T}
 
 \tkzDrawCircle(C,D)
 
 \tkzDrawPoints[color=blue, size=12](C,A,B)
-\tkzDrawPoints[color=red, size=12](R,C')
+\tkzDrawPoints[color=red, size=12](K,R,T)
 
 \tkzDrawSegment(A,B)
-\tkzDrawSegment[style=dashed](C,C')
-\tkzMarkRightAngle(A,C',C)
+\tkzDrawSegment[style=dashed](C,K)
 
-\tkzLabelPoints[above left](A)
+\tkzLabelPoints[above right](R)
+\tkzLabelPoints[above left](A,K,T)
 \tkzLabelPoints[below right](B)
-\tkzLabelPoints[above right](R,C')
 \tkzLabelPoints[below left](C)
 \end{tikzpicture}
