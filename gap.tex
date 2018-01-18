@@ -1700,21 +1700,23 @@ Generally the algorithm does the following:
 \begin{enumerate}
     \item
         Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in
-        1 point.}\\ The point \(R\) is the intersection of
-        $\overleftrightarrow{AB}$ and the circle.
+        1 point}, see Fig~\ref{fig:planar-two-point}.\\The point \(R\) is the
+          intersection of $\overleftrightarrow{AB}$ and the circle.
     \item
         Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in
-        2 points.}\\ The point \(R\) is the intersection of the circle and the
-        line segment $\overleftrightarrow{AC'}$ where \(C'\) is the closest
-        point on $\overleftrightarrow{AB}$ to the center of the circle.
+        2 points.}, see Fig~\ref{fig:planar-two-point}.\\ The point \(R\) is
+          the intersection of the circle and the line segment
+          $\overleftrightarrow{AC'}$ where \(C'\) is the closest point on
+          $\overleftrightarrow{AB}$ to the center of the circle.
     \item
         Line segment $\overleftrightarrow{AB}$ \textbf{doesn’t cross the
-        circle.}\\ The new point \(R\) is the intersection of the circle and
-        line $\overleftrightarrow{CK}$ where \(K\) is point on
-        $\overleftrightarrow{AB}$ so that \(|AK| / |BK| = |AT| / |BT|\) where
-        \(T\) is current best touching point.  The sum \(|AR| + |BR|\) is at
-        a minimum when angles $\angle{ARC}$ and $\angle{BRC}$ are equal. Angles
-        are equal when \(|AK| / |BK| = |AR| / |BR|\).
+        circle}, see Fig~\ref{fig:planar-two-point}.\\ The new point \(R\) is
+        the intersection of the circle and line $\overleftrightarrow{CK}$ where
+        \(K\) is point on $\overleftrightarrow{AB}$ so that \(|AK| / |BK|
+        = |AT| / |BT|\) where \(T\) is current best touching point.  The sum
+        \(|AR| + |BR|\) is at a minimum when angles $\angle{ARC}$ and
+        $\angle{BRC}$ are equal. Angles are equal when \(|AK| / |BK| = |AR|
+        / |BR|\).
 \end{enumerate}
 \end{enumerate}
 
@@ -1741,5 +1743,12 @@ Nothing special, just UTM to Latitude, Longitude conversion.
 Final distance calculation is made with the current FAI distance formula
 between two points defined with geodetic coordinates.
 \end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \input{shortest-path-planar/one-cross}
+    \caption{Line segment crosses the circle in one point}
+    \label{fig:planar-two-point}
+\end{figure}
 
 \end{document}
