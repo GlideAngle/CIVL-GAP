@@ -1660,8 +1660,11 @@ of that score is used so that the pilot's total validity is equal to the Fixed T
 \appendix
 \section{Shortest Route}
 \label{sec:shortest-route}
-\subsection{Line-Circle Intersections on a Plane}
+Given the task control zones, how is the optimized task
+distance~\ref{sec:task-distance} worked out? FS uses a method of line circle
+intersections on a projected plane.
 
+\subsection{Line-Circle Intersections on a Projected Plane}
 Currently, this method mistreats the case where after ESS one or several
 turnpoints have to be reached with centres different from ESS’ centre point:
 The two legs to and from ESS are optimized for distance as well, which can
