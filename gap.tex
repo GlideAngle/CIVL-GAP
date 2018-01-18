@@ -1221,7 +1221,7 @@ zero points for speed if their time to complete the speed section is equal to
 or longer than the fastest time plus the square root of the fastest time. All
 times are measured in hours.
 \begin{align*}
-    SpeedFraction_p &= \max(0, 1 - \sqrt[3]{\frac{Time_p - BestTime}{\sqrt{BestTime}}}^2) \\
+    SpeedFraction_p &= \max(0, 1 - \sqrt[3]{\frac{(Time_p - BestTime)^2}{\sqrt{BestTime}}}) \\
     TimePoints_p &= SpeedFraction_p * AvailableTimePoints
 \end{align*}
 
