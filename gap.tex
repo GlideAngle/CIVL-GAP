@@ -1696,21 +1696,22 @@ Generally the algorithm does the following:
         possible crossings by line of the circle;
 \begin{enumerate}
     \item
-        Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in 1 point.}\\
-The point \(R\) is the intersection of $\overleftrightarrow{AB}$
-and the circle.
+        Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in
+        1 point.}\\ The point \(R\) is the intersection of
+        $\overleftrightarrow{AB}$ and the circle.
     \item
-        Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in 2 points.}\\
-The point \(R\) is the intersection of the circle and the line segment
-$\overleftrightarrow{AC'}$ where \(C'\) is the closest point on
-$\overleftrightarrow{AB}$ to the center of the circle.
+        Line segment $\overleftrightarrow{AB}$ \textbf{crosses the circle in
+        2 points.}\\ The point \(R\) is the intersection of the circle and the
+        line segment $\overleftrightarrow{AC'}$ where \(C'\) is the closest
+        point on $\overleftrightarrow{AB}$ to the center of the circle.
     \item
-        Line segment $\overleftrightarrow{AB}$ \textbf{doesn’t cross the circle.}\\
-The new point \(R\) is the intersection of the circle and line
-$\overleftrightarrow{CK}$ where \(K\) is point on $\overleftrightarrow{AB}$ so
-\(|AK| / |BK| = |AT| / |BT|\) (\(T\) is current best touching point). \(|AR|
-+ |BR|\) is minimum when angles ARC and BRC are equal. Angles are equal when
-\(|AK| / |BK| = |AR| / |BR|\).
+        Line segment $\overleftrightarrow{AB}$ \textbf{doesn’t cross the
+        circle.}\\ The new point \(R\) is the intersection of the circle and
+        line $\overleftrightarrow{CK}$ where \(K\) is point on
+        $\overleftrightarrow{AB}$ so that \(|AK| / |BK| = |AT| / |BT|\) where
+        \(T\) is current best touching point.  The sum \(|AR| + |BR|\) is at
+        a minimum when angles \(ARC\) and \(BRC\) are equal. Angles are equal
+        when \(|AK| / |BK| = |AR| / |BR|\).
 \end{enumerate}
 \end{enumerate}
 
