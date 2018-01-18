@@ -1261,7 +1261,7 @@ even if they landed before goal or the end of speed
 section.
 \begin{align*}
     LC_{min} &= \min(\forall p : p \in PilotsFlown : LC_p) \\
-    LeadingFactor_p &= \max(0, 1 - \sqrt[3]{\frac{LC_p - LC_{min}}{\sqrt{LC_{min}}}}^2) \\
+    LeadingFactor_p &= \max(0, 1 - \sqrt[3]{\frac{(LC_p - LC_{min})^2}{\sqrt{LC_{min}}}}) \\
     LeadingPoints_p &= LeadingFactor_p * AvailableLeadingPoints
 \end{align*}
 To get an impression of the way leading points are awarded depending on a task’s minimal leading
