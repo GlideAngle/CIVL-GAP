@@ -8,7 +8,7 @@
 \tkzInterLC(A,B)(C,D)
 \tkzGetPoints{E}{R}
 
-\tkzDrawCircle(C,D)
+\tkzDrawCircle[color=blue, fill=blue!40, opacity=.5](C,D)
 
 \tkzDrawPoints[color=blue, size=12](C,A,B)
 \tkzDrawPoints[color=red, size=12](R)
@@ -19,4 +19,6 @@
 \tkzLabelPoints[below right](B)
 \tkzLabelPoints[above right](R)
 \tkzLabelPoints[below left](C)
+
+\tkzLabelCircle[draw, fill=yellow!20, text centered](C,D)(135){turnpoint}
 \end{tikzpicture}
