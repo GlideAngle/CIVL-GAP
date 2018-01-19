@@ -3,6 +3,17 @@
 \documentclass{article}
 \usepackage{civl}
 
+% SEE: https://tex.stackexchange.com/questions/132582/transparent-foreground-watermark
+\newsavebox\draftbox
+\savebox\draftbox{\tikz[color=red,opacity=0.1]\node{DRAFT};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=6,
+  xpos=-20,
+  ypos=15
+]{\usebox\draftbox}
+
 % SEE: https://ctan.org/pkg/titlepages
 \newcommand*{\titleGap}{\begingroup
 \raggedleft
@@ -21,8 +32,8 @@
 {\Large Hang-Gliding and Paragliding}\\
 {\Large Classes 1 to 5}\\
 \vspace*{2\baselineskip}
-2017 Edition\\
-Effective 1st May, 2017\\
+2018 Edition\\
+Work in Progress, Draft\\
 \vspace*{10\baselineskip}
 
 \begin{tabularx}{\textwidth}{@{}rXr@{}}
