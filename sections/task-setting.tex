@@ -1,0 +1,202 @@
+\label{sec:task-setting}
+\subsection{Definition of a task}
+\label{sec:task-definition}
+A task can be either a race task or an open distance task.
+
+\subsubsection{Race task}
+A race task definition consists of:
+\begin{enumerate}
+    \item A launch point, given as GPS coordinates
+    \item A number of control zones
+    \item A goal
+    \item
+        An indication which of the control zones is the start (start of speed
+        section)
+    \item
+        If goal does not serve as end of speed section: An indication which of
+        the control zones is the end of speed section, along with its specific
+        parameters (such as incline and radius for CESS, altitude time bonus
+        factor for AATB)
+    \item A launch time window
+    \item A start procedure, including timing
+    \item Optionally, a task deadline
+\end{enumerate}
+
+\begin{pg}
+In exceptional circumstances, with regard to restricted launch areas and poor
+flying conditions, to ensure the task is fair for 2/3rds of the pilots, a task
+may be run without leading/departure points. This is to be declared at the task
+briefing.
+\end{pg}
+
+\subsubsection{Open distance task}
+An open distance task definition consists of:
+\begin{enumerate}
+    \item A launch point, given as GPS coordinates
+    \item A number of control zones
+    \item Optionally, an indication which of the control zones is the start
+    \item Optionally, a direction for the final, open distance leg
+    \item A launch time window
+    \item If a start control zone exists: A start time
+    \item A task deadline
+\end{enumerate}
+
+\subsection{Definition of control zones}
+Control zones are geographical areas which must be reached by the pilots in the
+course of a task. The three types of control zones are the turnpoint cylinder,
+the conical end of speed section and the goal semi-circle.
+
+\subsubsection{Definition of a turnpoint cylinder}
+A turnpoint cylinder is defined as:
+\begin{enumerate}
+    \item A centre point \(c\), given as GPS coordinates
+    \item A radius \(r\), given in meters
+    \item
+        An indication whether the cylinder is an “exit” or an “enter” cylinder.
+        This defines whether the corresponding turnpoint is considered reached
+        by a pilot when crossing the cylinder’s boundary from its inside to the
+        outside, or from its outside to the inside.
+\end{enumerate}
+
+A turnpoint cylinder is then given as the cylinder with radius \(r\) around the
+axis which cuts the \(x/y\) plain orthogonally at the cylinder’s centre point
+\(c\).  For task evaluation purposes, only the cylinder’s projection in the
+\(x/y\) plain is considered: a circle of radius \(r\) around \(c\).
+
+Note that for start cylinders (SSS), “enter” only makes sense if the following
+turnpoint cylinder lies within the SSS cylinder. Likewise, an “exit” only makes
+sense if the first turnpoint lies outside of the SSS cylinder. Currently, the
+start direction cannot be set within FS. Instead the program automatically
+scores according to this logic.
+
+\subsubsection{Definition of conical end of speed section}
+\label{sec:define-CESS}
+
+\begin{figure}[h]
+    \centering
+    \input{conical-end}
+    \caption{Conical end of speed section from the side}
+\end{figure}
+
+\begin{pg}
+A conical end of speed section is defined as:
+\begin{enumerate}
+    \item A centre point \(c\), given as GPS coordinates and altitude
+    \item
+        An incline \(i\), given as a ratio of altitude/distance to the centre
+        point
+    \item
+        A radius \(r\), indicating the size of the circle resulting from the
+        intersection between the cone and a horizontal plane at goal altitude
+\end{enumerate}
+
+A conical end of speed section is given as the cone resulting from an axis of
+inclination \(i\) through the centre point \(c'\), which is equal to point
+\(c\), but has its altitude lowered by \(r/i\) metres compared to \(c\).  The
+incline is chosen for each task. The default value is 1:3.5. Values suggested
+for use are between
+1:2.5 and 1:4.
+\end{pg}
+\subsection{Definition of goal}
+\label{sec:goal-definition}
+A goal can be
+\begin{enumerate}
+    \item A cylinder (enter or exit), see above, or
+    \item A line, defined by:
+    \begin{enumerate}
+        \item A centre point \(c\), given as GPS coordinates
+        \item A length \(l\), given in meters
+    \end{enumerate}
+\end{enumerate}
+
+\begin{pg}
+If CESS is used, goal must either be a line at the cone’s centre point,
+a cylinder at the cone’s centre point with a radius smaller than radius r of
+the cone definition, or be located at a point that is different from the cone’s
+centre point.
+\end{pg}
+
+\subsubsection{Goal line}
+\label{sec:goal-line}
+\begin{figure}[h]
+    \centering
+    \input{goal-line}
+    \caption{Goal line definition for paragliding}
+\end{figure}
+
+The goal control zone consists of the semi-circle with radius \(l/2\) behind
+the goal line, when coming from the last turn point that is different from the
+goal line centre. Entering that zone without prior crossing of the goal line is
+equivalent to crossing the goal line.  Physical lines can be used in addition
+to the official, virtual goal line as defined by GPS coordinates, to increase
+attractiveness for spectators and media, and to increase visibility for pilots.
+Physical lines must be at least 50m long and 1m wide, made of white material
+and securely attached to the ground. The physical line must match as closely as
+possible the corresponding virtual line as defined by the goal GPS coordinates
+and the direction of the last task leg. It must not be laid out further from
+the previous turn point than the goal GPS coordinates.
+
+By default, the goal line length \(l\) is set to 400m.
+
+\subsection{Start procedures}
+Start procedures define how an individual pilot’s start time is determined.
+A start can be either air- or ground-started, and it can be either a race to
+goal or an elapsed time start.
+
+\subsubsection{Air start}
+For air-started tasks, the competitors are free to launch any time during the
+launch window, and to fly about, regardless of any turnpoint or start
+cylinders, up to their race start. Race start is defined as the crossing of the
+start cylinder in the prescribed direction for the last time before continuing
+to flying through the remainder of the task.
+
+\subsubsection{Ground start}
+In a ground-started task, the race starts with the pilots’ launch. Since
+a launch can be difficult to detect from a GPS track, the task setters must set
+a cylinder around the launch area as the first turnpoint. A pilot’s start is
+registered when he exits this cylinder for the first time. In the case of
+a race to goal task, the launch window open time is the same as the first (or
+only) start gate time.
+
+\subsubsection{Race to goal}
+A race to goal start is defined by one or more so-called “start gates”. The
+first – or only – start gate is given as a daytime. Subsequent start gates are
+given as a time interval, along with the number of start gates.
+
+\textit{Example 1: “We have a Race to Goal task, the start gate opens at 13:00”}
+
+\textit{Example 2: “We have a Race to Goal task with 5 start gates from 13:30 at a 20
+minutes interval.”} – the start gate times in this case are 13:30, 13:50, 14:10,
+14:30, and 14.50.  Pilots are free to start any time after the first (or
+single) start gate. A pilot’s start time is then defined as the time of the
+last start gate after which he started flying the speed section of the task.
+
+\textit{Example 3: Given the start gates from Example 2 above, pilot A, crossing the
+start cylinder at 13:49:01, will be given a start time of 13:30. Any pilot
+starting after 14:50 will be given a start time of 14:50.}
+
+Starting before the first (or only) start gate is considered a failed start.
+Some refer to this as “jumping the gun”. The two disciplines handle failed
+starts differently, see section~\ref{sec:early-start}.
+
+\subsubsection{Elapsed time}
+An elapsed time start is defined by a single “start gate”, given as a daytime.
+Pilots are free to start any time after this start gate. A pilot’s start time
+is then defined as the time at which he started flying the speed section of the
+task. Each pilot has therefore an individual start time.
+
+\textit{Example 1: “We have an Elapsed Time task, the start gate opens at 12:30”}
+– pilot A starting at 12:31:03 has a start time of 12:31:03, pilot B starting
+at 15:48:28 has a start time of 15:48:28.
+
+\subsection{Distances}
+\subsubsection{Task distance}
+\label{sec:task-distance}
+Task distance is defined as the path of shortest distance from the start point
+to goal that touches all turnpoint cylinders, see appendix~\ref{sec:shortest-route}.
+
+\subsubsection{Speed section distance}
+Speed section distance is defined as the path of shortest distance from start
+of speed section to end of speed section that touches all turnpoint cylinders.
+The method to calculate this distance is the same as for task distance.
+

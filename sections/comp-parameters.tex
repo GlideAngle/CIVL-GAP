@@ -1,0 +1,105 @@
+Before the first task, the following parameters must be defined by the meet
+director, or another person or group as defined by the competition’s local
+regulations:
+\begin{enumerate}
+    \item Nominal Launch
+    \item Nominal Distance
+    \item Minimum Distance
+    \item Nominal Goal
+    \item Nominal Time
+\end{enumerate}
+The values set for these parameters define how each task’s validity is
+calculated. They should therefore be chosen very carefully, considering the
+realistic potential of the flying site. Setting the values too low will prevent
+the formula from distinguishing between demanding, high quality tasks and
+quick, easy low quality tasks which are sometimes the only option due to
+weather conditions.
+
+\begin{pg}
+In paragliding competitions, the following must also be defined by the same
+person or group who defines the first five competition parameters above:
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item Final glide decelerator
+    \item Score-back time for stopped task
+\end{enumerate}
+\end{pg}
+
+\subsection{Nominal Launch}
+\label{sec:nominal-launch}
+When pilots do not take off for safety reasons, to avoid difficult launch
+conditions or bad conditions in the air, Launch Validity is reduced (see
+section ~\ref{sec:launch-validity}). Nominal Launch defines a threshold as a percentage of the pilots
+in a competition. Launch Validity is only reduced if fewer pilots than defined
+by that threshold decide to launch.
+
+The recommended default value for Nominal Launch is 96\%, which means that
+Launch Validity will only be reduced if fewer than 96\% of the pilots present at
+launch chose to launch.
+
+\subsection{Nominal Distance}
+Nominal distance should be set to the expected average task distance for the
+competition. Depending on the other competition parameters and the distances
+actually flown by pilots, tasks shorter than Nominal Distance will be devalued
+in most cases. Tasks longer than nominal distance will usually not be devalued,
+as long as the pilots fly most of the distance.
+
+In order for GAP to be able to distinguish between good and not-so-good tasks,
+and devalue the latter, it is important to set nominal distance high
+enough\footnote{See also this excellent series of articles on the subject: Part
+1: \url{http://ozreport.com/1360767307}; Part 2:
+\url{http://ozreport.com/1360858575}; Part3:
+\url{http://ozreport.com/1360944246}}.  
+
+\subsection{Minimum Distance}
+The minimum distance awarded to every pilot who takes off. It is the distance
+below which it is pointless to measure a pilot's performance. The minimum
+distance parameter is set so that pilots who are about to "bomb out" will not
+be tempted to fly into the next field to get past a group of pilots – they all
+receive the same amount of points anyway.
+
+\subsection{Nominal Goal}
+The percentage of pilots the meet director would wish to have in goal in
+a well-chosen task. This is typically 20 to 40\%. This parameter has a very
+marginal effect on distance validity (see section~\ref{sec:distance-validity}).
+
+\subsection{Nominal Time}
+Nominal time indicates the expected task duration, the amount of time required
+to fly the speed section. If the fastest pilot’s time is below nominal time,
+the task will be devalued. There is no devaluation if the fastest pilot’s time
+is above nominal time.
+
+Nominal time should be set to the expected “normal” task duration for the
+competition site, and nominal distance / nominal time should be a bit higher
+than typical average speeds for the area.
+
+\begin{pg}
+\subsection{Final Glide Decelerator}
+\label{sec:final-glide-decelerator}
+The concept of a final glide decelerator was introduced to counteract
+a development in competition paraglider design which favoured stability at high
+speeds over stability at trim speed. The two final glide decelerators available
+are:
+\begin{description}
+    \item [Conical end of speed section (CESS)]
+        Instead of a cylinder, the end of speed section is an inverted cone.
+        Time stops for a pilot when they enter that cone. For details
+        see~\ref{sec:define-CESS}.
+    \item [Arrival altitude time bonus (AATB)]
+        The time bonus is calculated based on each pilot’s altitude above goal
+        when crossing the end of speed section cylinder. This bonus is then
+        deducted from the pilot’s speed section time to determine the score
+        time. See also~\ref{sec:time-for-speed-section}.
+\end{description}
+A meet director may choose to use no final glide decelerator, or use either of
+the two outlined above.
+\end{pg}
+
+\begin{pg}
+\subsection{Score-back Time}
+\label{sec:score-back-time}
+In a stopped task, this value defines the amount of time before the task stop
+was announced that will not be considered for scoring. The default is
+5 minutes, but depending on local meteorological circumstances, it may be set
+to a longer period for a whole competition. See also section~\ref{sec:stop-task-time}.
+\end{pg}

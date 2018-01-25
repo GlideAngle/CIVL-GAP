@@ -1,0 +1,96 @@
+\label{sec:task-validity}
+The task validity is a value between 0 and 1 and measures how suitable
+a competition task is to evaluate pilots’ skills. It is calculated for each
+task after the task has been flown, by multiplying the three validity
+coefficients: Launch validity, distance validity, and time validity.
+\begin{equation*}
+    TaskValidity = LaunchValidity * DistanceValidity * TimeValidity
+\end{equation*}
+
+\subsection{Launch Validity}
+\label{sec:launch-validity}
+Launch validity depends on nominal launch and the percentage of pilots actually
+present at take-off who launched. If the percentage of pilots on take-off who
+launch is equal to nominal launch, or higher, then launch validity is 1. If,
+for example, only 20\% of the pilots present at take-off launch, launch
+validity goes down to about 0.1.
+
+The reasoning behind launch validity: Launch conditions may be dangerous, or
+otherwise unfavourable.  If a significant number of pilots at launch think that
+the day is not worth the risk of launching, then the gung-ho pilots who did go
+will not get so many points. This is a safety mechanism.
+
+‘Pilots present’ are pilots arriving on take-off, with their gear, with the
+intention of flying. For scoring purposes, ‘Pilots present’ are all pilots not
+in the ‘Absent’ status (ABS): Pilots who took off, plus pilots present who did
+not fly (DNF). DNFs need to be attributed carefully. A pilot who does not
+launch due to illness, for instance, is not a DNF, but an ABS.
+\begin{align*}
+    LVR &= \min(1, \frac{NumberOfPilotsFlying}{NumberOfPilotsPresent * NominalLaunch}) \\
+    LaunchValidity &= 0.027 * LVR + 2.917 * LVR^2 - 1.944 * LVR^3
+\end{align*}
+
+\begin{figure}[h!]
+    \centering
+    \input{launch-validity}
+    \caption{Launch validity curve}
+\end{figure}
+
+\subsection{Distance Validity}
+\label{sec:distance-validity}
+Distance validity depends on nominal distance, nominal goal, the longest
+distance flown and the sum of all distances flown beyond minimum distance. If
+the task distance is quite short in relation to nominal distance, the day is
+probably not a good measure of pilot skill because there would not be many
+decisions to make.
+
+If a task is longer than nominal distance, the day will not be devalued because
+of distance validity, even if the nominal goal parameter value is not achieved,
+as long as a fair percentage of pilots fly a good distance. This sounds like
+a vague statement, but the task setter should try to set tasks that are
+reasonable for the day and achievable. If everyone lands in goal, you must ask
+if this was a valid test of skill - it probably was if the fastest time and the
+distance flown were reasonably long. If everyone lands short of goal, was it an
+unsuitable task but still a good test of pilot skill? You also can have the
+case where a task that is shorter than nominal distance, has a distance
+validity of almost 1. This will happen when a large percentage of the pilots
+fly a large percentage of the course but, in this case, you still have
+a practical devaluation because there will be little spreading between pilots’
+scores.
+
+In the formula below, \(p\) denotes an individual pilot.
+\begin{align*}
+    SumOfFlownDistancesOverMinDist &= \sum_p \max(0, FlownDist_p - MinDist) \\
+    NominalDistanceArea &= \frac{(a + b)}{2} \\
+    a &= (NomGoal + 1) * (NomDist - MinDist) \\
+    b &= \max(0, NomGoal * (BestDist - NomDist) \\
+    DVR &= \frac{SumOfFlownDistancesOverMinDist}{NumberOfPilotsFlying * NominalDistanceArea} \\
+    DistanceValidity &= \min(1, DVR)
+\end{align*}
+
+\subsection{Time Validity}
+Time validity depends on the fastest time to complete the speed section, in
+relation to nominal time. If the fastest time to complete the speed section is
+longer than nominal time, then time validity is always equal to 1.
+
+If the fastest time is quite short, the day is probably not a good measure of
+pilot skill because there would not be many decisions to make and, because of
+this, luck can distort scores as there will be little possibility to recover
+any accidental loss of time.
+
+If no pilot finishes the speed section, then time validity is not based on time
+but on distance: The distance of the pilot who flies the furthest in relation
+to nominal distance is then used to calculate the time validity the same way as
+if it was the time.
+\begin{align*}
+    if \ one \ pilot \ reached \ ESS \\
+    TVR &= \min(1, \frac{BestTime}{NominalTime}) \\
+    if \ no \ pilot \ reached \ ESS \\
+    TVR &= \min(1, \frac{BestDistance}{NominalDistance}) \\
+    TimeValidity &= \max(0, \min(1, -0.271 + 2.912 * TVR - 2.098 * TVR^2 + 0.457 * TVR^3))
+\end{align*}
+
+\begin{figure}[h!]
+    \input{time-validity}
+    \caption{Time validity curve}
+\end{figure}

@@ -1,0 +1,230 @@
+\label{sec:special-cases}
+\subsection{ESS but not goal}
+In a task where ESS and goal are not identical, a pilot may reach ESS, but not
+goal.  Reaching goal is seen as “validating” one’s speed section performance.
+A pilot who does not reach goal after reaching ESS will lose his time points.
+He will only score distance points for the distance actually covered, and
+leading points. This is seen as a safety measure, since it encourages pilots to
+plan their final glide to ESS with enough altitude to safely reach goal. This
+discourages high-speed final glides low to the ground.
+\begin{align*}
+    \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
+    DistancePoints_p + LeadingPoints_p + 0 * (TimePoints_p + ArrivalPoints_p)
+\end{align*}
+
+\subsection{Early start}
+\label{sec:early-start}
+An early start occurs if a pilot’s last SSS cylinder boundary crossing in start
+direction (enter or exit) occurred before the first (or only) start gate time.
+
+\begin{pg}
+In paragliding, pilots who perform an early start are only scored for the
+distance between the launch point and the SSS cylinder, as calculated when
+determining the complete task distance (see ~\ref{sec:task-distance}).
+\end{pg}
+
+\begin{hg}
+In hang-gliding, the so-called “Jump the Gun”-rule applies: If the early start
+occurred within a time that is close to the first (or only) start gate time,
+the pilot is scored for his complete flight, but a penalty is then applied to
+his total score.
+
+The penalty calculation is based on two values X and Y, which are set in S7A,
+but can be changed at the task briefing (presumably by the meet director and/or
+the task committee). For each X seconds a pilot starts early, he incurs
+a 1 point penalty, up to a maximum of Y seconds. If a pilot starts more than
+Y seconds early, he will only be scored for minimum distance.
+\begin{align*}
+    X_{default} &= 2 \\
+    Y_{default} &= 300 \\
+    timeDiff_p &= firstStartGateTime - lastStartTime_p \\
+    timeDiff_p \leq 0 : jumpTheGunPenalty_p &= 0 \\
+    timeDiff_p > Y : jumpTheGunPenalty_p &= 0, totalScore_p = scoreForMinDistance \\
+    0 < timeDiff_p \leq Y : jumpTheGunPenalty_p &= \frac{timeDiff_p}{X} \\
+    \\
+    totalScore_p &= \\
+    \max(totalScore_p - jumpTheGunPenalty_p, scoreForMinDistance)
+\end{align*}
+\end{hg}
+
+\subsection{Stopped tasks}
+\label{sec:stopped-tasks}
+\subsubsection{Stop task time}
+\label{sec:stop-task-time}
+A task can be stopped at any time by the meet director. The time when a stop
+was announced for the first time is the “task stop announcement time”. This
+time must be recorded to score the task appropriately. For scoring purposes,
+a “task stop” time is calculated. This is the time which determines whether
+a task will be scored at all. Pilots’ flight will only be scored up to this
+task stop time.
+
+\begin{hg}
+In hang-gliding, stopped tasks are “scored back” by a time that is determined
+by the number of start gates and the start gate interval: The task stop time is
+one start gate interval, or 15 minutes in case of a single start gate, before
+the task stop announcement time.
+\begin{align*}
+    numberOfStartGates = 1 : taskStopTime &= taskStopAnnouncementTime - 15min \\
+    numberOfStartGates > 1 : taskStopTime &= taskStopAnnouncementTime - startGateInterval \\
+\end{align*}
+\end{hg}
+
+\begin{pg}
+In paragliding the score-back time is set as part of the competition parameters
+(see section ~\ref{sec:score-back-time}).
+\begin{align*}
+    taskStopTime &= taskStopAnnouncementTime - competitionScoreBackTime \\
+\end{align*}
+\end{pg}
+
+\subsubsection{Requirements to score a stopped task}
+For a stopped task to be scored, it must fulfil certain requirements, which
+differ between the two disciplines:
+
+\begin{hg}
+In hang gliding, a stopped task can only be scored if either a pilot reached
+goal or the race had been going on for a certain minimum time. The minimum time
+depends on whether the competition is the Women’s World Championship or not.
+The race start time is defined as the time when the first valid start was taken
+by a competition pilot.
+\begin{align*}
+    typeOfCompetition = Women's : minimumTime &= 60min \\
+    typeOfCompetition \neq Women's : minimumTime &= 90min \\
+    \\
+    taskStopTime - timeOfFirstStart < minimumTime \land numberOfPilotsInGoal(taskStopTime) = 0 : \\
+    taskValidity &= 0
+\end{align*}
+Note that this rule is currently not enforced by FS: The decision whether
+a stopped task is cancelled or scored must be taken by the score keeper.
+\end{hg}
+
+\begin{pg}
+In paragliding, a stopped task will be scored if the flying time was one hour
+or more. For Race to Goal tasks, this means that the Task Stop Time must be one
+hour or more after the race start time. For all other tasks, in order for them
+to be scored, the task stop time must be one hour or more after the last pilot
+started.
+\begin{align*}
+    minimumTime &= 60min \\
+    \\
+    typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \\
+    taskStopTime - startTime < minimumTime : \\
+    taskValidity &= 0 \\
+    \\
+    typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
+    taskStopTime - \max(\forall p : p \in StartedPilots . startTime_p) < minimumTime : \\
+    taskValidity &= 0
+\end{align*}
+\end{pg}
+
+\subsubsection{Stopped task validity}
+For stopped tasks, an additional validity value, the Stopped Task Validity, is
+calculated and applied to the Task Validity.
+\[ DayQuality_{stopped} = LaunchValidity * DistanceValidity * TimeValidity * StoppedTaskValidity \]
+Stopped Task Validity is calculated taking into account the task distance, the
+flown distances of all pilots, the number of launched pilots and the number of
+pilots still flying at the time when the task was stopped.
+\begin{align*}
+    NumberOfPilotsReachedESS > 0 : StoppedTaskValidity &= 1 \\
+    NumberOfPilotsReachedESS = 0 : StoppedTaskValidity &= \min(1, a + b^3) \\
+\end{align*}
+\begin{align*}
+    a &= \sqrt{\frac{BestDistFlown - avg(\forall i : DistFlown_i)}{DistLaunchToESS - BestDistFlown + 1} * \sqrt{\frac{stddev(\forall i : DistFlown)}{5}}} \\
+    b &= \frac{NumPilotsLandedBeforeStopTime}{NumPilotsLaunched}
+\end{align*}
+
+\subsubsection{Scored time window}
+For stopped Race to Goal tasks with a single start gate, scoring considers the
+same time window for all pilots: The time between the race start and the task
+stop time.
+\begin{align*}
+    typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \forall p : p \in StartedPilots : \\
+    scoreTimeWindow_p &= (startTime, taskStopTime)
+\end{align*}
+For stopped Race to Goal tasks with multiple start gates, as well as Elapsed
+Time races, must be treated slightly differently: Only the time window
+available to the last pilot started is considered for scoring. This time window
+is defined as the amount of time t between the last pilot’s start and the task
+stop time. For all pilots, only this time t after their respective start is
+considered for scoring.
+\begin{align*}
+    typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
+    scoreTime = taskStopTime - \max(\forall p : p \in StartedPilots : startTime_p) : \\
+    \forall p : p \in StartedPilots : \\ 
+    scoreTimeWindow_p &= (startTime_p, startTime_p + scoreTime)
+\end{align*}
+This means that if the last pilot started and then flew for, for example, 75
+minutes until the task was stopped, all tracks are only scored for the first 75
+minutes each pilot flew after taking their respective start.
+
+\subsubsection{Time points for pilots at or after ESS}
+Pilots who were at a position between ESS and goal at the task stop time will
+be scored for their complete flight, including the portion flown after the task
+stop time. This is to remove any discontinuity between pilots just before goal
+and pilots who had just reached goal at task stop time.
+
+\begin{pg}
+If a Conical ESS is used, then all pilots who have crossed into the cone before
+or at the task stop time will be scored for being in goal.
+\end{pg}
+
+A fixed amount of points is subtracted from the time points of each pilot that
+makes goal in a stopped task. This amount is the amount of time points a pilot
+would receive if he had reached ESS exactly at the task stop time. This is to
+remove any discontinuity between pilots just before ESS and pilots who had just
+reached ESS at task stop time.
+\begin{align*}
+    typeOfTask = RaceToGoal \land numberOfStartGates = 1 : \\
+    timePointsReduction &= timePoints(taskStopTime - startTime) \\
+    \\
+    typeOfTask \neq RaceToGoal \lor numberOfStartGates > 1 : \\
+    timePointsReduction &= \\
+    timePoints(taskStopTime - \max(\forall p : p \in StartedPilots : startTime_p)) \\
+    \\
+    \forall p : p \in PilotsInGoal : finalTimePoints_p &= timePoints_p - timePointsReduction
+\end{align*}
+
+\subsubsection{Distance points with altitude bonus}
+\label{sec:distance-stopped-tasks}
+To compensate for altitude differences at the time when a task is stopped,
+a bonus distance is calculated for each point in the pilots’ track logs, based
+on that point’s altitude above goal. This bonus distance is added to the
+distance achieved at that point. All altitude values used for this calculation
+are GPS altitude values, as received from the pilots’ GPS devices (no
+compensation for different earth models applied by those devices). For all
+distance point calculations, including the difficulty calculations in
+hang-gliding (see ~\ref{sec:difficulty-calculation}), these new stopped
+distance values are being used to determine the pilots’ best distance values.
+Time and leading point calculations remain the same: they are not affected by
+the altitude bonus or stopped distance values.
+\begin{align*}
+    \hgh{GlideRatio} &= 5.0 \\
+    \pgh{GlideRatio} &= 4.0 \\
+    \forall p : p \in PilotsLandedBeforeGoal : bestDistance_p &= max(minimumDistance, taskDistance - \min(xs)) \\
+    \forall p : p \in PilotsReachedGoal : bestDistance_p &= taskDistance
+\end{align*}
+\[ xs = \forall track_p . point_i : shortestDistanceToGoal(track_p . point_i) - (track_p . point_i . altitude - GoalAltitude) * GlideRatio \\ \]
+
+\subsection{Penalties}
+Penalties for various actions are defined in the rules. These penalties are
+either expressed as an absolute number (e.g. “100 points”) or as a percentage
+(e.g. “10\% of the pilot’s score in the task where he performed the punishable
+action”). The corresponding number of points is then deducted from the punished
+pilot’s total score to calculate his final score.
+\begin{align*}
+    finalScore_p &= score_p - absolutePenalty \\
+    finalScore_p &= score_p - (1 - percentagePenalty_p)
+\end{align*}
+
+\begin{hg}
+These penalties are completely independent of any “Jump the Gun”-Penalty
+a pilot may have incurred.
+\end{hg}
+
+The penalty mechanism can also be used to award bonus points to a pilot for
+some actions like helping a pilot in distress. In that case the penalty must be
+given as a negative number.
+
+Any rounding up of scores is to be done after the application of penalties. The
+lowest score a pilot can attain in a task, regardless of any incurred
+penalties, is zero points.

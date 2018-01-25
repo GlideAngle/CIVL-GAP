@@ -1,0 +1,130 @@
+CIVL’s scoring system is generally known as “GAP”, named after the first-name
+initials of its three inventors Gerolf Heinrichs (G), Angelo Crapanzano (A) and
+Paul Mollison (P). Their intention was to “create a fair scoring system easily
+adaptable to any competition anywhere in the world, both for hang gliding and
+paragliding, with a philosophy that is easy for the pilot to understand,
+regardless of the mathematical complexity of the underlying formulas”.
+
+\subsection{History}
+Work on GAP started in 1998, and it was officially introduced in 2000, to allow
+scoring of competitions based on GPS track logs, instead of photographic
+evidence as it had been used until then.
+
+In 2002, an updated version, named “GAP 2002” was published. This introduced
+the concept of leading points, which are calculated by comparing the complete
+track logs of all pilots in a task. Leading points replaced the departure
+points used in GAP 2000
+
+In 2005, a variation of GAP 2002 was introduced in Australia, named “OzGAP” or
+“OzGAP 2005”. The difference to GAP lies mainly in the way arrival points are
+calculated, but this was never adopted by CIVL.
+
+In 2008, “GAP 2008” was officially released. The main scoring mechanisms
+remained unchanged from the 2002 edition, but the implementation of GAP 2008
+included several rules introduced in the sporting codes for either hang-gliding
+or paragliding. These cover stopped tasks, starting too early, and landing
+between the end of the speed section and goal.
+
+In 2011, “GAP 2011” marked another software release where the main scoring
+remained unchanged from the 2002 definition and implementation. The main
+changes were all for paragliding: altitude bonus in stopped tasks, as well as
+a reduced number of available points in stopped tasks and in tasks with no
+pilots in goal.
+
+In 2012, the “Jump the Gun” rule for early starts in hang-gliding competitions
+changed in S7A. This was implemented in FS, but this was also released,
+unfortunately, as “GAP 2011”.
+
+The 2014 edition introduced a number of significant changes for paragliding,
+a few of which also applied to hang gliding. The majority of those changes
+originated from the Paragliding World Cup Association (PWCA), and 2014 was the
+first time that both CIVL and PWCA scored their paragliding competitions using
+the same formula. The changes were:
+\begin{itemize}
+    \item
+        Nominal launch parameter, see~\ref{sec:nominal-launch} (hang gliding
+        and paragliding)
+    \item
+        Final glide decelerator, see~\ref{sec:final-glide-decelerator}
+        (paragliding)
+    \item
+        Goal shape, see~\ref{sec:goal-definition} (paragliding)
+    \item
+        Purely linear distance points, see~\ref{sec:distance-points}
+        (paragliding)
+    \item
+        Adjusted formula for leading points, see~\ref{sec:leading-points}
+        (paragliding)
+    \item
+        No more arrival points, see~\ref{sec:arrival-points} (paragliding)
+    \item
+        Scoring of stopped tasks, see~\ref{sec:stopped-tasks} (hang gliding and
+        paragliding)
+    \item
+        Use of FTV for competition scoring,
+        see~\ref{sec:overall-competition-ranking} (paragliding)
+\end{itemize}
+This 2015 edition applies the 2014 changes in leading points calculations for
+paragliding now also to hang gliding. In paragliding, the use of final glide
+deceleration methods is no longer mandatory. QNH is now used as the primary
+altitude measurement. Distance calculations continue to be based on the FAI
+sphere, the introduction of a new distance measurement regime, based on the
+WGS84 ellipsoid, has been postponed.
+
+2016: In Paragliding, the leading points weight (maximum available leading
+points) is doubled compared to the previous version. This reduces the available
+time points. Also, if no pilot is in goal, the weight is now calculated as the
+ratio between task distance and actual distance covered by the pilot who flew
+the furthest. The maximum in this case is 0.1 (equivalent to 100 points for
+a task with task quality 1). In hang gliding, the penalty for jumping the gun
+was increased for one point every three seconds to one point every 2 seconds.
+
+\subsection{Scoring Process}
+Scoring follows a nine-step process, as depicted in
+Figure~\ref{fig:scoring-process}:
+
+\begin{figure}[h!]
+    \centering
+    \input{score-process}
+    \caption{Scoring process}
+    \label{fig:scoring-process}
+\end{figure}
+
+\begin{enumerate}
+    \item
+        Setting the competition parameters, or “GAP parameters”, according to
+        the competition site, the expected pilot level and the expected tasks.
+        This happens once for each competition, at the outset, and must not be
+        changed throughout the competition. See
+        section~\ref{sec:use-of-tracklog-data}.
+    \item
+        Setting a task – this happens typically once per day on flyable days.
+        See section~\ref{sec:task-setting}.
+    \item
+        Letting the pilots fly the task. See section~\ref{sec:flying-a-task}.
+    \item
+        Evaluating the task, by collecting all pilots’ track logs for this
+        task, and determining for each pilot the distance flown and, if the end
+        of speed section was reached, in what time this happened. See
+        section~\ref{sec:task-evaluation}.
+    \item
+        Calculating the task validity based on the task’s statistical values
+        such as fastest time to ESS, number of pilots in goal, average distance
+        flown and several others. See section~\ref{sec:task-validity}.
+    \item
+        Points allocation: Calculating the maximum number of points awarded for
+        distance, speed, leading and arrival, based on the task validity and
+        the statistical values found in the task evaluation. See
+        section~\ref{sec:points-allocation}.
+    \item
+        Scoring each pilot’s flight, by calculating the awarded points for
+        distance, speed, leading and arrival. The outcome, the pilots’ total
+        score, is the sum of these four values. See
+        sections~\ref{sec:pilot-score} and ~\ref{sec:special-cases}.
+    \item
+        Ranking all pilots according to their total score for the task results.
+        See section~\ref{sec:task-ranking}.
+    \item
+        Aggregation of task results for competition scoring and ranking. See
+        section~\ref{sec:competition-ranking}.
+\end{enumerate}

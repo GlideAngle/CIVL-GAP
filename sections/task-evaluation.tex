@@ -1,0 +1,192 @@
+\label{sec:task-evaluation}
+From each pilot’s track, task evaluation determines the distance this pilot
+flew along the task, and the time this pilot took to fly the speed section.
+
+\subsection{Reaching a control zone}
+\subsubsection{Reaching a turnpoint cylinder}
+\label{sec:reaching-a-turnpoint-cylinder}
+A cylinder is considered “reached” by a pilot if that pilot’s track log shows
+the pilot crossing out of the cylinder in the case of an exit cylinder, or into
+the cylinder in case of an enter cylinder, by containing at least one track
+point closer to the cylinder’s centre than the cylinder radius (enter) or
+further away from the cylinder’s centre than the cylinder radius (exit). During
+task evaluation, only the \(x/y\) coordinates are considered, and a point must
+lie within (enter) or outside of (exit) the circle representing the turnpoint
+cylinder in the \(x/y\) plain. This is determined by measuring the distance
+between a track point and the turnpoint. This distance must be greater (exit)
+or smaller (enter) than the cylinder’s radius.  To compensate for different
+distance calculations and different earth models in use by today’s GPS devices
+(FAI sphere vs. WGS84 ellipsoid), a 0.5\% tolerance is used for this
+calculation. This had to be introduced so that a pilot reading the distance to
+the next cylinder centre from his GPS device can rely on having reached the
+turnpoint when the distance displayed by the instrument is smaller than the
+defined turnpoint cylinder radius.
+
+For enter cylinders, this means that a tracklog point that is closer to the
+turnpoint than \(r*1.005\) is considered proof of reaching the turnpoint. For
+exit cylinders, this means that a tracklog point that is further away from the
+turnpoint than \(r*0.995\) is considered proof of reaching the turnpoint.
+Starting January 1st, 2015 – provided all distance measurements are then based
+on the WGS84 ellipsoid (see~\ref{sec:distance}) – the tolerance for turnpoint
+cylinders in CIVL’s FAI Category 1 events will be reduced to 0.01\% of the
+cylinder radius, with a minimum of 5 meter. Organisers of FAI Category 2 events
+may continue using the existing 0.5\% tolerance, to accommodate pilots flying
+with instruments which calculate distance based on the FAI sphere.
+
+The time when a control zone was reached is determined by the time a so-called
+“crossing” occurred. A crossing is defined as a pair of consecutive track
+points, of which at least one lies inside the band determined by the
+turnpoint’s centre, its radius and the tolerance value.
+\begin{align*}
+    tolerance &= 0.5\% | 0.01\% \\
+    minTolerance &= 0m | 5m \\
+    turpoint_i : innerRadius_i &= \min(radius_i * (1 - tolerance), radius_i - minTolerance) \\
+    turpoint_i : outerRadius_i &= \max(radius_i * (1 + tolerance), radius_i + minTolerance) \\
+\end{align*}
+\begin{equation*}
+    crossing_i = \exists_j (a \land b) \lor (c \land d)
+\end{equation*}
+\begin{align*}
+    a = distance(center_i, trackpoint_j) &>= innerRadius_i \\
+    b = distance(center_i, trackpoint_{j+1}) &<= outerRadius_i \\
+    c = distance(center_i, trackpoint_j) &<= outerRadius_i \\
+    d = distance(center_i, trackpoint_{j+1}) &>= innerRadius_i \\
+\end{align*}
+The time of a crossing depends on whether it actually cuts across the actual
+cylinder, or whether both points lie within the tolerance band, but on the same
+side of the actual cylinder.
+\begin{align*}
+    crossing . time &= trackpoint_{j+1} . time \ when \ A \\
+    crossing . time &= trackpoint_j . time \ when \ B \\
+    crossing . time &= interpolateTime(trackpoint_{j+1}, trackpoint_{j+1}) . time \ when \ C \\
+\end{align*}
+\begin{align*}
+    A &= (a \land b) \lor (c \land d) \land turnpoint_i = ESS \\
+    B &= (a \land b) \lor (c \land d) \land turnpoint_i \neq ESS \\
+    C &= (a \land d) \lor (c \land b) \\
+    \\
+    a = distance(center_i, trackpoint_j) &< radius_i \\
+    b = distance(center_i, trackpoint_{j+1}) &< radius_i \\
+    c = distance(center_i, trackpoint_j) &> radius_i \\
+    d = distance(center_i, trackpoint_{j+1}) &> radius_i \\
+\end{align*}
+The method used to interpolate the crossing time is buried in FS’ code and will
+have to be documented at a later point.
+
+Finally, given all n crossings for a turnpoint cylinder, sorted in ascending
+order by their crossing time, the time when the cylinder was reached is
+determined.
+\begin{align*}
+    turnpoint_i &= SSS : reachingTime_i = crossing_n . time \\
+    turnpoint_i &\neq SSS : reachingTime_i = crossing_0 . time
+\end{align*}
+\subsection{Reaching a conical end of speed section}
+\begin{pg}
+A conical end of speed section is considered “reached” by a pilot if that
+pilot’s track log contains at least one point where the required glide angle to
+the cone’s centre point is equal to or smaller than the cone’s incline.
+\begin{align*}
+    crossing_i : \exists j : \\
+    \frac{trackpoint_j . altitude - center_{CESS} . altitude}{center_{CESS}, trackpoint_{j}} \leq incline \\
+    \land \frac{trackpoint_{j - 1} . altitude - center_{CESS} . altitude}{distance(center_{CESS}, trackpoint_{j - 1})} > incline \\
+    \\
+    crossing_i . time &= interpolateTime(trackpoint_{j + 1}, trackpoint_{j + 1})
+\end{align*}
+Given all n crossings for a CESS, sorted in ascending order by their crossing
+time, the time when CESS was reached is determined.
+\[ reachingTime_{CESS} = crossing_0 . time \]
+If goal is at the CESS centre point, and a pilot reaches goal without
+previously entering the CESS, he is considered having reached CESS at the time
+when he crossed the goal line.
+\end{pg}
+
+\subsection{Reaching goal}
+\subsubsection{Goal cylinder}
+Verification of a pilot reaching a goal cylinder is achieved by the same method
+as verification of reaching a turnpoint cylinder (~\ref{sec:reaching-a-turnpoint-cylinder})
+
+\subsubsection{Goal line}
+To reach goal in the case of a goal line, the goal line must be crossed in
+flight. This is achieved when a line drawn between two adjacent points in the
+pilot’s tracklog crosses the goal line in the correct direction.
+
+\begin{pg}
+Entering the goal control zone (semi-circle behind the goal line,
+see~\ref{sec:goal-line}) from any direction without prior crossing of the goal
+line is equivalent to crossing the goal line.
+\end{pg}
+
+If a physical line is used, crossing either the virtual or the physical goal
+line counts as having reached goal. An official observation (through a goal
+marshal or similar) of a pilot crossing the line in flight overrules a negative
+goal crossing decision based on the pilot’s tracklog. Not crossing a physical
+goal line for obvious safety reasons must be considered in the pilots’ favour.
+
+\begin{hg}
+The physical goal line is crossed when the hang glider’s nose cuts the line, in
+the correct direction, before a landing is made.
+\end{hg}
+
+\begin{pg}
+The physical goal line is crossed when the paraglider pilot’s leading foot cuts
+the line, in the correct direction, before a landing is made.
+\end{pg}
+
+\subsection{Flown distance}
+
+\subsubsection{Race task}
+\label{sec:race-task}
+To determine a pilot’s flown distance, a first step determines which turnpoints
+he reached considering all timing restrictions: launch within launch time
+window, valid start, but only until the task deadline time. After the last
+turnpoint the pilot reached, for every remaining track point, the shortest
+distance to goal is calculated using the method described in section
+\ref{sec:task-distance}. The flown distance is then calculated as task distance
+minus the shortest distance the pilot still had to fly. Therefore, for scoring,
+the pilot’s best distance along the course line is considered, regardless of
+where the pilot landed in the end.
+
+If a pilot flies less than minimum distance, he will be scored for this minimum
+distance. This also applies to pilots who are not able to produce a valid GPS
+tracklog, but for whom launch officials verify launch within the launch window.
+
+If a pilot reaches goal, he will be scored for the task distance.
+\begin{align*}
+    \forall p : p \in PilotsLandingBeforeGoal : bestDistance_p &= \max(minimumDistance, taskDistance - shortest) \\
+    shortest &= \min(\forall track_p . point_i shortestDistanceToGoal(track_p . point_i))) \\
+    \forall p : p \in PilotsReachingGoal : bestDistance_p &= taskDistance
+\end{align*}
+
+\subsubsection{Open distance task}
+In an open distance task, if a pilot lands before the last of any given control
+zones, his flown distance is calculated according to \ref{sec:race-task}. For
+pilots flying further than the last control zone, the flown distance is
+calculated by adding the pilot’s best distance flown in the open distance part
+of the task (after the last control zone) to task distance between launch and
+the last control zone. If the task gave a direction for the open distance leg,
+then the pilot’s best distance projected onto that direction is considered.
+
+\subsection{Time for speed section}
+\label{sec:time-for-speed-section}
+The time a pilot took to fly the speed section is determined by his start time
+(which is influenced by the task’s start procedure and the time he crossed the
+start of speed section cylinder) and the time when he crossed the end of speed
+section after reaching all previous turn points. The smallest unit for time
+measurement is one second.
+
+Pilots who do not reach the end of speed section cylinder do not get a time.
+\begin{align*}
+    \forall p : p \in PilotsReachingESS : time_p &= timeAtESS_p - startTime_p
+\end{align*}
+
+\begin{pg}
+If AATB is used, pilots receive a time bonus for their altitude above goal when crossing the ESS cylinder.
+The number of seconds they receive for each meter is expressed by the ATTB factor.
+
+By default, the ATTB factor is \(0.45 \ s/m\). Values suggested for use are between \(0.2 \ s/m\) and \(0.7 \ s/m\).
+\begin{align*}
+    \forall p : p \in PilotsReachingESS \\
+    arrivalAltitudeTimeBonus_p &= (crossing_{p.ESS} . altitude - goal . altitude) * ATTBfactor \\
+    time_p &= timeAtESS_p - startTime_p - arrivalAltitudeTimeBonus_p
+\end{align*}
+\end{pg}
