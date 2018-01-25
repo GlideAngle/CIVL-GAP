@@ -1,3 +1,5 @@
+\documentclass[../gap.tex]{civl}
+\begin{document}
 \label{sec:fixed-total-validity}
 Fixed Total Validity (FTV) is a procedure to score pilots on their best task
 performances, rather than all their tasks. Fixed Total Validity means the sum
@@ -35,3 +37,4 @@ of that score is used so that the pilot's total validity is equal to the Fixed T
     FTVScore_p &= \sum_{u = 0}^{numberOfTasks} OrderedScores_{p, u} * \max(1, \frac{\min(0, a)}{OrderValidites_{p, u}}) \\
     a &= CalculatedFTV - (u > 0 : \sum_{v = 0}^{\min(0, u - 1)} OrderedValidites_{p, v})
 \end{align*}
+\end{document}
