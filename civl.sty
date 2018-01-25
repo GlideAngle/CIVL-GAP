@@ -23,6 +23,7 @@
 \usetkzobj{all}
 \RequirePackage[printwatermark]{xwatermark}
 \RequirePackage{import}
+\RequirePackage{tcolorbox}
 
 % SEE: http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
 \hypersetup{
@@ -66,27 +67,21 @@
 % SEE: https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 
-% SEE: https://tex.stackexchange.com/questions/29060/newenvironment-issues-with-environment-comment
-\newsavebox{\coloredbgbox}
 \newenvironment{pg}
 {
-    \begin{lrbox}{\coloredbgbox}\begin{minipage}{0.98\textwidth}
+    \begin{tcolorbox}[colback=pgc]
 }
 {
-    \end{minipage}
-    \end{lrbox}
-    \colorbox{pgc}{\usebox{\coloredbgbox}}
+    \end{tcolorbox}
     \marginpar{\includegraphics[scale=0.3]{img/pg.png}\hfill}
 }
 
 \newenvironment{hg}
 {
-    \begin{lrbox}{\coloredbgbox}\begin{minipage}{0.98\textwidth}
+    \begin{tcolorbox}[colback=hgc]
 }
 {
-    \end{minipage}
-    \end{lrbox}
-    \colorbox{hgc}{\usebox{\coloredbgbox}}
+    \end{tcolorbox}
     \marginpar{\includegraphics[scale=0.6]{img/hg.png}\hfill}
 }
 
