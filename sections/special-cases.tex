@@ -37,13 +37,16 @@ Y seconds early, he will only be scored for minimum distance.
 \begin{align*}
     X_{default} &= 2 \\
     Y_{default} &= 300 \\
-    timeDiff_p &= firstStartGateTime - lastStartTime_p \\
+    timeDiff_p &= firstStartGateTime - lastStartTime_p
+\end{align*}
+\begin{align*}
     timeDiff_p \leq 0 : jumpTheGunPenalty_p &= 0 \\
-    timeDiff_p > Y : jumpTheGunPenalty_p &= 0, totalScore_p = scoreForMinDistance \\
-    0 < timeDiff_p \leq Y : jumpTheGunPenalty_p &= \frac{timeDiff_p}{X} \\
     \\
-    totalScore_p &= \\
-    \max(totalScore_p - jumpTheGunPenalty_p, scoreForMinDistance)
+    timeDiff_p > Y : jumpTheGunPenalty_p &= 0,\\
+    totalScore_p = scoreForMinDistance \\
+    \\
+    0 < timeDiff_p \leq Y : jumpTheGunPenalty_p &= \frac{timeDiff_p}{X} \\
+    totalScore_p = \max(totalScore_p - jumpTheGunPenalty_p, scoreForMinDistance)
 \end{align*}
 \end{hg}
 
@@ -90,9 +93,10 @@ by a competition pilot.
 \begin{align*}
     typeOfCompetition = Women's : minimumTime &= 60min \\
     typeOfCompetition \neq Women's : minimumTime &= 90min \\
-    \\
-    taskStopTime - timeOfFirstStart < minimumTime \land numberOfPilotsInGoal(taskStopTime) = 0 : \\
-    taskValidity &= 0
+    a \land b : taskValidity &= 0 \\
+    \text{where} \\
+    a = taskStopTime - timeOfFirstStart < minimumTime \\
+    b = numberOfPilotsInGoal(taskStopTime) = 0
 \end{align*}
 Note that this rule is currently not enforced by FS: The decision whether
 a stopped task is cancelled or scored must be taken by the score keeper.
