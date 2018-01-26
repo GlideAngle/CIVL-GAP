@@ -1,0 +1,22 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[gap.tex]{subfiles}
+\begin{document}
+There are variations of GAP. Here's how they compare;
+\begin{table}[!ht]
+    \begin{tabularx}{\textwidth}{|R|r|r|r|r|}
+    \hline
+        \textbf{Component} & \textbf{2016 HG} & \textbf{2016 PG} & \textbf{Oz} & \textbf{2000} \\
+    \hline
+        Distance         & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+        Time             & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+        Leading          & $\checkmark$ & $\checkmark$ & $\times$     & $\times$ \\
+        Departure        & $\times$     & $\times$     & $\times$     & $\checkmark$ \\
+        Arrival Position & $\checkmark$ & $\times$     & $\times$     & $\checkmark$ \\
+        Arrival Time     & $\times$     & $\times$     & $\checkmark$ & $\times$ \\
+    \hline
+    \end{tabularx}
+    \caption{Points used by variants of GAP}
+    \label{tab:gap-variants}
+\end{table}
+\end{document}
