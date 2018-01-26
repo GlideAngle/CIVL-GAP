@@ -10,7 +10,8 @@ rules are documented.
 
 ## Getting Started
 
-The whole document can be compiled and typeset to `*.pdf` on the command line with;
+The whole document can be compiled and typeset to `*.pdf` on the command line
+with;
 
 ```
 > xelatex gap.tex
@@ -22,8 +23,8 @@ Transcript written on gap.log.
 
 This `gap.tex` document can be loaded into a LaTeX editor but working on the
 document as a whole can take a lot longer to compile than working on a section
-by itself. Any of the sections can be compiled individually either in an
-editor or on the command line.
+by itself. Any of the sections can be compiled individually either in an editor
+or on the command line.
 
 ```
 > xelatex sec-philosophy.tex
@@ -33,13 +34,12 @@ Output written on sec-philosophy.pdf (3 pages).
 Transcript written on sec-philosophy.log.
 ```
 
-Sections are those files prefixed with
-`sec-` such as `sec-philosophy.tex`. The other `*.tex` files contain diagrams
-and graphs.
+Sections are those files prefixed with `sec-` such as `sec-philosophy.tex`. The
+other `*.tex` files contain diagrams and graphs.
 
-Note that typesetting the document as a whole must be made twice to create
-and then reference labels for sections, figures and tables. On the first
-pass these references will be rendered as **??**.
+Note that typesetting the document as a whole must be made twice to create and
+then reference labels for sections, figures and tables. On the first pass these
+references will be rendered as **??**.
 
 ## Why LaTeX?
 
