@@ -1,25 +1,25 @@
 \begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
-& fsdb \arrow[dd]
+& fsdb \arrow[dd, twoheadrightarrow]
     &
         & kml \arrow[dl] \arrow[dd]
             \\
-discard \arrow[dd]
+discard \arrow[dd, twoheadrightarrow]
     &
-        & align \arrow[ll, crossing over]
+        & align \arrow[ll, crossing over, twoheadrightarrow]
             \\
-    & comp \arrow[dl] \arrow[rr] \arrow[dd]
+    & comp \arrow[dl] \arrow[rr, twoheadrightarrow] \arrow[dd]
     &
-        & cross \arrow[dl]
+        & cross \arrow[dl, twoheadrightarrow]
             \\
-mask \arrow[dd]
+mask \arrow[dd, twoheadrightarrow]
     &
-        & tag \arrow[from=uu, crossing over] \arrow[ll, crossing over]
+        & tag \arrow[uu, crossing over, twoheadrightarrow] \arrow[ll, crossing over]
             \\
 & route \arrow[dl]
     &
         & igc \arrow[uu]
             \\
-land \arrow[rr]
+land \arrow[rr, twoheadrightarrow]
     &
         & gap \arrow[from=uu, crossing over]
             \\
