@@ -1,19 +1,30 @@
 \begin{tikzcd}
-extractinput 
-    \arrow[d] \\
-tasklength 
-    \arrow[d] \\
-cross zone
-    \arrow[d] \\
-tag zone
-    \arrow[d] \\
-aligntime
-    \arrow[d] \\
-discardfurther
-    \arrow[d] \\
-masktrack
-    \arrow[d]
-landout
-    \arrow[d] \\
-gappoint
+    \textit{comp}
+    \texttt{.fsdb}
+    \arrow[d, "\text{extract input}"] \\
+    \textit{comp}
+    \texttt{.comp-input.yaml}
+    \arrow[d, "\text{cross zone}"] \\
+    \textit{comp}
+    \texttt{.cross-zone.yaml}
+    \arrow[d, "\text{tag zone}"] \\
+    \textit{comp}
+    \texttt{.tag-zone.yaml}
+    \arrow[d, "\text{align time}"] \\
+    \texttt{.flare-timing/align-time/task-n/}
+    \textit{pilot}
+    \texttt{.csv}
+    \arrow[d, "\text{discard further}"] \\
+    \texttt{.flare-timing/discard-further/task-n/}
+    \textit{pilot}
+    \texttt{.csv}
+    \arrow[d, "\text{mask track}"] \\
+    \textit{comp}
+    \texttt{.mask-track.yaml}
+    \arrow[d, "\text{land out}"] \\
+    \textit{comp}
+    \texttt{.land-out.yaml}
+    \arrow[d, "\text{gap point}"] \\
+    \textit{comp}
+    \texttt{.gap-point.yaml}
 \end{tikzcd}
