@@ -1,7 +1,7 @@
 % !TEX TS-program = xelatex
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
-\usepackage{civl}
+\usepackage{gap-civl}
 \usepackage{subfiles}
 
 % SEE: https://tex.stackexchange.com/questions/132582/transparent-foreground-watermark
@@ -50,7 +50,7 @@ Work in Progress, Draft\\
 
 \endgroup}
 
-\import{}{footer}
+\import{}{gap-footer}
 \pagestyle{gen}
 
 \begin{document}
@@ -60,7 +60,7 @@ Work in Progress, Draft\\
 % files as well as pictures.
 % SEE: http://latex.org/forum/viewtopic.php?t=13267
 \newcommand{\main}{.}
-\import{}{header}
+\import{}{gap-header}
 
 % SEE: http://tex.stackexchange.com/questions/86249/maketitle-text-before-title
 {\let\newpage\relax\titleGap}\thispagestyle{pageone}
