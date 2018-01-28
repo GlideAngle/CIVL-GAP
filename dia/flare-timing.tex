@@ -1,30 +1,39 @@
 \begin{tikzcd}
     \textit{comp}
     \texttt{.fsdb}
-    \arrow[d, "\text{extract input}"] \\
+    \arrow[d, "\text{extract input}"]
+    &
+    \\
     \textit{comp}
     \texttt{.comp-input.yaml}
-    \arrow[d, "\text{cross zone}"] \\
+    \arrow[d, "\text{cross zone}"]
+    &
+    \textit{task}
+    \texttt{/}
+    \textit{pilot}
+    \texttt{.kml}
+    \arrow[dl, "\text{cross zone}"]
+    \\
     \textit{comp}
     \texttt{.cross-zone.yaml}
-    \arrow[d, "\text{tag zone}"] \\
+    \arrow[d, "\text{tag zone}"] & \\
     \textit{comp}
     \texttt{.tag-zone.yaml}
-    \arrow[d, "\text{align time}"] \\
+    \arrow[d, "\text{align time}"]  & \\
     \texttt{.flare-timing/align-time/task-n/}
     \textit{pilot}
     \texttt{.csv}
-    \arrow[d, "\text{discard further}"] \\
+    \arrow[d, "\text{discard further}"]  & \\
     \texttt{.flare-timing/discard-further/task-n/}
     \textit{pilot}
     \texttt{.csv}
-    \arrow[d, "\text{mask track}"] \\
+    \arrow[d, "\text{mask track}"]  & \\
     \textit{comp}
     \texttt{.mask-track.yaml}
-    \arrow[d, "\text{land out}"] \\
+    \arrow[d, "\text{land out}"]  & \\
     \textit{comp}
     \texttt{.land-out.yaml}
-    \arrow[d, "\text{gap point}"] \\
+    \arrow[d, "\text{gap point}"]  & \\
     \textit{comp}
-    \texttt{.gap-point.yaml}
+    \texttt{.gap-point.yaml} &
 \end{tikzcd}
