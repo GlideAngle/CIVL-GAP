@@ -145,6 +145,36 @@ flying:
       - 2012-01-14T07:18:25Z
 \end{lstlisting}
 
+Next we need to find and nominate every crossing of each control zone and from
+among those work out which pair to select as the zone crossing. The same
+control zone may be crossed multiple times and we need a sequence of crossings
+ordered in time that fits the task\footnote{On a triangle course early fixes
+may cross goal.}.
+
+\begin{lstlisting}[caption={Selected crossings, one for each zone, \texttt{crossing} nodes of \texttt{*.cross-zone.yaml}.}]
+crossing:
+  - - Gerolf Heinrichs
+    - zonesCrossSelected:
+    - zonesCrossSelected:
+      - crossingPair: ...
+      - crossingPair: ...
+      - crossingPair: ...
+      - crossingPair: ...
+      - crossingPair: ...
+        - fix: 4711
+          time: 2012-01-14T07:14:09Z
+          lat: -33.35869799
+          lng: 147.927904
+        - fix: 4712
+          time: 2012-01-14T07:14:13Z
+          lat: -33.35934199
+          lng: 147.928741
+        inZone:
+        - false
+        - true
+    - zonesCrossNominated: ...
+\end{lstlisting}
+
 \subsection{Interpolating Zone Tagging}
 \subsection{Time Aligning Flights}
 \subsection{Incrementally Closer to Goal}
