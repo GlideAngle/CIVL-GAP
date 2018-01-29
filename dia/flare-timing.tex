@@ -1,7 +1,7 @@
 % SEE: https://tex.stackexchange.com/questions/138984/scaling-a-tikz-cd-commutative-diagram-in-tikz
 \begin{tikzpicture}[baseline= (a).base]
 \node[scale=2] (a) at (0,0){
-\begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
+\begin{tikzcd}[row sep=large, column sep=large]
     & {\color{blue}fsdb}
     \arrow[dd, twoheadrightarrow]
         &
@@ -9,25 +9,26 @@
             \arrow[dl]
             \arrow[dd]
                 \\
-discard
+{\color{csv}discard}
 \arrow[dd, twoheadrightarrow]
     &
-        & align
+        & {\color{csv}align}
         \arrow[ll, crossing over, twoheadrightarrow]
             \\
     & comp
     \arrow[dl]
     \arrow[rr, twoheadrightarrow]
     \arrow[dd]
+    \arrow[dddr]
         &
             & cross
             \arrow[dl, twoheadrightarrow]
-            \arrow[dlll, dashed]
-            \arrow[ul, dashed]
+            \arrow[dlll]
+            \arrow[ul]
                 \\
 mask
 \arrow[dd, twoheadrightarrow]
-\arrow[ddrr, dashed]
+\arrow[ddrr]
     &
         & tag
         \arrow[uu, crossing over, twoheadrightarrow]
@@ -35,7 +36,7 @@ mask
             \\
     & route
     \arrow[dl]
-    \arrow[uuul, dashed]
+    \arrow[uuul]
         &
             & {\color{blue}igc}
             \arrow[uu]
