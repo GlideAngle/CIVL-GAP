@@ -383,9 +383,52 @@ timing:
     - ...
 \end{lstlisting}
 
-
+\newpage
 \subsection{Time Aligning Flights}
+
+Next we align the tracks in time and work out the distance flown for each fix.
+
+\begin{lstlisting}[caption={Fixes aligned in time with distance flown, rows of \texttt{*.align-time.csv}}]
+leg,time,lat,lng,tickLead,tickRace,distance
+0,2012-01-14T02:19:37Z,-33.36082199,147.93187399,-1407.0,-1407.0,159.275
+1,2012-01-14T02:19:41Z,-33.36058599,147.93161599,-1403.0,-1403.0,159.279
+...
+1,2012-01-14T03:31:09Z,-33.41410199,147.84640799,2885.0,2885.0,149.643
+2,2012-01-14T03:31:13Z,-33.41472399,147.84600000,2889.0,2889.0,149.565
+...
+2,2012-01-14T04:27:13Z,-33.70794300,147.53052900,6249.0,6249.0,106.253
+3,2012-01-14T04:27:17Z,-33.70852200,147.53040100,6253.0,6253.0,106.066
+...
+3,2012-01-14T06:21:01Z,-33.13285599,147.57273699,13077.0,13077.0,42.015
+4,2012-01-14T06:21:05Z,-33.13216899,147.57301599,13081.0,13081.0,41.938
+...
+4,2012-01-14T07:14:09Z,-33.35869799,147.92790400,16265.0,16265.0,0.421
+5,2012-01-14T07:14:13Z,-33.35934198,147.92874100,16269.0,16269.0,0.0
+\end{lstlisting}
+
+
 \subsection{Incrementally Closer to Goal}
+
+Then we cull any fixes that get further from goal and work out the leading area.
+
+\begin{lstlisting}[caption={Fixes getting closer to goal with leading area, rows of \texttt{*.discard-further.csv}}]
+leg,tickLead,tickRace,distance,area
+0,-1407.0,-1407.0,159.275,0.0
+1,-1367.0,-1367.0,159.264,0.0
+...
+1,2885.0,2885.0,149.643,0.0
+2,2889.0,2889.0,149.565,1.4747201784719584e-9
+...
+2,6249.0,6249.0,106.253,1.2492010001497237e-9
+3,6253.0,6253.0,106.066,5.430166826250327e-9
+...
+3,13077.0,13077.0,42.015,1.6116016630161737e-9
+4,13081.0,13081.0,41.938,1.8495333543888993e-9
+...
+4,16265.0,16265.0,0.421,3.46272001957514e-11
+5,16269.0,16269.0,0.0,6.306949125520327e-11
+\end{lstlisting}
+
 \subsection{Masking Task over Track}
 \subsection{Assessing Difficulty}
 \subsection{Collating Scores}
