@@ -4,15 +4,52 @@
 \begin{document}
 The \href{https://github.com/BlockScope/flare-timing}{flare-timing}
 implementation of GAP is a collection of apps, one for each step of the scoring
-process. Not being a single app that can store intermediate results in memory,
-its workings and final results are written to file. These \texttt{*.yaml} and
-\texttt{*.csv} files can be checked by hand.
+process, see Fig~\ref{fig:flare-timing}. Not being a single app that can store
+intermediate results in memory, its workings and final results are written to
+file with enough detail and evidence so that everything can be checked by hand.
+
+\subsection{Scoring Sequence of Steps}
 
 \begin{figure}[!ht]
     \centering
     \input{dia/flare-timing}
-    \caption{Scoring process}
+    \caption{Scoring as numbered steps from {\color{blue}original inputs} to
+    {\color{csv}\texttt{*.csv}} or \texttt{*.yaml} outputs.}
     \label{fig:flare-timing}
 \end{figure}
+
+Starting with a comp \texttt{*.fsdb} and related track logs, \texttt{*.igc} or
+\texttt{*.kml} format, the scoring process proceeds in the following sequence
+of steps;
+\begin{enumerate}
+    \item
+        Extract the inputs with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/extract-input}{extract-input}.
+    \item
+        Trace the route of the shortest path to fly a task with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/task-length}{task-length}.
+    \item
+        Find pairs of fixes crossing over zones with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/cross-zone}{cross-zone}.
+    \item
+        Interpolate between crossing fixes for the time and place where a track
+        tags a zone with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/tag-zone}{tag-zone}.
+    \item
+        Index fixes from the time of first crossing with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/align-time}{align-time}.
+    \item
+        Discard fixes that get further from goal and note leading area with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/discard-further}{discard-further}.
+    \item
+        Mask a task over its tracklogs with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/mask-track}{mask-track}.
+    \item
+        Group and count land outs with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/land-out}{land-out}.
+    \item
+        Score the competition with
+        \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/gap-point}{gap-point}.  
+\end{enumerate}
 
 \end{document}

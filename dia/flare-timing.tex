@@ -3,29 +3,29 @@
 \node[scale=1.0] (a) at (0,0){
 \begin{tikzcd}[row sep=large, column sep=large]
     & {\color{blue}fsdb}
-    \arrow[dd, twoheadrightarrow]
+    \arrow[dd, "1" near end, twoheadrightarrow]
         &
             & {\color{blue}kml}
             \arrow[dd]
                 \\
 {\color{csv}discard}
-\arrow[dd, twoheadrightarrow]
+\arrow[dd, "7" near end, twoheadrightarrow]
     &
         & {\color{csv}align}
-        \arrow[ll, crossing over, twoheadrightarrow]
+        \arrow[ll, "6" near end, crossing over, twoheadrightarrow]
             \\
     & comp
-    \arrow[rr, twoheadrightarrow]
-    \arrow[dd]
+    \arrow[rr, "3" near end, twoheadrightarrow]
+    \arrow[dd, "2" near end]
         &
             & cross
-            \arrow[dl, twoheadrightarrow]
+            \arrow[dl, "4" near end, twoheadrightarrow]
                 \\
 mask
-\arrow[dd, twoheadrightarrow]
+\arrow[dd, "8" near end, twoheadrightarrow]
     &
         & tag
-        \arrow[uu, crossing over, twoheadrightarrow]
+        \arrow[uu, "5" near end, crossing over, twoheadrightarrow]
             \\
     & route
         &
@@ -33,7 +33,7 @@ mask
             \arrow[uu]
                 \\
 land
-\arrow[rr, twoheadrightarrow]
+\arrow[rr, "9" near end, twoheadrightarrow]
     &
         & gap
             \\
