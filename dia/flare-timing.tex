@@ -1,3 +1,6 @@
+% SEE: https://tex.stackexchange.com/questions/138984/scaling-a-tikz-cd-commutative-diagram-in-tikz
+\begin{tikzpicture}[baseline= (a).base]
+\node[scale=2] (a) at (0,0){
 \begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
     & fsdb
     \arrow[dd, twoheadrightarrow]
@@ -44,3 +47,5 @@ land
         \arrow[from=uu, crossing over]
             \\
 \end{tikzcd}
+};
+\end{tikzpicture}
