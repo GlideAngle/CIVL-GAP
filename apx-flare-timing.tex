@@ -19,8 +19,8 @@ file with enough detail and evidence so that everything can be checked by hand.
 \end{figure}
 
 Starting with an \texttt{*.fsdb} comp and related \texttt{*.igc} or
-\texttt{*.kml} track logs, the scoring process proceeds in the following
-sequence of steps;
+\texttt{*.kml} track logs, the scoring process proceeds along this 
+sequence of steps where outputs from earlier steps may be referred to later on;
 \begin{enumerate}
     \item
         Extract the inputs with
@@ -51,5 +51,74 @@ sequence of steps;
         Score the competition with
         \href{https://github.com/BlockScope/flare-timing/tree/master/flare-timing/prod-apps/gap-point}{gap-point}.  
 \end{enumerate}
+
+\newpage
+\subsection{Extracting Inputs}
+In the \texttt{*.fsdb} FS keeps both inputs and outputs. We're only interested
+in a subset of the input data, just enough to do the scoring;
+
+\begin{description}
+    \item[Competition] id, name, location, dates and UTC offset.
+    \item[Nominal] launch, goal, time, distance and minimal distance.
+    \item[Task] name and type of task, zones, speed section, start gates and pilots.
+    \item[Zone] name, latitude, longitude and altitude and radius if a cylinder
+    \item[Pilot] name and either absentee status or track log file name.
+\end{description}
+
+Something to be aware of when parsing the \texttt{XML} of the \texttt{*.fsdb}
+is that attributes may be missing and in that case we'll have to infer the
+defaults used by FS. This is done by looking at the source code of FS as there
+is no schema for the \texttt{XML} that could also be used to set default
+values.
+
+\begin{lstlisting}[language=XML, caption={Overall *.fsdb structure, filtered for input.}]
+<Fs>
+  <FsCompetition id="7592" name="2012 Hang Gliding Pre-World Forbes" location="Forbes, Australia"
+      from="2012-01-05" to="2012-01-14" utc_offset="11">
+    <!-- Nominals are set once for a competition but beware, they are repeated per task. -->
+    <FsScoreFormula min_dist="5" nom_dist="80" nom_time="2" nom_goal="0.2" />
+    <FsParticipants>
+      <FsParticipant id="23" name="Gerolf Heinrichs" />
+      <FsParticipant id="106" name="Adam Parer" />
+    </FsParticipants>
+      <!-- Flags on how to score are also set for the competition but pick them up from the task. -->
+      <FsTask tracklog_folder="Tracklogs\day 8">
+        <FsScoreFormula
+            use_distance_points="1"
+            use_time_points="1"
+            use_departure_points="0"
+            use_leading_points="1"
+            use_arrival_position_points="1"
+            use_arrival_time_points="0" />
+        <FsTaskDefinition ss="2" es="5" goal="LINE" groundstart="0">
+          <!-- Not shown here but each FsTurnpoint has open and close attributes. -->
+          <FsTurnpoint id="FORBES" lat="-33.36137" lon="147.93207" radius="100" />
+          <FsTurnpoint id="FORBES" lat="-33.36137" lon="147.93207" radius="10000" />
+          <FsTurnpoint id="MARSDE" lat="-33.75343" lon="147.52865" radius="5000" />
+          <FsTurnpoint id="YARRAB" lat="-33.12908" lon="147.57323" radius="400" />
+          <FsTurnpoint id="DAY8GO" lat="-33.361" lon="147.9315" radius="400" />
+          <!-- This was an elapsed time task so no start gates. -->
+        </FsTaskDefinition>
+        <FsTaskState stop_time="2012-01-14T17:22:00+11:00" />
+        <FsParticipants>
+          <!-- An empty participant element is a pilot absent from the task. -->
+          <FsParticipant id="106" />
+          <FsParticipant id="23">
+            <FsFlightData tracklog_filename="Gerolf_Heinrichs.20120114-100859.6405.23.kml" />
+          </FsParticipant>
+        </FsParticipants>
+      </FsTask>
+    </FsTasks>
+  </FsCompetition>
+</Fs>
+\end{lstlisting}
+
+\subsection{Finding Zone Crossings}
+\subsection{Interpolating Zone Tagging}
+\subsection{Time Aligning Flights}
+\subsection{Incrementally Closer to Goal}
+\subsection{Masking Task over Track}
+\subsection{Assessing Difficulty}
+\subsection{Collating Scores}
 
 \end{document}
