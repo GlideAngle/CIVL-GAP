@@ -6,7 +6,6 @@
     \arrow[dd, twoheadrightarrow]
         &
             & {\color{blue}kml}
-            \arrow[dl]
             \arrow[dd]
                 \\
 {\color{csv}discard}
@@ -16,27 +15,19 @@
         \arrow[ll, crossing over, twoheadrightarrow]
             \\
     & comp
-    \arrow[dl]
     \arrow[rr, twoheadrightarrow]
     \arrow[dd]
-    \arrow[dddr]
         &
             & cross
             \arrow[dl, twoheadrightarrow]
-            \arrow[dlll]
-            \arrow[ul]
                 \\
 mask
 \arrow[dd, twoheadrightarrow]
-\arrow[ddrr]
     &
         & tag
         \arrow[uu, crossing over, twoheadrightarrow]
-        \arrow[ll, crossing over]
             \\
     & route
-    \arrow[dl]
-    \arrow[uuul]
         &
             & {\color{blue}igc}
             \arrow[uu]
@@ -45,7 +36,6 @@ land
 \arrow[rr, twoheadrightarrow]
     &
         & gap
-        \arrow[from=uu, crossing over]
             \\
 \end{tikzcd}
 };
