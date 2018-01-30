@@ -79,19 +79,22 @@ scores according to this logic.
 \begin{figure}[ht]
     \centering
     \input{dia/conical-end}
-    \caption{Conical end of speed section from the side}
+    \caption{Conical end of speed section from the side.}
 \end{figure}
 
 \begin{pg}
-A conical end of speed section is defined as:
+A conical end of speed section is a partially buried inverted cone defined as:
 \begin{enumerate}
-    \item A centre point \(c\), given as GPS coordinates and altitude
+    \item
+        A centre point \(c\), given as GPS coordinates and altitude.
     \item
         An incline \(i\), given as a ratio of altitude/distance to the centre
-        point
+        point.
     \item
         A radius \(r\), indicating the size of the circle resulting from the
-        intersection between the cone and a horizontal plane at goal altitude
+        intersection between the cone and a horizontal plane at goal
+        altitude\footnote{For the optimized route treat a CESS as if it was
+        a cylinder of this radius.}.
 \end{enumerate}
 
 A conical end of speed section is given as the cone resulting from an axis of
