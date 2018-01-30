@@ -3,14 +3,48 @@
             , ylabel=Arrival Points (fraction of available)
             , width=0.8\textwidth
             ]
-    \addplot[ blue
-            , domain=1:10
-            , samples=100
-            ]{0.2 + 0.037*(1 - (x - 1)/10) + 0.13*(1 - (x - 1)/10)^2 + 0.633*(1 - (x - 1)/10)^3};
+    \addplot[ black
+            , only marks
+            , mark=*
+            ] coordinates { (0,0) };
+    \addplot[ green
+            , only marks
+            , mark=*
+            ] coordinates { (1, 1) };
     \addplot[ red
-            , domain=1:25
-            , samples=100
-            ]{0.2 + 0.037*(1 - (x - 1)/25) + 0.13*(1 - (x - 1)/25)^2 + 0.633*(1 - (x - 1)/25)^3};
-    \legend{10 pilots at ESS, 25 pilots at ESS} 
+            , only marks
+            , mark=x
+            , domain=1:2
+            , samples=2
+            ]{0.2 + 0.037*(1 - (x - 1)/2) + 0.13*(1 - (x - 1)/2)^2 + 0.633*(1 - (x - 1)/2)^3};
+    \addplot[ blue
+            , only marks
+            , mark=x
+            , domain=2:3
+            , samples=2
+            ]{0.2 + 0.037*(1 - (x - 1)/3) + 0.13*(1 - (x - 1)/3)^2 + 0.633*(1 - (x - 1)/3)^3};
+    \addplot[ black
+            , mark=x
+            , domain=1:6
+            , samples=6
+            ]{0.2 + 0.037*(1 - (x - 1)/6) + 0.13*(1 - (x - 1)/6)^2 + 0.633*(1 - (x - 1)/6)^3};
+    \addplot[ blue
+            , mark=x
+            , domain=1:12
+            , samples=12
+            ]{0.2 + 0.037*(1 - (x - 1)/12) + 0.13*(1 - (x - 1)/12)^2 + 0.633*(1 - (x - 1)/12)^3};
+    \addplot[ red
+            , mark=x
+            , domain=1:24
+            , samples=24
+            ]{0.2 + 0.037*(1 - (x - 1)/24) + 0.13*(1 - (x - 1)/24)^2 + 0.633*(1 - (x - 1)/24)^3};
+    \legend{ 0 pilots at ESS
+           , 1 pilot at ESS
+           , 2 pilots at ESS
+           , 3 pilots at ESS
+           , 6 pilots at ESS
+           , 12 pilots at ESS
+           , 24 pilots at ESS
+           }
 \end{axis}
 \end{tikzpicture}
