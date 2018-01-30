@@ -1,0 +1,43 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[gap.tex]{subfiles}
+\begin{document}
+Certain attributes are sometimes not written to \texttt{*.fsdb}. In those
+instances, FS will use default values, see Table.~\ref{tab:gap-defaults}.
+
+\begin{table}[!ht]
+    \begin{tabularx}{\textwidth}{|X|l|c|c|}
+    \hline
+        Aspect of scoring
+        & Setting
+        & HG
+        & PG
+        \\
+    \hline
+        \multirow{5}{*}{Nominals}
+        & Nominal Launch
+        & \multicolumn{2}{c|}{0.96}
+        \\
+    \cline{2-4}
+        & Nominal Goal
+        & \multicolumn{2}{c|}{0.25}
+        \\
+    \cline{2-4}
+        & Minimum Distance
+        & \multicolumn{2}{c|}{7 km}
+        \\
+    \cline{2-4}
+        & Nominal Distance
+        & \multicolumn{2}{c|}{70 km}
+        \\
+    \cline{2-4}
+        & Nominal Time
+        & \multicolumn{2}{c|}{1.5 h}
+        \\
+    \hline
+    \end{tabularx}
+    \caption{Default values for GAP parameters from FS.}
+    \label{tab:gap-defaults}
+\end{table}
+
+\end{document}
