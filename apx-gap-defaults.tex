@@ -6,7 +6,7 @@ Certain attributes are sometimes not written to \texttt{*.fsdb}. In those
 instances, FS will use default values, see Table.~\ref{tab:gap-defaults}.
 
 \begin{table}[!ht]
-    \begin{tabularx}{\textwidth}{|X|l|c|c|}
+    \begin{tabularx}{\textwidth}{|l|X|c|c|}
     \hline
         Aspect of Scoring
         & Default Value of Setting
@@ -16,44 +16,55 @@ instances, FS will use default values, see Table.~\ref{tab:gap-defaults}.
     \hline
         \multirow{5}{*}{Nominals}
         & Nominal Launch
-        & \multicolumn{2}{c|}{0.96}
+        & \multicolumn{2}{c|}{$0.96$}
         \\
     \cline{2-4}
         & Nominal Goal
-        & \multicolumn{2}{c|}{0.25}
+        & \multicolumn{2}{c|}{$0.25$}
         \\
     \cline{2-4}
         & Minimum Distance
-        & \multicolumn{2}{c|}{7 km}
+        & \multicolumn{2}{c|}{$7 km$}
         \\
     \cline{2-4}
         & Nominal Distance
-        & \multicolumn{2}{c|}{70 km}
+        & \multicolumn{2}{c|}{$70 km$}
         \\
     \cline{2-4}
         & Nominal Time
-        & \multicolumn{2}{c|}{1.5 hours}
+        & \multicolumn{2}{c|}{$1.5 hours$}
         \\
     \hline
         \multirow{2}{*}{Stopped Tasks}
-        & Bonus Glide Ratio
-        & 5:1
-        & 4:1
+        & Bonus Distance for Altitude Glide Ratio
+        & $5:1$
+        & $4:1$
         \\
     \cline{2-4}
         & Score Back Time
-        & 15 mins
-        & 5 mins
+        & $15 mins$
+        & $5 mins$
         \\
     \hline
-        \multirow{2}{*}{Jump the Gun (JTG) Penalties}
-        & JTG Factor 
-        & 2
+        \multirow{2}{*}{Final Glide Decelerator}
+        & Conical End of Speed Section Incline
+        &
+        & $7:2$
+        \\
+    \cline{2-4}
+        & Time Bonus for Arrival Altitude
+        &
+        & $45 secs / m$
+        \\
+    \hline
+        \multirow{2}{*}{Jump the Gun Penalties}
+        & Points per Second Factor
+        & $2 secs$
         &
         \\
     \cline{2-4}
-        & JTG Max
-        & 300
+        & Maximum before getting Minimum Distance Score
+        & $300 secs$
         &
         \\
     \hline
