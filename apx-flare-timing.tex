@@ -55,21 +55,23 @@ sequence of steps where outputs from earlier steps may be referred to later on;
 \newpage
 \subsection{Extracting Inputs}
 In the \texttt{*.fsdb} FS keeps both inputs and outputs. We're only interested
-in a subset of the input data, just enough to do the scoring;
+in a subset of the input data, just enough to do the scoring\footnote{As
+\texttt{flare-timing} is a work in progress, some further inputs will be needed
+as different kinds of task are tested, such as those with start gates, stopped
+tasks and those with penalties};
 
 \begin{description}
     \item[Competition] id, name, location, dates and UTC offset.
     \item[Nominal] launch, goal, time, distance and minimal distance.
     \item[Task] name and type of task, zones, speed section, start gates and pilots.
-    \item[Zone] name, latitude, longitude and altitude and radius if a cylinder
+    \item[Zone] name, latitude, longitude, altitude and radius.
     \item[Pilot] name and either absentee status or track log file name.
 \end{description}
 
-Something to be aware of when parsing the \texttt{XML} of the \texttt{*.fsdb}
-is that attributes may be missing and in that case we'll have to infer the
-defaults used by FS. This is done by looking at the source code of FS as there
-is no schema for the \texttt{XML} that could also be used to set default
-values.
+Something to be aware of when parsing \texttt{XML} of \texttt{*.fsdb} is that
+attributes may be missing and in that case we'll have to infer the defaults
+used by FS. This is done by looking at the source code of FS as there is no
+schema for the \texttt{XML} that could also be used to set default values.
 
 \begin{lstlisting}[language=XML, caption={Overall *.fsdb structure, filtered for input.}]
 <Fs>
@@ -95,7 +97,7 @@ values.
         </FsTaskDefinition>
         <FsTaskState stop_time="2012-01-14T17:22:00+11:00" />
         <FsParticipants>
-          <!-- An empty participant element is a pilot absent from the task. -->
+          <!-- An empty element is an absent pilot who did not fly (DNF) the task. -->
           <FsParticipant id="106" />
           <FsParticipant id="23">
             <FsFlightData tracklog_filename="Gerolf_Heinrichs.20120114-100859.6405.23.kml" />
@@ -115,8 +117,9 @@ shortest path connecting the nodes. It puts nodes on the turnpoint cylinder arc
 boundaries and uses the haversine distance as the cost of connecting nodes in
 the network. It would be expensive to construct and evaluate a large network
 with the accuracy required so in an iterative process, as the arc of the circle
-is closed, the density of nodes is increased. All happening on the FAI sphere,
-this is the edge to edge distance.
+is shortened, getting closer to the optimal crossing point, the density of
+nodes is increased. All happening on the FAI sphere, this is the edge to edge
+distance of the optimal route along with its waypoints and segment distances.
 
 \begin{lstlisting}[caption={Edge to edge distance of the optimal route, \texttt{edgeToEdge} node of \texttt{*.task-length.yaml}.}]
 taskRoutes:
@@ -175,6 +178,7 @@ taskRoutes:
       lng: 147.93149998
 \end{lstlisting}
 
+\newpage
 Knowing that FS uses a plane to work out the shortest route in two dimensions,
 on the the Universal Transverse Mercator projection.  We can also do that with
 our graph algorithm.
@@ -264,8 +268,8 @@ their tracklog will start outside of it.}
 To work out when a pilot is flying, select the longest run of fixes that are
 not the same allowing for some stickiness when the GPS loses signal. For
 example we might consider within ± 1m altitude or within ± 1/10,000th of
-a degree of latitude or longitude to be in the same location and not recorded
-during flight.
+a degree of latitude or longitude to be in the same location and not likely
+recorded during flight.
 
 \begin{lstlisting}[caption={Which fixes are considered flown, \texttt{flying} nodes of \texttt{*.cross-zone.yaml}.}]
 flying:
@@ -384,9 +388,10 @@ timing:
 \end{lstlisting}
 
 \newpage
-\subsection{Time Aligning Flights}
+\subsection{Aligning Tracks by Elapsed Time}
 
-Next we align the tracks in time and work out the distance flown for each fix.
+Next we align the tracks in time elapsed from the first start and work out the
+distance flown for each fix.
 
 \begin{lstlisting}[caption={Fixes aligned in time with distance flown, rows of \texttt{*.align-time.csv}}]
 leg,time,lat,lng,tickLead,tickRace,distance
@@ -407,9 +412,10 @@ leg,time,lat,lng,tickLead,tickRace,distance
 \end{lstlisting}
 
 
-\subsection{Incrementally Closer to Goal}
+\subsection{Discarding Fixes further from Goal}
 
-Then we cull any fixes that get further from goal and work out the leading area.
+Then we discard any fixes that get further from goal and work out the leading
+area for each increment of distance.
 
 \begin{lstlisting}[caption={Fixes getting closer to goal with leading area, rows of \texttt{*.discard-further.csv}}]
 leg,tickLead,tickRace,distance,area
@@ -433,9 +439,10 @@ leg,tickLead,tickRace,distance,area
 \subsection{Masking Task over Track}
 
 Taking what we now know about the tracks and the task, we can collate times,
-distances and fractions we'll need later for the points.
+distances and fractions we'll need later for the points. We have leading,
+arrival and speed fractions.
 
-\begin{lstlisting}[caption={Collated items of \texttt{*.mask-track.yaml}}]
+\begin{lstlisting}[caption={Leading, arrival and speed fractions of \texttt{*.mask-track.yaml}}]
 pilotsAtEss:
 - 29
 raceTime:
@@ -496,7 +503,7 @@ speed:
 \newpage
 For those landing out, how close or nigh were they to goal and where did they land?
 
-\begin{lstlisting}[caption={Collated items of \texttt{*.mask-track.yaml}}]
+\begin{lstlisting}[caption={Distance achieved in flight and distance to the landing spot, \texttt{*.mask-track.yaml}}]
 nigh:
   - - Phil de Joux
     - togo:
@@ -621,9 +628,12 @@ sumOfDifficulty:
 \newpage
 \subsection{Collating Scores}
 
-To calculate validites, we need nominal values, the fraction of pilots flying, the best distance and the best time and the sum of the distance flown.
+To calculate validites, we need nominal values, the fraction of pilots flying,
+the best distance and the best time and the sum of the distance flown. From the
+ratio of pilots making goal we can work out the weights and then with the
+validities we can work out the available points.
 
-\begin{lstlisting}[caption={The validities and available points for the task, \texttt{*.gap-point.yaml}}]
+\begin{lstlisting}[caption={The validities, weights and available points for the task, \texttt{*.gap-point.yaml}}]
 validityWorking:
 - time:
     bestDistance: 159.3 km
