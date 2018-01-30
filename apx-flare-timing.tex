@@ -325,7 +325,8 @@ crossing:
 
 Between the pair of fixes straddling a control zone, we need to interpolate the
 point at which the pilot is most likely to have crossed and the time of this
-tagging of the turnpoint\footnote{Currently \texttt{flare-timing} is just picking the fix inside the control zone.}.
+tagging of the turnpoint\footnote{Currently \texttt{flare-timing} is just
+picking the fix inside the control zone.}.
 
 \begin{lstlisting}[caption={Selected taggings, one for each zone, \texttt{tagging} nodes of \texttt{*.tag-zone.yaml}.}]
 tagging:
@@ -352,6 +353,9 @@ tagging:
         lat: -33.35934198
         lng: 147.928741
 \end{lstlisting}
+
+Sorting the list of tagging times, we can show the first and last times, the
+count of taggings and the pilots.
 
 \begin{lstlisting}[caption={The count of pilots tagging zones and the times of these taggings, \texttt{timing} nodes of \texttt{*.tag-zone.yaml}.}]
 timing:
