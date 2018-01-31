@@ -3,10 +3,13 @@
 \documentclass[gap.tex]{subfiles}
 \begin{document}
 The \href{https://github.com/BlockScope/flare-timing}{flare-timing}
-implementation of GAP is a set of command line apps to be run in sequence with
-workings and final results written to file in enough detail and with enough
-evidence so that everything can be checked by hand, see
-Fig~\ref{fig:flare-timing}.
+implementation of GAP is a set of command line apps to be run in sequence.  The
+workings of each step and the final scores are written to plain-text files.  In
+these there's enough detail and supporting evidence for everything to be
+checked by hand.
+
+Let's now walk through the process of scoring with flare-timing, see
+Fig~\ref{fig:flare-timing}, and look at snippets of the files it writes.
 
 \begin{figure}[!ht]
     \centering
