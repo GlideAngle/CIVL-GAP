@@ -192,8 +192,8 @@ on the the Universal Transverse Mercator projection, we can also do that with
 our graph algorithm. We end up with waypoints, optimal on the plane but
 possibly sub-optimal on the sphere.
 
-\begin{lstlisting}[caption={Points on the plane, distances on the sphere, \texttt{projection/spherical} nodes of
-\texttt{*.task-length.yaml}.}]
+\begin{lstlisting}[caption={Points on the plane, distances on the sphere,
+\texttt{projection/spherical} nodes of \texttt{*.task-length.yaml}.}]
 taskRoutes:
   projection:
     spherical:
@@ -224,8 +224,8 @@ taskRoutes:
       - lat: -33.35857718
         lng: 147.93468357
 \end{lstlisting}
-\begin{lstlisting}[caption={Points and distances on the plane, \texttt{projection/planar} nodes of
-\texttt{*.task-length.yaml}.}]
+\begin{lstlisting}[caption={Points and distances on the plane,
+\texttt{projection/planar} nodes of \texttt{*.task-length.yaml}.}]
 taskRoutes:
   projection:
     planar:
@@ -263,16 +263,16 @@ taskRoutes:
 \newpage
 \subsection{Finding Zone Crossings}
 
-First off, before we can determine if any zones have been crossed we'll have to
-decide how to tell which parts of a track log are flown and which are walked or
-driven in the retrieve car, possibly even back to goal.\footnote{Some pilots'
-track logs will have initial values way off from the location of the device.
-I suspect that the GPS logger is remembering the position it had when last
-turned off, most likely at the end of yesterday's flight, somewhere near where
-the pilot landed that day. Until the GPS receiver gets a satellite fix and can
-compute the current position the stale, last known, position gets logged. This
-means that a pilot may turn on their instrument inside the start circle but
-their tracklog will start outside of it.}
+Before we can determine if any zones have been crossed we'll have to decide how
+to tell which parts of a track log are flown and which are walked or driven in
+the retrieve car, possibly even back to goal.\footnote{Some pilots' track logs
+will have initial values way off from the location of the device.  I suspect
+that the GPS logger is remembering the position it had when last turned off,
+most likely at the end of yesterday's flight, somewhere near where the pilot
+landed that day. Until the GPS receiver gets a satellite fix and can compute
+the current position the stale, last known, position gets logged. This means
+that a pilot may turn on their instrument inside the start circle but their
+tracklog will start outside of it.}
 
 To work out when a pilot is flying, select the longest run of fixes that are
 not the same allowing for some stickiness when the GPS loses signal. For
@@ -308,7 +308,6 @@ may cross goal.}.
 \begin{lstlisting}[caption={Selected crossings, one for each zone, \texttt{crossing} nodes of \texttt{*.cross-zone.yaml}.}]
 crossing:
   - - Gerolf Heinrichs
-    - zonesCrossSelected:
     - zonesCrossSelected:
       - crossingPair: ...
       - crossingPair: ...
