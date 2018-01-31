@@ -188,8 +188,9 @@ taskRoutes:
 
 \newpage
 Knowing that FS uses a plane to work out the shortest route in two dimensions,
-on the the Universal Transverse Mercator projection.  We can also do that with
-our graph algorithm.
+on the the Universal Transverse Mercator projection, we can also do that with
+our graph algorithm. We end up with waypoints, optimal on the plane but
+possibly sub-optimal on the sphere.
 
 \begin{lstlisting}[caption={Points on the plane, distances on the sphere, \texttt{projection/spherical} nodes of
 \texttt{*.task-length.yaml}.}]
