@@ -329,7 +329,7 @@ crossing:
 \end{lstlisting}
 
 \newpage
-\subsection{Interpolating Zone Tagging}
+\subsection{Interpolating Zone Taggings}
 
 Between the pair of fixes straddling a control zone, we need to interpolate the
 point at which the pilot is most likely to have crossed and the time of this
@@ -455,7 +455,8 @@ and fractions we'll need later for the points. So far we have leading, arrival
 and speed fractions but we still need to look at where pilots landed to have
 the distance fractions.
 
-\begin{lstlisting}[caption={Leading, arrival and speed fractions of \texttt{*.mask-track.yaml}}]
+\begin{lstlisting}[caption={Leading, arrival and speed fractions of
+\texttt{*.mask-track.yaml}}]
 pilotsAtEss:
 - 29
 raceTime:
@@ -516,7 +517,8 @@ speed:
 \newpage
 For those landing out, how close or nigh were they to goal and where did they land?
 
-\begin{lstlisting}[caption={Distance achieved in flight and distance to the landing spot, \texttt{*.mask-track.yaml}}]
+\begin{lstlisting}[caption={Distance achieved in flight and distance to the
+landing spot, \texttt{*.mask-track.yaml}}]
 nigh:
   - - Phil de Joux
     - togo:
@@ -572,12 +574,13 @@ land:
 \newpage
 \subsection{Assessing Difficulty}
 
-For those having landed out short of goal, the task is chunked into 100m
-segments. How many came down in that segment and how many are downward bound to
-land within the next so many chunks, the look ahead, is shown as is the
-relative difficulty of each chunk and the difficulty fraction to be awarded.
+We consider only pilots landing out in 100m chunks of the task. How many came
+down in a chunk and how many are downward bound is shown. For each chunk with
+a landing, we have its relative difficulty. Taking the sum of these under
+a moving window we can award difficulty fractions to sorry pilots.
 
-\begin{lstlisting}[caption={The difficulty of each section of the task with a landing, \texttt{*.land-out.yaml}}]
+\begin{lstlisting}[caption={The difficulty of each section of the task with
+a landing, \texttt{*.land-out.yaml}}]
 minDistance: 5.0 km
 bestDistance:
 - 159.3 km
