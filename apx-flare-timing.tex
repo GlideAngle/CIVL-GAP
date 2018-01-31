@@ -2,13 +2,13 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[gap.tex]{subfiles}
 \begin{document}
-The \href{https://github.com/BlockScope/flare-timing}{flare-timing}
+The \href{https://github.com/BlockScope/flare-timing}{\texttt{flare-timing}}
 implementation of GAP is a set of command line apps to be run in sequence.  The
 workings of each step and the final scores are written to plain-text files.  In
 these there's enough detail and supporting evidence for everything to be
 checked by hand.
 
-Let's now walk through the process of scoring with flare-timing, see
+Let's now walk through the process of scoring with \texttt{flare-timing}, see
 Fig~\ref{fig:flare-timing}, and look at snippets of the files it writes.
 
 \begin{figure}[!ht]
@@ -117,13 +117,16 @@ schema for the \texttt{XML} that could also be used to set default values.
 \subsection{Tracing an Optimal Route}
 
 To find the best route \texttt{flare-timing} constructs a graph and finds the
-shortest path connecting the nodes. It puts nodes on the turnpoint cylinder arc
+shortest path connecting the nodes. It puts nodes on turnpoint cylinder arc
 boundaries and uses the haversine distance as the cost of connecting nodes in
 the network. It would be expensive to construct and evaluate a large network
 with the accuracy required so in an iterative process, as the arc of the circle
 is shortened, getting closer to the optimal crossing point, the density of
 nodes is increased. All happening on the FAI sphere, this is the edge to edge
-distance of the optimal route along with its waypoints and segment distances.
+optimal route. Routes are shown with waypoints, segment distances \footnote{A
+zero leg distance indicates that the turnpoint was touched at one point only,
+the optimal route does not traverse the interior of the cylinder. The entry and
+exit waypoints are both shown but can be the same.} and total distance.
 
 \begin{lstlisting}[caption={Edge to edge distance of the optimal route, \texttt{edgeToEdge} node of \texttt{*.task-length.yaml}.}]
 taskRoutes:
