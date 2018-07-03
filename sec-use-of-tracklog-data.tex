@@ -12,34 +12,46 @@ appropriate.
 \subsection{Distance}
 \label{sec:distance}
 In general, task evaluation occurs in the \(x/y\) plain, therefore distance
-measurements are always exclusively horizontal measurements. The earth model used
-is the FAI sphere, with a radius of 6371.0 km.
+measurements are always exclusively horizontal measurements on the surface of
+the Earth model.
+
+\subsubsection{Earth Model}
+\begin{pg}
+    For paragliding the Earth model used is the WGS 84 ellipsoid.
+\end{pg}
+
+\begin{hg}
+    For hang gliding the Earth model used is the FAI sphere \footnote{With the
+    intent to change to WGS 84 ellipsoid in 2019.} \footnote{With a radius of
+    6371.0 km}.  On a sphere distance between two points, identified by their
+    radian coordinates \(lat_1/long_1\) and \(lat_2/long_2\), is calculated
+    using the Haversine formula.
+    \begin{align*}
+        distLat &= lat_2 - lat_1 \\
+        distLong &= long_2 - long_1 \\
+        a &= \sin(\frac{distLat}{2})^2 + \cos lat_1 * \cos lat_2 * \sin(\frac{distLong}{2})^2 \\
+        radianDistance &= 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \\
+        distance &= radianDistance * 6371000 \\
+    \end{align*}
+    To reproduce this formula in Excel, the following modification is necessary due
+    to a different implementation of the \(arctan2\) function:
+    \[ radianDistance = pi - 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \]
+\end{hg}
+
+\subsubsection{Bonus Distance}
+Any bonus given as a distance does not affect distance calculations between two
+geographic points.
 
 \begin{pg}
 In paragliding, for final glide decelerators (\ref{sec:final-glide-decelerator})
 and altitude bonus in stopped tasks (\ref{sec:distance-stopped-tasks}), altitude
-is also considered, but this does not affect distance calculations between two
-geographic points.
+is also considered.
 \end{pg}
 
 \begin{hg}
 In hang gliding, for altitude bonus in stopped tasks (\ref{sec:distance-stopped-tasks}),
-altitude is also considered, but this does not affect distance calculations between
-two geographic points.
+altitude is also considered.
 \end{hg}
-
-The distance between two points, identified by their radian coordinates
-\(lat_1/long_1\) and \(lat_2/long_2\), is calculated using the Haversine formula.
-\begin{align*}
-    distLat &= lat_2 - lat_1 \\
-    distLong &= long_2 - long_1 \\
-    a &= \sin(\frac{distLat}{2})^2 + \cos lat_1 * \cos lat_2 * \sin(\frac{distLong}{2})^2 \\
-    radianDistance &= 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \\
-    distance &= radianDistance * 6371000 \\
-\end{align*}
-To reproduce this formula in Excel, the following modification is necessary due
-to a different implementation of the \(arctan2\) function:
-\[ radianDistance = pi - 2 * \atantwo(\sqrt a, \sqrt{1 - a}) \]
 
 \subsection{Altitude}
 All altitude evaluation is primarily based on barometric altitude, as recorded
