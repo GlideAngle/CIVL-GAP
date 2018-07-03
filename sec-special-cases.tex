@@ -5,16 +5,36 @@
 \label{sec:special-cases}
 \subsection{ESS but not goal}
 In a task where ESS and goal are not identical, a pilot may reach ESS, but not
-goal.  Reaching goal is seen as “validating” one’s speed section performance.
-A pilot who does not reach goal after reaching ESS will lose his time points.
-He will only score distance points for the distance actually covered, and
-leading points. This is seen as a safety measure, since it encourages pilots to
-plan their final glide to ESS with enough altitude to safely reach goal. This
-discourages high-speed final glides low to the ground.
+goal.
+
+Reaching goal is seen as “validating” one’s speed section performance.  A pilot
+who does not reach goal after reaching ESS will lose a portion of his time
+points, as defined by the scoring system penalty parameter for this situation.
+He will also score full distance points for the distance actually covered and
+his full leading points. The timepoint penalty for not reaching goal is seen as
+a safety measure, since it encourages pilots to plan their final glide to ESS
+with enough altitude to safely reach goal.
+
+\begin{pg}
+For paragliders the scoring system
+parameter is to be set at 0\% (i.e. no time points awarded) as this discourages
+high-speed final glides low to the ground.
 \begin{align*}
     \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
-    DistancePoints_p + LeadingPoints_p + 0 * (TimePoints_p + ArrivalPoints_p)
+    DistancePoints_p + LeadingPoints_p
 \end{align*}
+\end{pg}
+
+\begin{hg}
+For hang gliders the default
+scoring system parameter of 80\% is recommended, but can be changed by the
+local regulations to suit particular sites.
+\begin{align*}
+    \forall p : p \in PilotsLandedBetweenESSandGoal : TotalScore_p &= \\
+    DistancePoints_p + LeadingPoints_p + 0.8 * (TimePoints_p + ArrivalPoints_p)
+\end{align*}
+\end{hg}
+
 
 \subsection{Early start}
 \label{sec:early-start}
