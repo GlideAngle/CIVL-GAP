@@ -57,8 +57,8 @@ LaTeX has markup for equations and charts. Its plain-text source works in well
 with source control and related tooling.
 
 GAP scoring is well documented.  Currently, the source format is *.docx and it
-is published as a single *.pdf file, [Sporting Code Section 7A - Annex GAP
-- Edition 2018](https://www.fai.org/sites/default/files/civl/documents/sporting_code_s7a-xc-civl_gap_2018.pdf),
+is published as a single *.pdf file,
+[Sporting Code Section 7A - Annex GAP - Edition 2018](https://www.fai.org/sites/default/files/civl/documents/sporting_code_s7a-xc-civl_gap_2018.pdf),
 running to about fifty pages with very many equations and quite a few charts.
 
 ### From Implementation, for Implementers and for Scorers.
