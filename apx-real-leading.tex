@@ -51,7 +51,7 @@ values.
         The “glide” and the “thermal” modes are detected by the angle between
         movement vector and vertical axis. If the angle is less than 60 degrees
         – the pilot is thermaling and the time accumulation is stopped. We need
-        to calculate \(LTi\) and \(GTi\) for all pilots:
+        to calculate \(LT_i\) and \(GT_i\) for all pilots:
 
         In the above pseudo-code \(BZA\) is black zone angle, \(BZR\) is black
         zone radius, \(GZA\) is grey zone angle and \(GZR\) is grey zone
@@ -59,12 +59,12 @@ values.
         leading time ratio \(MinLTR\) and \(MaxLTR\). This step is suitable to
         be performed with multithreading.
 
-    \item \textbf{Calculate the progress coefficient \(PCi\) for all pilots.}
+    \item \textbf{Calculate the progress coefficient \(PC_i\) for all pilots.}
         This step is performed in the old scoring and doesn’t need any change.
         We must only calculate the new progress coefficient:
         
         \begin{align*}
-            PCi &= OldLeadingPointsi / MaxOldLeadingPoints
+            PC_i &= OldLeadingPoints_i / MaxOldLeadingPoints
         \end{align*}
 
     \item \textbf{Calculate and minimum and maximum multiplication of the two
@@ -74,15 +74,15 @@ values.
         points.
         
         \begin{align*}
-            LEi &= (LTRi – MinLRT) / (MaxLTR – MinLTR) \\
-            LCi &= MinLC + (2*LEi – LEi*LEi) * (1 – MinLC) \\
-            Mi &= PCi * LCi
+            LE_i &= (LTR_i – MinLRT) / (MaxLTR – MinLTR) \\
+            LC_i &= MinLC + (2*LE_i – LE_i * LE_i) * (1 – MinLC) \\
+            Mi &= PC_i * LC_i
         \end{align*}
             
     \item \textbf{Calculate the leading points for all pilots}
         
         \begin{align*}
-            LPi &= AvailableLeadingPoints * (Mi – MinM) / (MaxM – MinM )
+            LP_i &= AvailableLeadingPoints * (M_i – MinM) / (MaxM – MinM )
         \end{align*}
 \end{enumerate}
 \end{document}
