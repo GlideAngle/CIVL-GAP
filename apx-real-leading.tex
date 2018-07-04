@@ -135,4 +135,62 @@ tacking away from the pilot they are infact following.
         equal to 1, but will get 0 progress coefficient and finally will get
         0 leading points.
 \end{enumerate}
+
+\subsection{Default Parameters}
+\begin{table}[!ht]
+    \begin{tabularx}{\textwidth}{|l|X|c|c|}
+    \hline
+        & \textbf{Parameter}
+        & \textbf{HG}
+        & \textbf{PG}
+        \\
+    \hline
+        \multirow{2}{*}{Black Zone}
+        & Angle
+        & 45°
+        & 45°
+        \\
+    \cline{2-4}
+        & Radius
+        & $1500 m$
+        & $2000 m$
+        \\
+    \hline
+        \multirow{2}{*}{Gray Zone}
+        & Angle
+        & 60°
+        & 60°
+        \\
+    \cline{2-4}
+        & Radius
+        & $2000 m$
+        & $2500 m$
+        \\
+    \hline
+        \multirow{2}{*}{Solo time coefficient}
+        & $SC_{min}$
+        & 0.2
+        & 0.2
+        \\
+    \cline{2-4}
+        & $SC_{max}$
+        & 1.0
+        & 1.0
+        \\
+    \hline
+        \multirow{3}{*}{}
+        & Thermalling Angle
+        & 60°
+        & 60°
+        \\
+    \cline{2-4}
+        & Dampening Time
+        & $20 secs$
+        & $20 secs$
+        \\
+    \hline
+    \end{tabularx}
+    \caption{Proposed default values for real leading point parameters.}
+    \label{tab:gap-defaults}
+\end{table}
 \end{document}
