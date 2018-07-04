@@ -25,10 +25,10 @@ This proposal refines leading points to reward leading by;
         keeping the rules around progress the same,
         see~\ref{sec:leading-points}.
 
-    \item Adding \(LC\), a new coefficient representing a pilot's time spent
-        leading.
+    \item Adding \(SC\), a new coefficient representing a pilot's time spent
+        flying solo.
 
-    \item Awarding leading points as the fraction \(PC * LC\) of points
+    \item Awarding leading points as the fraction \(LC = SC * PC\) of points
         available for leading.
 \end{enumerate}
 
@@ -71,20 +71,20 @@ tacking away from the pilot they are infact following.
         interpolate all positions and movement vectors and second pass to
         dampen these.}.
 
-    \item \textbf{Calculate leading time ratio} \(LTR\). Exclude
+    \item \textbf{Calculate solo time ratio} \(SR\). Exclude
         thermalling\footnote{If the angle between the movement vector and
         vertical axis is less than 60° then exclude that second deemed to be
         "thermalling" flight.} and assess leading for the remaining points and
         vectors.
     
-        To calculate \(LT_i\) and \(GT_i\) for all pilots:
+        To calculate \(ST_i\) and \(GT_i\) for all pilots:
 
         In the above pseudo-code \(BZA\) is black zone angle, \(BZR\) is black
         zone radius, \(GZA\) is grey zone angle and \(GZR\) is grey zone
         radius. At the end of this step we must have minimum and maximum
-        leading time ratio \(LTR_{min}\) and \(LTR_{max}\).
+        leading time ratio \(SR_{min}\) and \(SR_{max}\).
 
-    \item \textbf{Calculate the progress coefficient \(PC_i\) for all pilots.}
+    \item \textbf{Calculate progress coefficients} \(PC_i\).
         
         \begin{align*}
             PC_i &= ProgressPoints_i / ProgressPoints_{max}\footnotemark
@@ -92,16 +92,17 @@ tacking away from the pilot they are infact following.
         \footnotetext{Progress in this proposal is a renaming of leading so
         \(PC = LC\) as calculated currently.}
 
-    \item \textbf{Calculate and minimum and maximum multiplication of the two
-        coefficients \(M_{min}\) and \(M_{max}\)} In this step \(LC_{min}\)
-        defines the minimum possible \(LC\). This means if \(LC_{min} = 0.2\)
-        then the pilot with lowest leading time ratio will get only 20\% of the
-        old leading points.
+    \item \textbf{Calculate solo coefficients} \(SC_i\).
         
         \begin{align*}
-            LE_i &= (LTR_i – LTR_{min}) / (LTR_{max} – LTR_{min}) \\
-            LC_i &= LC_{min} + (2*LE_i – LE_i * LE_i) * (1 – LC_{min}) \\
-            Mi &= PC_i * LC_i
+            LE_i &= (SR_i – SR_{min}) / (SR_{max} – SR_{min}) \\
+            SC_i &= SC_{min} + (2*LE_i – LE_i * LE_i) * (1 – SC_{min}) \\
+        \end{align*}
+            
+    \item \textbf{Calculate leading coefficients} \(LC_i\).
+        
+        \begin{align*}
+            LC_i &= PC_i * SC_i
         \end{align*}
             
     \item \textbf{Calculate the leading points for all pilots}
