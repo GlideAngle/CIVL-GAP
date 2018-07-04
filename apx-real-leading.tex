@@ -71,18 +71,18 @@ tacking away from the pilot they are infact following.
         interpolate all positions and movement vectors and second pass to
         dampen these.}.
 
-    \item \textbf{Calculate the leading time ratio for every pilot.} Leading
-        time ratio is how much of the pilot glide time is leading – it’s in \%.
-        The “glide” and the “thermal” modes are detected by the angle between
-        movement vector and vertical axis. If the angle is less than 60 degrees
-        – the pilot is thermaling and the time accumulation is stopped. We need
-        to calculate \(LT_i\) and \(GT_i\) for all pilots:
+    \item \textbf{Calculate leading time ratio} \(LTR\). Exclude
+        thermalling\footnote{If the angle between the movement vector and
+        vertical axis is less than 60° then exclude that second deemed to be
+        "thermalling" flight.} and assess leading for the remaining points and
+        vectors.
+    
+        To calculate \(LT_i\) and \(GT_i\) for all pilots:
 
         In the above pseudo-code \(BZA\) is black zone angle, \(BZR\) is black
         zone radius, \(GZA\) is grey zone angle and \(GZR\) is grey zone
         radius. At the end of this step we must have minimum and maximum
-        leading time ratio \(LTR_{min}\) and \(LTR_{max}\). This step is
-        suitable to be performed with multithreading.
+        leading time ratio \(LTR_{min}\) and \(LTR_{max}\).
 
     \item \textbf{Calculate the progress coefficient \(PC_i\) for all pilots.}
         
