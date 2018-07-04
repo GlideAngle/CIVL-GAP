@@ -1,0 +1,29 @@
+\begin{tikzpicture}[scale=1.4, rotate=-90]
+\tkzInit[xmin=-6,xmax=4,ymin=-1,ymax=3]
+\fill[ pattern=north west lines
+     , pattern color=green
+     ] (-6,2) rectangle (6,1.9);
+\node [above right] at (1,1.75) {ground level};
+\tkzDefPoint(4,0){R}
+\tkzDefPoint(0,2){C}
+\tkzDefPoint(0,0){C'}
+\tkzDefPoint(4,2){A}
+\tkzDefPoint(-4,2){B}
+\tkzDefPoint(6,3){A'}
+\tkzDefPoint(-6,3){B'}
+\tkzDrawVectors(C',A' C',B' C',R)
+\tkzDrawVectors[dashed, color=red](C,B)
+\tkzMarkAngle[fill=yellow, size=3.8cm, opacity=.5](R,C',A)
+\tkzFillPolygon[red!30, opacity=0.25](A',B',C')
+\tkzLabelAngle[pos=2.5](R,C',A){$\arctan(i)$}
+\tkzLabelPoints[above, shift={(0,0.2)}](C)
+\tkzLabelPoints[below](C')
+\tkzDrawPoints[shape=cross out,size=24,color=red](C)
+\tkzDrawPoints[color=blue](C')
+\tkzShowTransformation[symmetry=center C, length=1, color=red](B)
+\tkzLabelSegment[above](C,B){$r$}
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](C',A)(15){conical end of speed section}
+\end{tikzpicture}
