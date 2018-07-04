@@ -56,33 +56,33 @@ values.
         In the above pseudo-code \(BZA\) is black zone angle, \(BZR\) is black
         zone radius, \(GZA\) is grey zone angle and \(GZR\) is grey zone
         radius. At the end of this step we must have minimum and maximum
-        leading time ratio \(MinLTR\) and \(MaxLTR\). This step is suitable to
-        be performed with multithreading.
+        leading time ratio \(LTR_{min}\) and \(LTR_{max}\). This step is
+        suitable to be performed with multithreading.
 
     \item \textbf{Calculate the progress coefficient \(PC_i\) for all pilots.}
         This step is performed in the old scoring and doesn’t need any change.
         We must only calculate the new progress coefficient:
         
         \begin{align*}
-            PC_i &= OldLeadingPoints_i / MaxOldLeadingPoints
+            PC_i &= OldLeadingPoints_i / OldLeadingPoints_{max}
         \end{align*}
 
     \item \textbf{Calculate and minimum and maximum multiplication of the two
-        coefficients \(MinM\) and \(MaxM\)} In this step \(MinLC\) defines the
-        minimum possible \(LC\). This means if \(MinLC = 0.2\) then the pilot
-        with lowest leading time ratio will get only 20\% of the old leading
-        points.
+        coefficients \(M_{min}\) and \(M_{max}\)} In this step \(LC_{min}\)
+        defines the minimum possible \(LC\). This means if \(LC_{min} = 0.2\)
+        then the pilot with lowest leading time ratio will get only 20\% of the
+        old leading points.
         
         \begin{align*}
-            LE_i &= (LTR_i – MinLRT) / (MaxLTR – MinLTR) \\
-            LC_i &= MinLC + (2*LE_i – LE_i * LE_i) * (1 – MinLC) \\
+            LE_i &= (LTR_i – LTR_{min}) / (LTR_{max} – LTR_{min}) \\
+            LC_i &= LC_{min} + (2*LE_i – LE_i * LE_i) * (1 – LC_{min}) \\
             Mi &= PC_i * LC_i
         \end{align*}
             
     \item \textbf{Calculate the leading points for all pilots}
         
         \begin{align*}
-            LP_i &= AvailableLeadingPoints * (M_i – MinM) / (MaxM – MinM )
+            LP_i &= AvailableLeadingPoints * (M_i – M_{min}) / (M_{max} – M_{min} )
         \end{align*}
 \end{enumerate}
 \end{document}
