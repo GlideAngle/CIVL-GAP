@@ -10,12 +10,11 @@ pilots. Leading a group of pilots brings tactical risks and should be rewarded
 appropriately.
 
 \subsection{The Model}
-When a paragliding pilot flies in 3D space he has
-position and movement (speed) vector. Imaginary spotlight cone with a tip at
-the pilot’s position and axis – the movement vector can be used to determine if
-the pilot follows someone else or leads. If there are other pilots in the
-volume of the pilot’s spotlight cone – he is NOT leading, otherwise – he is
-leading.
+When a paragliding pilot flies in 3D space he has position and movement (speed)
+vector. Imaginary spotlight cone with a tip at the pilot’s position and axis
+– the movement vector can be used to determine if the pilot follows someone
+else or leads. If there are other pilots in the volume of the pilot’s spotlight
+cone – he is NOT leading, otherwise – he is leading.
 
 The movement vector \(V\) should be integrated for 20 seconds to smooth the
 fluctuations and to make the vector pointing upwards when the pilot is
