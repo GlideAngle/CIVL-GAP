@@ -60,12 +60,12 @@ values.
         suitable to be performed with multithreading.
 
     \item \textbf{Calculate the progress coefficient \(PC_i\) for all pilots.}
-        This step is performed in the old scoring and doesn’t need any change.
-        We must only calculate the new progress coefficient:
         
         \begin{align*}
-            PC_i &= OldLeadingPoints_i / OldLeadingPoints_{max}
+            PC_i &= ProgressPoints_i / ProgressPoints_{max}\footnotemark
         \end{align*}
+        \footnotetext{Progress in this proposal is a renaming of leading so
+        \(PC = LC\) as calculated currently.}
 
     \item \textbf{Calculate and minimum and maximum multiplication of the two
         coefficients \(M_{min}\) and \(M_{max}\)} In this step \(LC_{min}\)
