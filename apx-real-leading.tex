@@ -17,23 +17,23 @@ the pilot follows someone else or leads. If there are other pilots in the
 volume of the pilot’s spotlight cone – he is NOT leading, otherwise – he is
 leading.
 
-The movement vector V should be integrated for 20 seconds to smooth
-the fluctuations and to make the vector pointing upwards when the pilot is
+The movement vector \(V\) should be integrated for 20 seconds to smooth the
+fluctuations and to make the vector pointing upwards when the pilot is
 thermaling. The spotlight cone has “black zone” and “grey zone”. Black zone is
 smaller and if there other pilots inside it – the pilot won’t get leading
 seconds at all. Grey zone is bigger and if there are other pilots inside it
 – the pilot will get fractional leading seconds proportional to the distance to
 the boundaries of the two zones. If there are more pilots inside the zones
-– the pilot’s leading time will be accumulated with the minimum of all
-k values.
+– the pilot’s leading time will be accumulated with the minimum of all \(k\)
+values.
 
 \subsection{Calculation Steps}
 
 \begin{enumerate}
     \item \textbf{Interpolate all positions and movement vectors for all
         pilots.}  For every second between the start of the speed section and
-        the end of the speed section we must have the coordinates (x, y and z)
-        and the unit movement vector (vx, vy and vz). This step must be done
+        the end of the speed section we must have the coordinates \((x, y, z)\)
+        and the unit movement vector \((vx, vy, vz)\). This step must be done
         after the analysis of the flight (detection of start, SSS, ESS, goal or
         landing-out). The suggested interpolation logic is linear
         interpolation. Interpolation will be necessary only if the tracklog
@@ -51,28 +51,38 @@ k values.
         The “glide” and the “thermal” modes are detected by the angle between
         movement vector and vertical axis. If the angle is less than 60 degrees
         – the pilot is thermaling and the time accumulation is stopped. We need
-        to calculate LTi and GTi for all pilots:
+        to calculate \(LTi\) and \(GTi\) for all pilots:
 
-        In the above pseudo-code BZA is black zone angle, BZR is black zone
-        radius, GZA is grey zone angle and GZR is grey zone radius. At the end
-        of this step we must have minimum and maximum leading time ratio MinLTR
-        and MaxLTR. This step is suitable to be performed with multithreading.
+        In the above pseudo-code \(BZA\) is black zone angle, \(BZR\) is black
+        zone radius, \(GZA\) is grey zone angle and \(GZR\) is grey zone
+        radius. At the end of this step we must have minimum and maximum
+        leading time ratio \(MinLTR\) and \(MaxLTR\). This step is suitable to
+        be performed with multithreading.
 
-    \item \textbf{Calculate the progress coefficient PCi for all pilots.} This
-        step is performed in the old scoring and doesn’t need any change. We
-        must only calculate the new progress coefficient: PCi
-        = OldLeadingPointsi / MaxOldLeadingPoints
+    \item \textbf{Calculate the progress coefficient \(PCi\) for all pilots.}
+        This step is performed in the old scoring and doesn’t need any change.
+        We must only calculate the new progress coefficient:
+        
+        \begin{align*}
+            PCi &= OldLeadingPointsi / MaxOldLeadingPoints
+        \end{align*}
 
     \item \textbf{Calculate and minimum and maximum multiplication of the two
-        coefficients MinM and MaxM}
+        coefficients \(MinM\) and \(MaxM\)} In this step \(MinLC\) defines the
+        minimum possible \(LC\). This means if \(MinLC = 0.2\) then the pilot
+        with lowest leading time ratio will get only 20\% of the old leading
+        points.
         
-        LEi = (LTRi – MinLRT) / (MaxLTR – MinLTR) LCi = MinLC + (2*LEi
-        – LEi*LEi) * (1 – MinLC) Mi = PCi * LCi In this step MinLC defines the
-        minimum possible LC. This means if MinLC = 0.2 – the pilot with lowest
-        leading time ratio will get only 20\% of the old leading points.
-
+        \begin{align*}
+            LEi &= (LTRi – MinLRT) / (MaxLTR – MinLTR) \\
+            LCi &= MinLC + (2*LEi – LEi*LEi) * (1 – MinLC) \\
+            Mi &= PCi * LCi
+        \end{align*}
+            
     \item \textbf{Calculate the leading points for all pilots}
         
-        LPi = AvailableLeadingPoints * (Mi – MinM) / (MaxM – MinM ) \end{enumerate}
-
+        \begin{align*}
+            LPi &= AvailableLeadingPoints * (Mi – MinM) / (MaxM – MinM )
+        \end{align*}
+\end{enumerate}
 \end{document}
