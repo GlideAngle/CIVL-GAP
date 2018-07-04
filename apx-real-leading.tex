@@ -3,7 +3,10 @@
 \documentclass[gap.tex]{subfiles}
 \begin{document}
 \label{sec:real-leading}
-Real leading points are a proposed change to leading points.
+Real\footnotemark leading points are a proposed change to leading points.
+\footnotetext{Even these are not \textbf{real} leading points. The combination
+of a pilot's relative progress and whether or not they are following is being
+used as a more accurate proxy for leading.}
 
 \subsection{Motivation}
 Leading points should represent how long the pilots lead in front of other
@@ -30,21 +33,28 @@ This proposal refines leading points to reward leading by;
 \end{enumerate}
 
 \subsection{The Model}
-When a paragliding pilot flies in 3D space he has position and movement (speed)
-vector. Imaginary spotlight cone with a tip at the pilot’s position and axis
-– the movement vector can be used to determine if the pilot follows someone
-else or leads. If there are other pilots in the volume of the pilot’s spotlight
-cone – he is NOT leading, otherwise – he is leading.
+A pilot when flying has a position and is moving. The heading, climb rate and
+speed can be represented by a vector. A competition pilot scans for other
+pilots to follow or to join in order to climb. We can't see what the pilot sees
+but we could model this field of view or viewport\footnote{Something like
+shining a spotlight at night.}. A pilot's visual acuity is limited and so is
+glide slope angle so at some distance other pilots are too far away to worry
+about. A distance limited field of view along a glide slope defines a volume.
+Let's deem a pilot to be following if there are other pilots in this volume
+that we'll call the black zone.
 
-The movement vector \(V\) should be integrated for 20 seconds to smooth the
-fluctuations and to make the vector pointing upwards when the pilot is
-thermaling. The spotlight cone has “black zone” and “grey zone”. Black zone is
-smaller and if there other pilots inside it – the pilot won’t get leading
-seconds at all. Grey zone is bigger and if there are other pilots inside it
-– the pilot will get fractional leading seconds proportional to the distance to
-the boundaries of the two zones. If there are more pilots inside the zones
-– the pilot’s leading time will be accumulated with the minimum of all \(k\)
-values.
+Let's also define a larger volume by extending the field of view and range. If
+all other pilots are outside this then our pilot is definitely not following.
+If some pilots are in this volume but not in the smaller volume then our pilot
+is somewhat following. The larger volume minus the smaller one we'll call the
+gray zone.
+
+\subsection{Dampening}
+It may be necessary to dampen the movement vector \(V\) by integrating it over
+some time interval in order to smooth out fluctuations. We may find that one
+smoothing is needed to better identify climbing flight when thermalling.
+Another smoothing may be needed to prevent pilots from gaming this rule by
+tacking away from the pilot they are infact following.
 
 \subsection{Calculation Steps}
 
