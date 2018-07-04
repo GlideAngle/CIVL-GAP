@@ -59,21 +59,17 @@ tacking away from the pilot they are infact following.
 \subsection{Calculation Steps}
 
 \begin{enumerate}
-    \item \textbf{Interpolate all positions and movement vectors for all
-        pilots.}  For every second between the start of the speed section and
-        the end of the speed section we must have the coordinates \((x, y, z)\)
-        and the unit movement vector \((vx, vy, vz)\). This step must be done
-        after the analysis of the flight (detection of start, SSS, ESS, goal or
-        landing-out). The suggested interpolation logic is linear
-        interpolation. Interpolation will be necessary only if the tracklog
-        fixes are less than 1 per second or in case of tracklog gaps. The
-        calculation may be made in two passes over the tracklog (first to
-        interpolate all positions and second to calculate the average movement
-        vectors) or in one pass. As a result of this step we should have for
-        every second of the flight 6 numbers: 3 for the 3D position and 3 for
-        the unit vector of the average movement. For 150 pilots and 5 - 6 hours
-        task this data will consume no more than 100 MB of RAM. This step is
-        suitable to be performed with multithreading.
+    \item \textbf{Interpolate between tracklog fixes}\footnotemark in the speed
+        section to get a position \((x, y, z)\) and a unit movement vector
+        \((vx, vy, vz)\) every second\footnotetext{The interpolation step must
+        be done after the analysis of the flight has detected SSS, ESS and
+        whether the pilot made goal or landed-out.}. Interpolation\footnote{The
+        suggested interpolation to use is linear.} will always be
+        necessary\footnote{Even a tracklog with fixes every second may not be
+        properly in phase with the second marks we choose and tracklogs often
+        have gaps.} and may be made in one or two passes\footnote{First pass to
+        interpolate all positions and movement vectors and second pass to
+        dampen these.}.
 
     \item \textbf{Calculate the leading time ratio for every pilot.} Leading
         time ratio is how much of the pilot glide time is leading – it’s in \%.
