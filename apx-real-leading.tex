@@ -86,19 +86,19 @@ tacking away from the pilot they are infact following.
         interpolate all positions and movement vectors and second pass to
         dampen these.}.
 
+    \item \textbf{Calculate soloing} \(SR\). If any other pilot is in the black
+        zone then the pilot is following and this point can be discarded. If no
+        pilot is in the gray zone then this point is accumulated in full for
+        solo time. If there are pilots in the gray zone then find the largest
+        volume with no pilots and accumulate this point partially in proportion
+        to the found volume's size between the black and gray zones.
+    
     \item \textbf{Calculate solo time ratio} \(SR\). Exclude
         thermalling\footnote{If the angle between the movement vector and
         vertical axis is less than 60° then exclude that second deemed to be
         "thermalling" flight.} and assess whether the pilot is flying solo for
         the remaining points and vectors.
     
-        To calculate \(ST_i\) and \(GT_i\) for all pilots:
-
-        In the above pseudo-code \(BZA\) is black zone angle, \(BZR\) is black
-        zone radius, \(GZA\) is grey zone angle and \(GZR\) is grey zone
-        radius. At the end of this step we must have minimum and maximum
-        leading time ratio \(SR_{min}\) and \(SR_{max}\).
-
     \item \textbf{Calculate progress coefficients} \(PC_i\).
         
         \begin{align*}
