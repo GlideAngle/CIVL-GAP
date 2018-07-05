@@ -9,13 +9,13 @@ of a pilot's relative progress and whether or not they are following is being
 used as a more accurate proxy for leading.}
 
 \subsection{Motivation}
-Leading points should represent how long the pilots lead in front of other
-pilots. Leading a group of pilots brings tactical risks and should be rewarded
-appropriately.
+Leading points should represent how long each pilot has lead out in front of
+other pilots. Leading a group of pilots brings tactical risks and should be
+rewarded appropriately.
 
 \subsection{Criticism of Leading Points}
-Leading points would be better described as progress points as they reward
-pilots' relative progress along the course.
+Leading points as they stand would be better described as progress points as
+they reward pilots' relative progress along the course.
 
 \subsection{The Proposal}
 This proposal refines leading points to reward leading by;
@@ -43,11 +43,11 @@ This proposal refines leading points to reward leading by;
 \end{figure}
 
 A pilot when flying has a position and is moving. The heading, climb rate and
-speed can be represented by a vector. A competition pilot scans for other
-pilots to follow or to join in order to climb. We can't see what the pilot sees
-but we could model this field of view or viewport\footnote{Something like
-shining a spotlight at night.}. A pilot's visual acuity is limited and so is
-glide slope angle so at some distance other pilots are too far away to worry
+ground speed can be represented by a vector. A competition pilot scans for
+other pilots to follow or to join in order to climb. We can't see what the
+pilot sees but we could model this field of view or viewport\footnote{Something
+like shining a spotlight at night.}. A pilot's visual acuity is limited and so
+is glide slope angle so at some distance other pilots are too far away to worry
 about. A distance limited field of view along a glide slope defines a volume.
 Let's deem a pilot to be following if there are other pilots in this volume
 that we'll call the black zone.
@@ -66,9 +66,9 @@ gray zone.
 \end{figure}
 
 \subsection{Dampening}
-It may be necessary to dampen the movement vector \(V\) by integrating it over
-some time interval in order to smooth out fluctuations. We may find that one
-smoothing is needed to better identify climbing flight when thermalling.
+It may be necessary to dampen the movement vector \(\vec{v}\) by integrating it
+over some time interval in order to smooth out fluctuations. We may find that
+one smoothing is needed to better identify climbing flight when thermalling.
 Another smoothing may be needed to prevent pilots from gaming this rule by
 tacking away from the pilot they are infact following.
 
@@ -77,7 +77,7 @@ tacking away from the pilot they are infact following.
 \begin{enumerate}
     \item \textbf{Interpolate between tracklog fixes}\footnotemark in the speed
         section to get a position \((x, y, z)\) and a unit movement vector
-        \((vx, vy, vz)\) every second\footnotetext{The interpolation step must
+        \(\vec{v} = (vx, vy, vz)\) every second\footnotetext{The interpolation step must
         be done after the analysis of the flight has detected SSS, ESS and
         whether the pilot made goal or landed-out.}. Interpolation\footnote{The
         suggested interpolation to use is linear.} will always be
