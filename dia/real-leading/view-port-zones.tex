@@ -1,0 +1,78 @@
+\begin{tikzpicture}[scale=1]
+\tkzDefPoint(0,0){1}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 1 angle -45](A)
+\tkzDrawSector[fill=red!50](1,tkzPointResult)(A)
+\tkzLabelPoints[above](1)
+\tkzDefPointBy[homothety = center 1 ratio 1.3](A)
+\tkzGetPoint{B}
+\tkzDefPointBy[rotation = center 1 angle 7.5](B)
+\tkzGetPoint{C}
+\tkzDefPointBy[rotation = center 1 angle -60](C)
+\tkzDrawSector[fill=red!50, fill opacity=0.2](1,tkzPointResult)(C)
+\begin{scope}[shift={(-60:1cm)}, rotate=40]
+\tkzDefPoint(0,0){2}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 2 angle -45](A)
+\tkzDrawSector[fill=blue!50](2,tkzPointResult)(A)
+\tkzLabelPoints[above](2)
+\tkzDefPointBy[homothety = center 2 ratio 1.3](A)
+\tkzGetPoint{B}
+\tkzDefPointBy[rotation = center 2 angle 7.5](B)
+\tkzGetPoint{C}
+\tkzDefPointBy[rotation = center 2 angle -60](C)
+\tkzDrawSector[fill=blue!50, fill opacity=0.2](2,tkzPointResult)(C)
+\end{scope}
+\begin{scope}[shift={(-30:3cm)}, rotate=10]
+\tkzDefPoint(0,0){3}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 3 angle -45](A)
+\tkzDrawSector[fill=green!50](3,tkzPointResult)(A)
+\tkzLabelPoints[above](3)
+\tkzDefPointBy[homothety = center 3 ratio 1.3](A)
+\tkzGetPoint{B}
+\tkzDefPointBy[rotation = center 3 angle 7.5](B)
+\tkzGetPoint{C}
+\tkzDefPointBy[rotation = center 3 angle -60](C)
+\tkzDrawSector[fill=green!50, fill opacity=0.2](3,tkzPointResult)(C)
+\end{scope}
+\begin{scope}[shift={(0:10cm)}, rotate=10]
+\tkzDefPoint(0,0){4}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 4 angle -45](A)
+\tkzDrawSector[fill=yellow!50](4,tkzPointResult)(A)
+\tkzLabelPoints[above](4)
+\tkzDefPointBy[homothety = center 4 ratio 1.3](A)
+\tkzGetPoint{B}
+\tkzDefPointBy[rotation = center 4 angle 7.5](B)
+\tkzGetPoint{C}
+\tkzDefPointBy[rotation = center 4 angle -60](C)
+\tkzDrawSector[fill=yellow!50, fill opacity=0.2](4,tkzPointResult)(C)
+\end{scope}
+\begin{scope}[shift={(0:11cm)}, rotate=10]
+\tkzDefPoint(0,0){5}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 5 angle -45](A)
+\tkzDrawSector[fill=orange!50](5,tkzPointResult)(A)
+\tkzLabelPoints[above](5)
+\tkzDefPointBy[homothety = center 5 ratio 1.3](A)
+\tkzGetPoint{B}
+\tkzDefPointBy[rotation = center 5 angle 7.5](B)
+\tkzGetPoint{C}
+\tkzDefPointBy[rotation = center 5 angle -60](C)
+\tkzDrawSector[fill=orange!50, fill opacity=0.2](5,tkzPointResult)(C)
+\end{scope}
+\begin{scope}[shift={(-16:11.6cm)}, rotate=-20]
+\tkzDefPoint(0,0){6}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 6 angle -45](A)
+\tkzDrawSector[fill=magenta!50](6,tkzPointResult)(A)
+\tkzLabelPoints[above](6)
+\tkzDefPointBy[homothety = center 6 ratio 1.3](A)
+\tkzGetPoint{B}
+\tkzDefPointBy[rotation = center 6 angle 7.5](B)
+\tkzGetPoint{C}
+\tkzDefPointBy[rotation = center 6 angle -60](C)
+\tkzDrawSector[fill=magenta!50, fill opacity=0.2](6,tkzPointResult)(C)
+\end{scope}
+\end{tikzpicture}

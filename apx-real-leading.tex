@@ -37,7 +37,7 @@ This proposal refines leading points to reward leading by;
 \begin{figure}[ht]
     \centering
     \input{dia/real-leading/view-port}
-    \caption{Plan view of the flying solo view port. Pilots 1 and 2 are following while pilots 3, 4 and 5 are flying solo.}
+    \caption{Plan view of the flying solo view port. Pilots 1 and 2 are following while pilots 3, 4, 5 and 6 are flying solo.}
     \label{fig:view-port}
 \end{figure}
 
@@ -56,6 +56,13 @@ all other pilots are outside this then our pilot is definitely not following.
 If some pilots are in this volume but not in the smaller volume then our pilot
 is somewhat following. The larger volume minus the smaller one we'll call the
 gray zone.
+
+\begin{figure}[ht]
+    \centering
+    \input{dia/real-leading/view-port-zones}
+    \caption{Plan view with gray zones. As before but now pilot 4 is somewhat following pilot 6.}
+    \label{fig:view-port-zones}
+\end{figure}
 
 \subsection{Dampening}
 It may be necessary to dampen the movement vector \(V\) by integrating it over
