@@ -76,7 +76,7 @@ tacking away from the pilot they are infact following.
 
 \begin{enumerate}
     \item \textbf{Interpolate between tracklog fixes}\footnotemark in the speed
-        section to get a position \((x, y, z)\) and a unit movement vector
+        section to get a position \(p = (x, y, z)\) and a unit movement vector
         \(\vec{v} = (vx, vy, vz)\) every second\footnotetext{The interpolation step must
         be done after the analysis of the flight has detected SSS, ESS and
         whether the pilot made goal or landed-out.}. Interpolation\footnote{The
@@ -87,21 +87,31 @@ tacking away from the pilot they are infact following.
         interpolate all positions and movement vectors and second pass to
         dampen these.}.
 
-    \item \textbf{Calculate soloing} \(SR\). If any other pilot is in the black
-        zone then the pilot is following and this point can be discarded. If no
-        pilot is in the gray zone then this point is accumulated in full for
-        solo time. If there are pilots in the gray zone then find the largest
-        volume with no pilots and accumulate this point partially in proportion
-        to the found volume's size between the black and gray zones.
+    \item \textbf{Exclude thermalling}\footnote{If the angle between the
+        movement vector and vertical axis is less than 60° then exclude that
+        second deemed to be "thermalling" flight.}.
+        \begin{align*}
+            Gliding &= \{ (p, \vec{v}) \mid \vec{v} \text{ is not thermalling }\} \\
+        \end{align*}
     
-    \item \textbf{Calculate solo time ratio} \(SR\). Exclude
-        thermalling\footnote{If the angle between the movement vector and
-        vertical axis is less than 60° then exclude that second deemed to be
-        "thermalling" flight.} and assess whether the pilot is flying solo for
-        the remaining points and vectors.
+
+    \item \textbf{Calculate soloing grayness \(SG\)} for all interpolated
+        points. If any other pilot is in the black zone then the pilot is
+        following, \(k = 0\). If no pilot is in the gray zone then this point
+        is accumulated in full for solo time, \(k = 1\). If there are pilots in
+        the gray zone then find the largest volume with no pilots and
+        accumulate this point partially in proportion \(k\) to the found
+        volume's size between the black and gray zones.
+        \begin{align*}
+            SG &= \{ k \mid k \leftarrow grayness ((p, \vec{v}) \in Gliding)\} \\
+        \end{align*}
+    
+    \item \textbf{Calculate solo time ratio}.
+        \begin{align*}
+            SR_i &= \sum_{k \in SG} k / \sum_{k \in SG} 1 \\
+        \end{align*}
     
     \item \textbf{Calculate progress coefficients} \(PC_i\).
-        
         \begin{align*}
             PC_i &= ProgressPoints_i / ProgressPoints_{max}\footnotemark
         \end{align*}
@@ -109,20 +119,17 @@ tacking away from the pilot they are infact following.
         \(PC = LC\) as calculated currently.}
 
     \item \textbf{Calculate solo coefficients} \(SC_i\).
-        
         \begin{align*}
             LE_i &= (SR_i – SR_{min}) / (SR_{max} – SR_{min}) \\
             SC_i &= SC_{min} + (2*LE_i – LE_i^2) * (1 – SC_{min}) \\
         \end{align*}
             
     \item \textbf{Calculate leading coefficients} \(LC_i\).
-        
         \begin{align*}
             LC_i &= PC_i * SC_i
         \end{align*}
             
     \item \textbf{Calculate the leading points for all pilots}
-        
         \begin{align*}
             LP_i &= AvailableLeadingPoints * (M_i – M_{min}) / (M_{max} – M_{min} )
         \end{align*}
