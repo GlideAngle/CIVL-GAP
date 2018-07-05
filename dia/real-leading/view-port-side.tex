@@ -1,0 +1,44 @@
+\begin{tikzpicture}[scale=1]
+\begin{scope}[, rotate=200]
+\tkzDefPoint(0,0){1}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 1 angle -45](A)
+\tkzDrawSector[fill=red!50](1,tkzPointResult)(A)
+\tkzLabelPoints[above](1)
+\end{scope}
+\begin{scope}[shift={(-60:1cm)}, rotate=100]
+\tkzDefPoint(0,0){2}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 2 angle -45](A)
+\tkzDrawSector[fill=blue!50](2,tkzPointResult)(A)
+\tkzLabelPoints[above](2)
+\end{scope}
+\begin{scope}[shift={(-30:3cm)}, rotate=-20]
+\tkzDefPoint(0,0){3}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 3 angle -45](A)
+\tkzDrawSector[fill=green!50](3,tkzPointResult)(A)
+\tkzLabelPoints[above](3)
+\end{scope}
+\begin{scope}[shift={(0:10cm)}, rotate=25]
+\tkzDefPoint(0,0){4}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 4 angle -45](A)
+\tkzDrawSector[fill=yellow!50](4,tkzPointResult)(A)
+\tkzLabelPoints[above](4)
+\end{scope}
+\begin{scope}[shift={(0:11cm)}, rotate=70]
+\tkzDefPoint(0,0){5}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 5 angle -45](A)
+\tkzDrawSector[fill=orange!50](5,tkzPointResult)(A)
+\tkzLabelPoints[above](5)
+\end{scope}
+\begin{scope}[shift={(-16:11.6cm)}, rotate=10]
+\tkzDefPoint(0,0){6}
+\tkzDefPoint(-30:3){A}
+\tkzDefPointBy[rotation = center 6 angle -45](A)
+\tkzDrawSector[fill=magenta!50](6,tkzPointResult)(A)
+\tkzLabelPoints[above](6)
+\end{scope}
+\end{tikzpicture}
