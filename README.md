@@ -24,9 +24,10 @@ Transcript written on gap.log.
 
 I edit the various `*.tex` document fragments in a plain text editor but there
 are tools such as [TeXworks](https://en.wikipedia.org/wiki/TeXworks) that are
-purpose-built for editing LaTeX and previewing the typeset document. It runs on
-Windows, Linux and OSX and is free. It requires a TeX installation and for this
-I've used [MiKTeX](https://en.wikipedia.org/wiki/MiKTeX) on Windows and
+purpose-built for editing LaTeX and for typsetting and previewing the resultant
+`*.pdf`. It runs on Windows, Linux and OSX and is free. It requires a TeX
+installation and for this I've used
+[MiKTeX](https://en.wikipedia.org/wiki/MiKTeX) on Windows and
 [MacTeX](https://en.wikipedia.org/wiki/MacTeX) on OSX. The editing experience
 is not [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) with TeXworks, it has
 separate windows for editing the source file and for showing the preview.
