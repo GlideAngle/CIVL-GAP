@@ -10,7 +10,7 @@ rules are documented.
 
 ## Getting Started
 
-Clone this repository, open a shell and typeset `gap.tex` to produce `gap.pdf`:
+Clone this repository, open a shell and typeset `gap.tex` to produce `gap.pdf`.
 
 ```
 > git clone https://github.com/BlockScope/CIVL-GAP.git
@@ -22,10 +22,19 @@ Output written on gap.pdf (48 pages).
 Transcript written on gap.log.
 ```
 
-This `gap.tex` document can be loaded into a LaTeX editor but working on the
-document as a whole can take a lot longer to compile than working on a section
-by itself. Any of the sections can be compiled individually either in an editor
-or on the command line.
+I edit the various `*.tex` document fragments in a plain text editor but there
+are tools such as [TeXworks](https://en.wikipedia.org/wiki/TeXworks) that are
+purpose-built for editing LaTeX and previewing the typeset document. It runs on
+Windows, Linux and OSX and is free. It requires a TeX installation and for this
+I've used [MiKTeX](https://en.wikipedia.org/wiki/MiKTeX) on Windows and
+[MacTeX](https://en.wikipedia.org/wiki/MacTeX) on OSX. The editing experience
+is not [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) with TeXworks, it has
+separate windows for editing the source file and for showing the preview.
+
+The whole document can be worked on at once by loading `gap.tex` into the
+editor but it is quicker to work on only a section at a time. Each section has
+its own `sec-*.tex` file, `sec-introduction.tex` for example. Individual
+sections can be typeset from the command line too.
 
 ```
 > xelatex sec-philosophy.tex
@@ -35,8 +44,7 @@ Output written on sec-philosophy.pdf (3 pages).
 Transcript written on sec-philosophy.log.
 ```
 
-Sections are those files prefixed with `sec-` such as `sec-philosophy.tex`. The
-other `*.tex` files contain diagrams and graphs.
+Other `*.tex` files contain the LaTeX source for diagrams and graphs.
 
 Note that typesetting the document as a whole must be made twice to create and
 then reference labels for sections, figures and tables. On the first pass these
