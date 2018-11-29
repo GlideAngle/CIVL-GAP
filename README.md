@@ -10,10 +10,11 @@ rules are documented.
 
 ## Getting Started
 
-The whole document can be compiled and typeset to `*.pdf` on the command line
-with;
+Clone this repository, open a shell and typeset `gap.tex` to produce `gap.pdf`:
 
 ```
+> git clone https://github.com/BlockScope/CIVL-GAP.git
+> cd CIVL-GAP
 > xelatex gap.tex
 This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex)
 ...
