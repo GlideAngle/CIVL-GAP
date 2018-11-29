@@ -34,8 +34,10 @@ separate windows for editing the source file and for showing the preview.
 
 The whole document can be worked on at once by loading `gap.tex` into the
 editor but it is quicker to work on only a section at a time. Each section has
-its own `sec-*.tex` file, `sec-introduction.tex` for example. Individual
-sections can be typeset from the command line too.
+its own `sec-*.tex` file, `sec-introduction.tex` for example. Each appendix is
+also self-contained in this way but named `apx-*.tex` such as
+`apx-gap-defaults.tex. Individual sections can be typeset from the command line
+too.
 
 ```
 > xelatex sec-philosophy.tex
