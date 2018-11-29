@@ -73,14 +73,25 @@ is published as a single *.pdf file,
 [Sporting Code Section 7A - Annex GAP - Edition 2018](https://www.fai.org/sites/default/files/civl/documents/sporting_code_s7a-xc-civl_gap_2018.pdf),
 running to about fifty pages with very many equations and quite a few charts.
 
-### From Implementation, for Implementers and for Scorers.
+### A Work in Progress
 
 Some of the documentation has surely been written about after being implemented
-and some of what is implemented has no documentation. There are places where
-readers are advised to consult the code and warned that the code differs from
-the rules or worse yet that we're not sure what the code does exactly.
+in the scoring software and some of what is implemented has no documentation.
+There are places where readers are advised to consult the code and warned that
+the code differs from the rules or worse yet that we're not sure what the code
+does exactly.
 
-### Collaboration
+# Proposal for the CIVL Plenary Meeting 2019
+
+## The Problem
+
+## The Solution
+
+> * Quotation of the old wording from Section 7 (if any) with paragraph number.
+* The new version of the wording to be put to Section 7 with the paragraph number.
+From the [instructions on preparing
+a proposal](https://www.fai.org/news/civl-plenary-2019) for making a change to
+Section 7 of the FAI Sporting code.
 
 Having the documentation in LaTeX could help.  A contributor finding an issue
 could reference and highlight a line number range in the source. Authors could
