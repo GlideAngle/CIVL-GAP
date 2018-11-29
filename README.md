@@ -85,14 +85,17 @@ does exactly.
 
 ## The Problem
 
-## The Solution
-
+> A Proposal shall include:
+>
+> * Your explanation of the problem and justification of the proposed solution,
 > * Quotation of the old wording from Section 7 (if any) with paragraph number.
 > * The new version of the wording to be put to Section 7 with the paragraph number.
 
 From the [instructions on preparing
 a proposal](https://www.fai.org/news/civl-plenary-2019) for making a change to
 Section 7 of the FAI Sporting code.
+
+## The Solution
 
 Having the documentation in LaTeX could help.  A contributor finding an issue
 could reference and highlight a line number range in the source. Authors could
