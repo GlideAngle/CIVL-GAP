@@ -135,3 +135,6 @@ the same time on different parts of the GAP annex without having conflicts and
 even if their contributions do overlap then there is merge tooling for
 resolving such conflicts.  Version history, differences, tagged versions and
 published releases are also available.
+
+By holding off merging changes until they undergo formal review at a plenary
+we'd also be able to accommodate the current formal process with this solution.
