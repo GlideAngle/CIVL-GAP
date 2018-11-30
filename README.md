@@ -125,7 +125,8 @@ for branching is to fit in with the current formal proposal and review process.
 The changes can be seen by comparing branches, in this case between **master**
 and the branch with the proposed changes. If the proposal is accepted as-is
 then it can be merged when accepted. If it requires more work then these
-changes can be made on the branch.
+changes can be made on the branch. They get added to any existing pull request
+on that branch anyway.
 
 I'm a software developer and contribute to many projects hosted on github but
 these days many non-technical groups are using github for collaboration.
