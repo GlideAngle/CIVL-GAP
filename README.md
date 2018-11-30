@@ -140,9 +140,10 @@ then it can be merged when accepted. If it requires more work then these
 changes can be made on the branch. They get added to any existing pull request
 on that branch anyway.
 
-I'm a software developer and contribute to many projects hosted on github but
-these days many non-technical groups are using github for collaboration.
-There's even a video tutorial series called [Git and GitHub for
+I'm a software developer and [contribute to many
+projects](https://ghuser.io/philderbeast) hosted on github but these days many
+non-technical groups are using github for collaboration.  There's even a video
+tutorial series called [Git and GitHub for
 Poets](https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV).
 
 GitHub really has a great web interface. A contributor finding an issue can
