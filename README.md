@@ -107,9 +107,31 @@ the rules or worse yet that we're not sure what the code does exactly.
 
 ## The Solution
 
-Having the documentation in LaTeX could help.  A contributor finding an issue
-could reference and highlight a line number range in the source. Authors could
-work at the same time on different parts of it without having conflicts and if
-their contributions do overlap then there is merge tooling for resolving
-conflicts.  Version history, differences, tagged versions and published
-releases are also available.
+By nature, the GAP annex is a technical document with many formulae and some
+diagrams and graphs. The solution I propose is to reuse what I have trialed in
+this repository for producing the GAP annex (Section 7a) PDF document and
+retire the existing `*.docx` source document. I would transfer ownership of
+this repository to the [FAI-CIVL](https://github.com/FAI-CIVL) organization on
+github. This is how I propose changes to the GAP annex would then work:
+
+The repository remains public. Anyone finding a small problem such as a typo
+can raise an issue or make a pull request with the correction. For more
+substantial changes raising an issue is still a good idea. It is even possible
+to provide templates for such issues, basically a checklist of things to do
+when lodging the issue. For these larger changes, the repository would need to
+be forked and we'd require the work to be done on a branch. The reason for
+branching is to fit in with the current formal proposal and review process. The
+changes can be seen by comparing branches, in this case between **master** and
+the branch with the proposed changes. If the proposal is accepted as-is then it
+can be merged immediately. If it requires more work then these changes can be
+made on the branch.
+
+I'm a software developer and contribute to many projects hosted on github but
+these days many non-technical groups are using github for collaboration.
+There's even a video tutorial series called **Git and GitHub for Poets**.
+GitHub really has a great web interface. A contributor finding an issue can
+reference and highlight a line number range in the source. Authors can work at
+the same time on different parts of the GAP annex without having conflicts and
+even if their contributions do overlap then there is merge tooling for
+resolving such conflicts.  Version history, differences, tagged versions and
+published releases are also available.
