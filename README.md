@@ -112,7 +112,8 @@ diagrams and graphs. The solution I propose is to reuse what I have trialed in
 this repository for producing the GAP annex (Section 7a) PDF document and
 retire the existing `*.docx` source document. I would transfer ownership of
 this repository to the [FAI-CIVL](https://github.com/FAI-CIVL) organization on
-github. This is how I propose changes to the GAP annex would then work:
+github. This is how I propose the process of making changes to the GAP annex
+would then work:
 
 The repository remains public. Anyone finding a small problem such as a typo
 can raise an issue or make a pull request with the correction. For more
