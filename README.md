@@ -116,16 +116,16 @@ github. This is how I propose the process of making changes to the GAP annex
 would then work:
 
 The repository remains public. Anyone finding a small problem such as a typo
-can raise an issue or make a pull request with the correction. For more
-substantial changes raising an issue is still a good idea. It is even possible
-to provide templates for such issues, basically a checklist of things to do
-when lodging the issue. For these larger changes, the repository would need to
-be forked and we'd require the work to be done on a branch. The reason for
-branching is to fit in with the current formal proposal and review process. The
-changes can be seen by comparing branches, in this case between **master** and
-the branch with the proposed changes. If the proposal is accepted as-is then it
-can be merged immediately. If it requires more work then these changes can be
-made on the branch.
+can raise an issue or make a pull request immediately with the correction. For
+more substantial changes raising an issue is still a good idea. It is even
+possible to provide templates for such issues, basically a checklist of things
+to do when lodging the issue. For these larger changes, the repository would
+need to be forked and we'd require the work to be done on a branch. The reason
+for branching is to fit in with the current formal proposal and review process.
+The changes can be seen by comparing branches, in this case between **master**
+and the branch with the proposed changes. If the proposal is accepted as-is
+then it can be merged immediately. If it requires more work then these changes
+can be made on the branch.
 
 I'm a software developer and contribute to many projects hosted on github but
 these days many non-technical groups are using github for collaboration.
