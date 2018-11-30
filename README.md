@@ -63,7 +63,8 @@ references will be rendered as **??**.
 > LaTeX is the de facto standard for the communication and publication of
 > scientific documents. LaTeX is available as free software.
 
-SOURCE: [https://www.latex-project.org/](https://www.latex-project.org/)
+SOURCE: [LaTeX – A document preparation system](https://www.latex-project.org/)
+from the LaTeX project.
 
 LaTeX has markup for equations and charts. Its plain-text source works in well
 with source control and related tooling.
