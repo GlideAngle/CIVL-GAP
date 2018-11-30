@@ -101,9 +101,9 @@ Section 7 of the FAI Sporting code.
 
 This is a process for formal submission and review of substantial changes to
 the sporting code (Section 7) or its GAP annex (Section 7a). I don't have
-a problem with that but I see that process having too much friction compared to
-the alternative I propose for making other kinds of change. Here I'm thinking
-of insubstantial changes such as fixing typos, improving grammar, correcting
+a problem with that but I see a process with more friction than the alternative
+I'm about to propose for making other kinds of change. Here I'm thinking of
+insubstantial changes such as fixing typos, improving grammar, correcting
 mistakes in formulae and drawing better diagrams and graphs.
 
 Having reimplemented GAP in
