@@ -124,8 +124,8 @@ need to be forked and we'd require the work to be done on a branch. The reason
 for branching is to fit in with the current formal proposal and review process.
 The changes can be seen by comparing branches, in this case between **master**
 and the branch with the proposed changes. If the proposal is accepted as-is
-then it can be merged immediately. If it requires more work then these changes
-can be made on the branch.
+then it can be merged when accepted. If it requires more work then these
+changes can be made on the branch.
 
 I'm a software developer and contribute to many projects hosted on github but
 these days many non-technical groups are using github for collaboration.
