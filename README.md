@@ -68,6 +68,19 @@ SOURCE: [https://www.latex-project.org/](https://www.latex-project.org/)
 LaTeX has markup for equations and charts. Its plain-text source works in well
 with source control and related tooling.
 
+> LaTeX is not a word processor! Instead, LaTeX encourages authors not to worry
+> too much about the appearance of their documents but to concentrate on
+> getting the right content.
+
+SOURCE: [An introduction to LaTeX](https://www.latex-project.org/about/) from
+the LaTeX project.
+
+There's a [TeX stack exchange](https://tex.stackexchange.com/) question and
+answer site. There are abundant learning resources and each package has its own
+documentation on CTAN, the Comprehensive TeX Archive. I used the
+[pgfplots](https://ctan.org/pkg/pgfplots?lang=en) package for the plots.
+I found ShareLaTeX, now [Overleaf](https://www.overleaf.com/learn) helpful.
+
 GAP scoring is well documented.  Currently, the source format is *.docx and it
 is published as a single *.pdf file,
 [Sporting Code Section 7A - Annex GAP - Edition 2018](https://www.fai.org/sites/default/files/civl/documents/sporting_code_s7a-xc-civl_gap_2018.pdf),
