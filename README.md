@@ -130,7 +130,9 @@ on that branch anyway.
 
 I'm a software developer and contribute to many projects hosted on github but
 these days many non-technical groups are using github for collaboration.
-There's even a video tutorial series called **Git and GitHub for Poets**.
+There's even a video tutorial series called [**Git and GitHub for
+Poets**](https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV).
+
 GitHub really has a great web interface. A contributor finding an issue can
 reference and highlight a line number range in the source. Authors can work at
 the same time on different parts of the GAP annex without having conflicts and
