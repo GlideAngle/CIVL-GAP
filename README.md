@@ -73,14 +73,6 @@ is published as a single *.pdf file,
 [Sporting Code Section 7A - Annex GAP - Edition 2018](https://www.fai.org/sites/default/files/civl/documents/sporting_code_s7a-xc-civl_gap_2018.pdf),
 running to about fifty pages with very many equations and quite a few charts.
 
-### A Work in Progress
-
-Some of the documentation has surely been written about after being implemented
-in the scoring software and some of what is implemented has no documentation.
-There are places where readers are advised to consult the code and warned that
-the code differs from the rules or worse yet that we're not sure what the code
-does exactly.
-
 # Proposal for the CIVL Plenary Meeting 2019
 
 ## The Problem
@@ -94,6 +86,24 @@ does exactly.
 From the [instructions on preparing
 a proposal](https://www.fai.org/news/civl-plenary-2019) for making a change to
 Section 7 of the FAI Sporting code.
+
+This is a process for formal submission and review of substantial changes to
+the sporting code (Section 7) or its GAP annex (Section 7a). I don't have
+a problem with that but I see that process having too much friction compared to
+the alternative I propose for making other kinds of change. Here I'm thinking
+of insubstantial changes such as fixing typos, improving grammar, correcting
+mistakes in formulae and drawing better diagrams and graphs.
+
+Having reimplemented GAP in
+[flare-timing](https://github.com/BlockScope/flare-timing) and working almost
+exclusively from the GAP annex, I would like to see the explanation of how GAP
+works improved.
+
+Some of the documentation of how GAP works in the GAP annex (Section 7a) has
+surely been written about after being implemented in the scoring software and
+some of what is implemented has no documentation.  There are places where
+readers are advised to consult the code and warned that the code differs from
+the rules or worse yet that we're not sure what the code does exactly.
 
 ## The Solution
 
