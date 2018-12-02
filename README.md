@@ -91,4 +91,4 @@ There are two proposals:
 
 1. [LaTeX for GAP](/plenary-proposals/latex-gap.md).
 2. [Setting the Bar for Scoring
-   Software](/plenary-proposals/scoring-softare.md).
+   Software](/plenary-proposals/scoring-software.md).
