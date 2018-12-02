@@ -24,8 +24,8 @@ I suggest the following list of requirements:
 12. The build and tests are run on a public continuous integration service.
 
 Points 1., 9. and 10. allow for a way to run the scoring program from the
-command line (headless), reading common inputs and common outputs and allows
-for scrutiny of the outputs and workings by humans.
+command line (headless), reading common inputs, writing a common output and
+allowing for scrutiny of the output and workings by humans.
 
 Point 2. software that is open source allows for more scrutiny and is fairer
 to pilots as nothing is hidden.
