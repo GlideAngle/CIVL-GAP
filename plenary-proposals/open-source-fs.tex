@@ -4,6 +4,10 @@
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{dirtytalk}
+% SEE: https://tex.stackexchange.com/questions/115479/insert-footnotes-with-href
+\newcommand\fref[2]{%
+\href{#1}{#2}\footnote{\url{#1}}%
+}
 
 \begin{document}
 \section*{Make FS Public}
@@ -14,7 +18,7 @@ A proposal for the CIVL Plenary Meeting 2019.
 FS is closed source software and therefore not open to pilot scrutiny.
 
 \section*{Solution}
-I propose that CIVL make the \href{https://github.com/FAI-CIVL/FS}{FS
+I propose that CIVL make the \fref{https://github.com/FAI-CIVL/FS}{FS
 repository} public after adding a license of our choosing. If a license is not
 chosen two weeks after the plenary then we'll use the MPL-2.0 license.
 

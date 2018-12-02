@@ -4,6 +4,10 @@
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{dirtytalk}
+% SEE: https://tex.stackexchange.com/questions/115479/insert-footnotes-with-href
+\newcommand\fref[2]{%
+\href{#1}{#2}\footnote{\url{#1}}%
+}
 
 \begin{document}
 \section*{LaTeX for GAP}
@@ -23,7 +27,7 @@ A proposal for the CIVL Plenary Meeting 2019.
     paragraph number.
 \end{itemize}}
 
-From the \href{https://www.fai.org/news/civl-plenary-2019}{instructions on
+From the \fref{https://www.fai.org/news/civl-plenary-2019}{instructions on
 preparing a proposal} for making a change to Section 7 of the FAI Sporting code.
 
 This is a process for formal submission and review of substantial changes to
@@ -34,7 +38,7 @@ insubstantial changes such as fixing typos, improving grammar, correcting
 mistakes in formulae and drawing better diagrams and graphs.
 
 Having reimplemented GAP in
-\href{https://github.com/BlockScope/flare-timing}{flare-timing} and working
+\fref{https://github.com/BlockScope/flare-timing}{flare-timing} and working
 almost exclusively from the GAP annex, I would like to see the explanation of
 how GAP works improved.
 
@@ -50,7 +54,7 @@ By nature, the GAP annex is a technical document with many formulae and some
 diagrams and graphs. The solution I propose is to reuse what I have trialed in
 this repository for producing the GAP annex (Section 7a) PDF document and
 retire the existing \texttt{*.docx} source document. I would transfer ownership
-of this repository to the \href{https://github.com/FAI-CIVL}{FAI-CIVL}
+of this repository to the \fref{https://github.com/FAI-CIVL}{FAI-CIVL}
 organization on github. This is how I propose the process of making changes to
 the GAP annex would then work:
 
@@ -67,10 +71,10 @@ accepted as-is then it can be merged when accepted. If it requires more work
 then these changes can be made on the branch. They get added to any existing
 pull request on that branch anyway.
 
-I'm a software developer and \href{https://ghuser.io/philderbeast}{contribute
+I'm a software developer and \fref{https://ghuser.io/philderbeast}{contribute
 to many projects} hosted on github but these days many non-technical groups are
 using github for collaboration.  There's even a video tutorial series called
-\href{https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV}{Git and GitHub for Poets}.
+\fref{https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV}{Git and GitHub for Poets}.
 
 GitHub really has a great web interface. A contributor finding an issue can
 reference and highlight a line number range in the source. Authors can work at
