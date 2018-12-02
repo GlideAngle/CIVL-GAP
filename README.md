@@ -85,7 +85,9 @@ is published as a single *.pdf file,
 [Sporting Code Section 7A - Annex GAP - Edition 2018](https://www.fai.org/sites/default/files/civl/documents/sporting_code_s7a-xc-civl_gap_2018.pdf),
 running to about fifty pages with very many equations and quite a few charts.
 
-# Proposal for the CIVL Plenary Meeting 2019
+# Proposals for the CIVL Plenary Meeting 2019
+
+# Proposing LaTeX for GAP
 
 ## The Problem
 
