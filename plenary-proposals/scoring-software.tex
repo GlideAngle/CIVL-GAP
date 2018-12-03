@@ -34,7 +34,12 @@ I suggest the following list of requirements:\\
     \item There are releases with release notes and change logs and the source
     is tagged at release points.
     \item The code that does the scoring can be run in isolation, apart from
-    the application as a whole, in batch mode from the command line.
+    the application as a whole\footnote{The application as a whole would
+    include any forms to collect competition, pilot and task inputs and
+    displays such as flight statistics and maps whereas the code that does the
+    scoring is just the code that implements GAP and any other code that
+    enables these modules to read the common input files and produce the common
+    output file and workings.}, in batch mode from the command line.
     \item Working steps can be written to a file format that is human readable.
     \item There are tests.
     \item The build and tests are run on a public continuous integration service.
