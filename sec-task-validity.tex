@@ -87,11 +87,18 @@ If no pilot finishes the speed section, then time validity is not based on time
 but on distance: The distance of the pilot who flies the furthest in relation
 to nominal distance is then used to calculate the time validity the same way as
 if it was the time.
+
+% NOTE: I used dfrac to avoid smaller fonts for the fraction inside the case.
+% SEE: https://tex.stackexchange.com/questions/164160/control-shrinking-of-font-size-in-cases-environment
 \begin{align*}
-    if \ one \ pilot \ reached \ ESS \\
-    TVR &= \min(1, \frac{BestTime}{NominalTime}) \\
-    if \ no \ pilot \ reached \ ESS \\
-    TVR &= \min(1, \frac{BestDistance}{NominalDistance}) \\
+    x &=
+    \begin{cases}
+        \dfrac{BestTime}{NominalTime}
+        &\text{if one pilot reached ESS} \\\\
+        \dfrac{BestDistance}{NominalDistance}
+        &\text{if no pilot reached ESS}
+    \end{cases} \\
+    TVR &= \min(1, x) \\
     TimeValidity &= \max(0, \min(1, -0.271 + 2.912 * TVR - 2.098 * TVR^2 + 0.457 * TVR^3))
 \end{align*}
 
