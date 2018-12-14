@@ -1,0 +1,52 @@
+\begin{tikzpicture}
+\tkzDefPoint(-2,-5){U}
+\tkzDefPoint(-1,-5){V}
+\tkzDefPoint(-2,-5){P}
+\tkzDefPoint(1,-5){Q}
+\tkzDrawCircle[ color=green
+              , fill=green!40
+              , opacity=.5
+              ](P,Q)
+\tkzDefPoint(1,1){R}
+\tkzDefPoint(4,1){S}
+\tkzDrawCircle[ color=red
+              , fill=red!40
+              , opacity=.5
+              ](R,S)
+\tkzDefPoint(-2,4){C}
+\tkzDefPoint(-1,4){A}
+\tkzDrawCircle[ color=blue
+              , fill=blue!40
+              , opacity=.5
+              ](U,V)
+\tkzDrawCircle[ color=blue
+              , fill=blue!40
+              , opacity=.5
+              ](C,A)
+\tkzInterLC(U,R)(P,Q) \tkzGetPoints{}{D}
+\tkzInterLC(U,R)(R,S) \tkzGetPoints{E}{}
+\tkzInterLC(U,C)(P,Q) \tkzGetPoints{}{F}
+\tkzInterLC(U,C)(R,S) \tkzGetPoints{G}{}
+\tkzInterLC(U,C)(C,A) \tkzGetPoints{H}{}
+\tkzDrawPoints(C,R,U,D,E,F,G)
+\tkzDrawSegment(G,F)
+\tkzDrawSegment(E,D)
+\tkzLabelPoints[right](D,E)
+\tkzLabelPoints[above left](F,G)
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](U,V)(180){launch}
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](P,Q)(15){start speed}
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](R,S)(15){end speed}
+\tkzLabelCircle[ draw
+               , fill=yellow!20
+               , text centered
+               ](C,A)(180){goal}
+\end{tikzpicture}
