@@ -27,12 +27,15 @@
 \tkzInterLC(U,R)(R,S) \tkzGetPoints{E}{}
 \tkzInterLC(U,C)(P,Q) \tkzGetPoints{}{F}
 \tkzInterLC(U,C)(R,S) \tkzGetPoints{G}{}
-\tkzInterLC(U,C)(C,A) \tkzGetPoints{H}{}
-\tkzDrawPoints(C,R,U,D,E,F,G)
+\tkzInterLC(U,C)(C,A) \tkzGetPoints{I}{}
+\tkzInterLC(U,C)(U,V) \tkzGetPoints{}{H}
+\tkzDrawPoints(C,R,U,D,E,F,G,H,I)
 \tkzDrawSegment(G,F)
 \tkzDrawSegment(E,D)
-\tkzLabelPoints[right](D,E)
-\tkzLabelPoints[above left](F,G)
+\tkzDrawSegment[style=dotted](G,I)
+\tkzDrawSegment[style=dotted](H,F)
+\tkzLabelPoints[below left](D)
+\tkzLabelPoints[above right](E,F,G,H,I)
 \tkzLabelCircle[ draw
                , fill=yellow!20
                , text centered
