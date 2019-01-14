@@ -167,24 +167,25 @@ graph will use the previously reached best distance towards ESS.
 
 Calculation of the leading coefficient (LC) for each pilot follows this
 formula:
+\begin{align}
+    L &= length(SS) \nonumber \\
+    k &= \frac{1}{1800 * L^2} \nonumber \\
+    taskTime(tp_i) &= \min(TaskDeadline, time(tp_i)) \nonumber \\
+    \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \min(bestDistToESS(tp_{i - 1}), L - distanceFlown(tp_i)) \nonumber \\
+    \nonumber \\
+    togo_0 &= L \nonumber \\
+    togo_i &= bestDistToESS(tp_i) \nonumber \\
+    togo_j &< \forall_{j = i + 1} togo_i \nonumber \\
+    togo_n &= \forall_{i} \min{togo_i} \nonumber \\
+    \nonumber \\
+    LC_p &= \sum_{i : tp_i \in TrackPointsInSS_p} k * taskTime(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
+    LC_{early} &= LC_p + k * LastTime_{LastPilotAtESS} * togo_n^2 \\
+    LC_{late} &= LC_p + k * taskTime(tp_n) * togo_n^2
+\end{align}
 \begin{align*}
-    LC_p &= \\
-    \frac{\sum_{i : tp_i \in TrackPointsInSS_p} taskTime(tp_i) * (bestDistToESS(tp_{i - 1})^2 - bestDistToESS(tp_i)^2)}{1800 * LengthOfSpeedSection^2} \\
-    \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < ESSTime_{LastPilotAtESS} : LC_p &= \\
-    LC_p + LastTime_{LastPilotAtESS} * bestDistToESS(tp_{max})^2 \\
-    \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq ESSTime_{LastPilotAtESS} : LC_p &= \\
-    LC_p + taskTime(tp_{max}) * bestDistToESS(tp_{max})^2 \\
-    \\
-    taskTime(tp) &= \\
-    \min(TaskDeadline, time(tp)) \\
-    \\
-    bestDistToESS(tp_0) &= \\
-    LengthOfSpeedSection \\
-    \\
-    \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \\
-    \min(bestDistToESS(tp_{i - 1}), LenghtOfSpeedSection - distanceFlown(tp_i))
+    \forall p : p \not \in PilotsLandedOut : LC &= LC_p \\
+    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < ESSTime_{LastPilotAtESS}: LC &= LC_{early} \\
+    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq ESSTime_{LastPilotAtESS}: LC &= LC_{late}
 \end{align*}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
