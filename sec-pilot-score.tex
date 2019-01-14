@@ -172,12 +172,12 @@ formula:
     k &= \frac{1}{1800 * L^2} \nonumber \\
     TT &= TaskTime \nonumber \\
     TT(tp_i) &= \min(TaskDeadline, time(tp_i)) \nonumber \\
-    \forall_{i > 0} \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \min(bestDistToESS(tp_{i - 1}), L - distanceFlown(tp_i)) \nonumber \\
     \nonumber \\
     togo_0 &= L \nonumber \\
     togo_i &= bestDistToESS(tp_i) \nonumber \\
     togo_j &< \forall_{j = i + 1} togo_i \nonumber \\
     togo_n &= \forall_{i} \min{togo_i} \nonumber \\
+    \forall_{i > 0} \land tp_i \in TrackPointsInSS_p : togo_i &= \min(togo_{i - 1}, L - distanceFlown(tp_i)) \nonumber \\
     \nonumber \\
     Cutoff &= TT(LastPilotAtESS) \nonumber \\
     \nonumber \\
