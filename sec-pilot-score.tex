@@ -188,8 +188,8 @@ formula:
 \begin{align*}
     PLO &= PilotsLandedOut \\
     \forall p : p \not \in PLO : LC &= LC_p \\
-    \forall p : p \in PLO \land TT(tp_{max}) < Cutoff: LC &= LC_{early} \\
-    \forall p : p \in PLO \land TT(tp_{max}) \geq Cutoff: LC &= LC_{late}
+    \forall p : p \in PLO \land TT(tp_n) < Cutoff: LC &= LC_{early} \\
+    \forall p : p \in PLO \land TT(tp_n) \geq Cutoff: LC &= LC_{late}
 \end{align*}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
