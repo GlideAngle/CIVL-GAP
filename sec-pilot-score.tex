@@ -179,10 +179,10 @@ formula:
     togo_j &< \forall_{j = i + 1} togo_i \nonumber \\
     togo_n &= \forall_{i} \min{togo_i} \nonumber \\
     \nonumber \\
-    Cutoff &= ESSTime_{LastPilotAtESS} \nonumber \\
+    Cutoff &= TT(LastPilotAtESS) \nonumber \\
     \nonumber \\
     LC_p &= \sum_{i : tp_i \in TrackPointsInSS_p} k * TT(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
-    LC_{early} &= LC_p + k * LastTime_{LastPilotAtESS} * togo_n^2 \\
+    LC_{early} &= LC_p + k * Cutoff * togo_n^2 \\
     LC_{late} &= LC_p + k * TT(tp_n) * togo_n^2
 \end{align}
 \begin{align*}
