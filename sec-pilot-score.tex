@@ -184,14 +184,13 @@ formula:
     \nonumber \\
     LC_p &= \sum_{i=1}^n k * TT(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
     LC_{early} &= LC_p + k * Cutoff * togo_n^2 \\
-    LC_{late} &= LC_p + k * TT(tp_n) * togo_n^2
+    LC_{late} &= LC_p + k * TT(tp_n) * togo_n^2 \\
+    \nonumber \\
+    PLO &= \{PilotsLandedOut\} \nonumber \\
+    \forall_{p \not \in PLO} : LC &= LC_p \nonumber \\
+    \forall_{p \in PLO} \land TT(tp_n) < Cutoff: LC &= LC_{early} \nonumber \\
+    \forall_{p \in PLO} \land TT(tp_n) \geq Cutoff: LC &= LC_{late} \nonumber
 \end{align}
-\begin{align*}
-    PLO &= \{PilotsLandedOut\} \\
-    \forall_{p \not \in PLO} : LC &= LC_p \\
-    \forall_{p \in PLO} \land TT(tp_n) < Cutoff: LC &= LC_{early} \\
-    \forall_{p \in PLO} \land TT(tp_n) \geq Cutoff: LC &= LC_{late}
-\end{align*}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
 point of the speed section. For LC calculations, any pilot crossing into the
