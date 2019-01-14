@@ -182,7 +182,7 @@ formula:
     \nonumber \\
     Cutoff &= TT(LastPilotAtESS) \nonumber \\
     \nonumber \\
-    LC_p &= \sum_{i : tp_i \in TrackPointsInSS_p} k * TT(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
+    LC_p &= \sum_{i=1}^n k * TT(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
     LC_{early} &= LC_p + k * Cutoff * togo_n^2 \\
     LC_{late} &= LC_p + k * TT(tp_n) * togo_n^2
 \end{align}
