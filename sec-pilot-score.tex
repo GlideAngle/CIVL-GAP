@@ -167,25 +167,30 @@ graph will use the previously reached best distance towards ESS.
 
 Calculation of the leading coefficient (LC) for each pilot follows this
 formula:
-\begin{align*}
-    LC_p &= \\
-    \frac{\sum_{i : tp_i \in TrackPointsInSS_p} taskTime(tp_i) * (bestDistToESS(tp_{i - 1})^2 - bestDistToESS(tp_i)^2)}{1800 * LengthOfSpeedSection^2} \\
-    \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < ESSTime_{LastPilotAtESS} : LC_p &= \\
-    LC_p + LastTime_{LastPilotAtESS} * bestDistToESS(tp_{max})^2 \\
-    \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq ESSTime_{LastPilotAtESS} : LC_p &= \\
-    LC_p + taskTime(tp_{max}) * bestDistToESS(tp_{max})^2 \\
-    \\
-    taskTime(tp) &= \\
-    \min(TaskDeadline, time(tp)) \\
-    \\
-    bestDistToESS(tp_0) &= \\
-    LengthOfSpeedSection \\
-    \\
-    \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \\
-    \min(bestDistToESS(tp_{i - 1}), LenghtOfSpeedSection - distanceFlown(tp_i))
-\end{align*}
+\begin{align}
+    L &= length(SS) \nonumber \\
+    k &= \frac{1}{1800 * L^2} \nonumber \\
+    TT &= TaskTime \nonumber \\
+    TT(tp_i) &= \min(TaskDeadline, time(tp_i)) \nonumber \\
+    \nonumber \\
+    \forall_{i > 0} tp_i &\in \{TrackPointsInSS\} \nonumber \\
+    togo_0 &= L \nonumber \\
+    togo_i &= bestDistToESS(tp_i) \nonumber \\
+    &= \min(togo_{i - 1}, L - distanceFlown(tp_i)) \nonumber \\
+    togo_j &< \forall_{j = i + 1} togo_i \nonumber \\
+    togo_n &= \forall_{i} \min{togo_i} \nonumber \\
+    \nonumber \\
+    Cutoff &= TT(LastPilotAtESS) \nonumber \\
+    \nonumber \\
+    LC_p &= \sum_{i=1}^n k * TT(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
+    LC_{early} &= LC_p + k * Cutoff * togo_n^2 \\
+    LC_{late} &= LC_p + k * TT(tp_n) * togo_n^2 \\
+    \nonumber \\
+    PLO &= \{PilotsLandedOut\} \nonumber \\
+    \forall_{p \not \in PLO} : LC &= LC_p \nonumber \\
+    \forall_{p \in PLO} \land TT(tp_n) < Cutoff: LC &= LC_{early} \nonumber \\
+    \forall_{p \in PLO} \land TT(tp_n) \geq Cutoff: LC &= LC_{late} \nonumber
+\end{align}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
 point of the speed section. For LC calculations, any pilot crossing into the
