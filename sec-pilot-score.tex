@@ -178,14 +178,16 @@ formula:
     togo_j &< \forall_{j = i + 1} togo_i \nonumber \\
     togo_n &= \forall_{i} \min{togo_i} \nonumber \\
     \nonumber \\
+    Cutoff &= ESSTime_{LastPilotAtESS} \nonumber \\
+    \nonumber \\
     LC_p &= \sum_{i : tp_i \in TrackPointsInSS_p} k * taskTime(tp_i) * (togo_{i-1}^2 - togo_i^2) \\
     LC_{early} &= LC_p + k * LastTime_{LastPilotAtESS} * togo_n^2 \\
     LC_{late} &= LC_p + k * taskTime(tp_n) * togo_n^2
 \end{align}
 \begin{align*}
     \forall p : p \not \in PilotsLandedOut : LC &= LC_p \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < ESSTime_{LastPilotAtESS}: LC &= LC_{early} \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq ESSTime_{LastPilotAtESS}: LC &= LC_{late}
+    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < Cutoff: LC &= LC_{early} \\
+    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq Cutoff: LC &= LC_{late}
 \end{align*}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
