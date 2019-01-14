@@ -172,7 +172,7 @@ formula:
     k &= \frac{1}{1800 * L^2} \nonumber \\
     TT &= TaskTime \nonumber \\
     TT(tp_i) &= \min(TaskDeadline, time(tp_i)) \nonumber \\
-    \forall i : i > 0 \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \min(bestDistToESS(tp_{i - 1}), L - distanceFlown(tp_i)) \nonumber \\
+    \forall_{i > 0} \land tp_i \in TrackPointsInSS_p : bestDistToESS(tp_i) &= \min(bestDistToESS(tp_{i - 1}), L - distanceFlown(tp_i)) \nonumber \\
     \nonumber \\
     togo_0 &= L \nonumber \\
     togo_i &= bestDistToESS(tp_i) \nonumber \\
@@ -186,10 +186,10 @@ formula:
     LC_{late} &= LC_p + k * TT(tp_n) * togo_n^2
 \end{align}
 \begin{align*}
-    PLO &= PilotsLandedOut \\
-    \forall p : p \not \in PLO : LC &= LC_p \\
-    \forall p : p \in PLO \land TT(tp_n) < Cutoff: LC &= LC_{early} \\
-    \forall p : p \in PLO \land TT(tp_n) \geq Cutoff: LC &= LC_{late}
+    PLO &= \{PilotsLandedOut\} \\
+    \forall_{p \not \in PLO} : LC &= LC_p \\
+    \forall_{p \in PLO} \land TT(tp_n) < Cutoff: LC &= LC_{early} \\
+    \forall_{p \in PLO} \land TT(tp_n) \geq Cutoff: LC &= LC_{late}
 \end{align*}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
