@@ -185,9 +185,10 @@ formula:
     LC_{late} &= LC_p + k * taskTime(tp_n) * togo_n^2
 \end{align}
 \begin{align*}
-    \forall p : p \not \in PilotsLandedOut : LC &= LC_p \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) < Cutoff: LC &= LC_{early} \\
-    \forall p : p \in PilotsLandedOut \land taskTime(tp_{max}) \geq Cutoff: LC &= LC_{late}
+    PLO &= PilotsLandedOut \\
+    \forall p : p \not \in PLO : LC &= LC_p \\
+    \forall p : p \in PLO \land taskTime(tp_{max}) < Cutoff: LC &= LC_{early} \\
+    \forall p : p \in PLO \land taskTime(tp_{max}) \geq Cutoff: LC &= LC_{late}
 \end{align*}
 \begin{pg}
 In tasks where CESS is used, the CESS’s centre point is considered the last
