@@ -21,7 +21,7 @@ are available for distance points.
     \hgh{ArrivalWeight} &= \frac{1 - DistanceWeight}{8} \\
     \pgh{ArrivalWeight} &= 0 \\
     TimeWeight &= 1 - DistanceWeight - LeadingWeight - ArrivalWeight \\
-    AvailableDistancePoints &= 1000 * TaskValidity  DistanceWeight \\
+    AvailableDistancePoints &= 1000 * TaskValidity * DistanceWeight \\
     AvailableTimePoints &= 1000 * TaskValidity * TimeWeight \\
     AvailableLeadingPoints &= 1000 * TaskValidity * LeadingWeight \\
     AvailableArrivalPoints &= 1000 * TaskValidity * ArrivalWeight
