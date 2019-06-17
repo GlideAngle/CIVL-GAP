@@ -49,6 +49,18 @@ double <@distance_validity<@ =
 \end{lstlisting}
 
 \begin{lstlisting}[style=base, caption={Stop Validity depends on \textcolor{blue}{real} distance inputs.}]
+sp.<@Sum_flown_distances<@ += p.<@_real_distance<@;
+<@distances<@[distance_counter++] = p.<@_real_distance<@;
+
+double <@avg_distance<@ = sp.<@Sum_flown_distances<@ / sp.No_of_pilots_flying;
+double <@sumOfDerivation<@ = 0;
+for (int i = 0; i < distances.Length; i++)
+{
+  <@sumOfDerivation<@ += <@distances<@[i] * <@distances<@[i];
+}
+double <@sumOfDerivationAverage<@ = <@sumOfDerivation<@ / sp.No_of_pilots_flying;
+double <@stdev_distance<@ = Math.Sqrt(<@sumOfDerivationAverage<@ - (<@avg_distance<@ * <@avg_distance<@));
+
 double <@stop_validity<@ =
     CalcStopValidity
         ( sfg
@@ -56,8 +68,8 @@ double <@stop_validity<@ =
         , task_state.TaskStopTime
         , sp.<@Best_real_dist<@
         , sp.Launch_to_ess_distance
-        , avg_distance
-        , stdev_distance
+        , <@avg_distance<@
+        , <@stdev_distance<@
         , sp.No_of_pilots_landed_before_stop
         , sp.No_of_pilots_flying
         , sp.No_of_pilots_reaching_ES
