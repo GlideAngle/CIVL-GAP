@@ -186,7 +186,7 @@ double <@stop_validity<@ =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Task validity depends on \textcolor{red}{bonus} distance.}]
+\begin{lstlisting}[style=base, caption={Task validity depends on \textcolor{red}{bonus} distance (and \textcolor{blue}{real} distance).}]
 double @>day_quality@> =
     CalcDayQuality
         ( @>time_validity@>
@@ -228,7 +228,7 @@ sp.Distance_weight =
     - 0.587 * Math.Pow(sp.GoalRatio, 3);
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Time weight depends on \textcolor{red}{bonus} distance.}]
+\begin{lstlisting}[style=base, caption={Time weight depends on \textcolor{red}{bonus} distance through leading weight.}]
 sp.@>Time_weight@> =
     (1 - sp.Distance_weight)
     - sp.Arrival_weight
