@@ -18,8 +18,10 @@ distance is used in calculating validities and weights and when allocating
 points in FS.
 
 Launch validity doesn't depend on distance. Distance validity and stop validity
-depend on real distance but time validity depends on bonus distance. Task
-validity depends transitively on bonus distance through time validity.
+depend on real distance but time validity depends on bonus
+distance\footnote{Time validity and stop validity depend on distance only if no
+pilot makes it to the end of the speed section.\label{fn:repeat}}. Task validity depends
+transitively on bonus distance through time validity.
 
 Arrival weight, departure weight and distance weight do not depend on distance.
 Time weight and leading weight depend on bonus distance.
@@ -28,7 +30,9 @@ Departure point allocation doesn't depend on a pilot's distance. Distance point
 allocation depends a pilot's bonus distance but arrival, time and leading point
 allocation depend on a pilot's real distance.
 
-As available points depend on task validity and this depends on bonus distance, all point allocations depend on bonus distance.
+As available points depend on task validity and this depends on bonus
+distance\footref{fn:repeat}, all point allocations depend on bonus
+distance indirectly.
 
 \begin{table}[!ht]
     \begin{tabularx}{\textwidth}{|l|X|c|c|}
