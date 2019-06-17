@@ -15,7 +15,20 @@
 This appendix, expands on this brief but broad statement (see
 ~\ref{sec:distance-stopped-tasks}) showing how and when bonus distance or real
 distance is used in calculating validities and weights and when allocating
-points.
+points in FS.
+
+Launch validity doesn't depend on distance. Distance validity and stop validity
+depend on real distance but time validity depends on bonus distance. Task
+validity depends transitively on bonus distance through time validity.
+
+Arrival weight, departure weight and distance weight do not depend on distance.
+Time weight and leading weight depend on bonus distance.
+
+Departure point allocation doesn't depend on a pilot's distance. Distance point
+allocation depends a pilot's bonus distance but arrival, time and leading point
+allocation depend on a pilot's real distance.
+
+As available points depend on task validity and this depends on bonus distance, all point allocations depend on bonus distance.
 
 \begin{table}[!ht]
     \begin{tabularx}{\textwidth}{|l|X|c|c|}
@@ -32,14 +45,14 @@ points.
         &
         \\
     \cline{2-4}
-        & Time
-        &
-        & $\checkmark$
-        \\
-    \cline{2-4}
         & Distance
         & $\checkmark$
         &
+        \\
+    \cline{2-4}
+        & Time
+        &
+        & $\checkmark$
         \\
     \cline{2-4}
         & Stop
@@ -68,14 +81,40 @@ points.
         &
         \\
     \cline{2-4}
+        & Time
+        &
+        & $\checkmark$
+        \\
+    \cline{2-4}
         & Leading
+        &
+        & $\checkmark$
+        \\
+    \hline
+        \multirow{5}{*}{Allocation}
+        & Arrival
+        & $\checkmark$
+        &
+        \\
+    \cline{2-4}
+        & Departure
+        &
+        &
+        \\
+    \cline{2-4}
+        & Distance
         &
         & $\checkmark$
         \\
     \cline{2-4}
         & Time
-        &
         & $\checkmark$
+        &
+        \\
+    \cline{2-4}
+        & Leading
+        & $\checkmark$
+        &
         \\
     \hline
     \end{tabularx}
@@ -92,16 +131,6 @@ double launch_validity =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Time validity depends on \textcolor{red}{bonus} distance input.}]
-double @>time_validity@> =
-    CalcTimeValidity
-        ( time_validity_time
-        , (double)sfg.Nom_time
-        , sp.@>Best_dist@>
-        , sfg.Nom_dist
-        );
-\end{lstlisting}
-
 \begin{lstlisting}[style=base, caption={Distance validity depends on \textcolor{blue}{real} distance inputs.}]
 double <@distance_validity<@ =
     CalcDistanceValidity
@@ -111,6 +140,16 @@ double <@distance_validity<@ =
         , sfg.Nom_dist
         , sfg.Min_dist
         , sp.<@Best_real_dist<@
+        );
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Time validity depends on \textcolor{red}{bonus} distance input.}]
+double @>time_validity@> =
+    CalcTimeValidity
+        ( time_validity_time
+        , (double)sfg.Nom_time
+        , sp.@>Best_dist@>
+        , sfg.Nom_dist
         );
 \end{lstlisting}
 
@@ -143,7 +182,7 @@ double <@stop_validity<@ =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Day quality depends on \textcolor{red}{bonus} distance.}]
+\begin{lstlisting}[style=base, caption={Task validity depends on \textcolor{red}{bonus} distance.}]
 double @>day_quality@> =
     CalcDayQuality
         ( @>time_validity@>
@@ -192,6 +231,14 @@ sp.Distance_weight =
     - 0.587 * Math.Pow(sp.GoalRatio, 3);
 \end{lstlisting}
 
+\begin{lstlisting}[style=base, caption={Time weight depends on \textcolor{red}{bonus} distance.}]
+sp.@>Time_weight@> =
+    (1 - sp.Distance_weight)
+    - sp.Arrival_weight
+    - sp.Departure_weight
+    - sp.@>Leading_weight@>;
+\end{lstlisting}
+
 \begin{lstlisting}[style=base, caption={Leading weight depends on \textcolor{red}{bonus} distance.}]
 if (sp.No_of_pilots_reaching_goal == 0
     && sfg.Use_proportional_leading_weight_if_nobody_in_goal)
@@ -206,12 +253,76 @@ else
 }
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Time weight depends on \textcolor{red}{bonus} distance.}]
-sp.@>Time_weight@> =
-    (1 - sp.Distance_weight)
-    - sp.Arrival_weight
-    - sp.Departure_weight
-    - sp.@>Leading_weight@>;
+\begin{lstlisting}[style=base, caption={Arrival point allocation depends on \textcolor{blue}{real} distance.}]
+double arrival_points = 0;
+double time = p.Result.Ss_Time_Dec_Hours;
+if (time > 0) // reached ES
+{
+    double x = 0;
+    if (sfg.Use_arrival_position_points)
+    {
+        x = 1 - (p.Result.Finished_ss_rank - 1.0) / sp.No_of_pilots_reaching_ES;
+        x = 0.2 + 0.037 * x + 0.13 * Math.Pow(x, 2) + 0.633 * Math.Pow(x, 3);
+    }
+    else if (sfg.Use_arrival_time_points)
+    {
+        x = Math.Round(
+          Math.Pow(
+            1 + (2.0 / 3.0) * (sp.First_finish_time.Utc_time - p.Result.Finished_ss.Utc_time).TotalHours
+            , 3)
+          , 4, MidpointRounding.AwayFromZero);
+        if (x < 0) x = 0;
+    }
+    arrival_points = x * sp.Available_points_arrival;
+    if (p.<@_real_distance<@ < t.DistanceExact)
+    {
+        arrival_points *= (double)sfg.Time_points_if_not_in_goal;
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Distance point allocation depends on \textcolor{red}{bonus} distance.}]
+if (use_difficulty)
+{
+    double linear_fraction = dist / 2.0 / @>best_dist@>;
+
+    int kmx10 = (int)(dist * 10);
+    double difficulty_fraction = dsd100ms[kmx10]._score_percent;
+    if (dsd100ms.Length > kmx10 + 1
+       && dsd100ms[kmx10 + 1]._score_percent > difficulty_fraction)
+        difficulty_fraction += (dsd100ms[kmx10 + 1]._score_percent - difficulty_fraction) * (dist * 10.0 - kmx10);
+    return (difficulty_fraction + linear_fraction) * available_points_distance;
+}
+else
+{
+    double linear_fraction = dist / @>best_dist@>;
+    return linear_fraction * available_points_distance;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Time point allocation depends on \textcolor{blue}{real} distance.}]
+double time_points = 0;
+double time = p.Result.Ss_Time_Dec_Hours;
+if (time > 0)
+{
+    time_points
+      = 1 - Math.Pow
+        (
+          (
+            (time - sp.Best_time)
+            / Math.Sqrt(sp.Best_time)
+          ), 2.0 / 3
+        );
+    if (time_points < 0) time_points = 0;
+    time_points -= time_points_stop_correction;
+    time_points *= sp.Available_points_time;
+
+    if (p.<@RealDistance<@ < t.DistanceExact)
+    {
+        time_points *= (double)sfg.Time_points_if_not_in_goal;
+        p.Result.Got_time_but_not_goal_penalty = true;
+    }
+}
 \end{lstlisting}
 
 \end{document}
