@@ -1,0 +1,88 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[gap.tex]{subfiles}
+\begin{document}
+\label{sec:bonus-distance-use}
+
+\begin{quote}
+    For all distance point calculations, including the difficulty calculations
+    in hang-gliding (see ~\ref{sec:difficulty-calculation}), these new stopped
+    distance values are being used to determine the pilots’ best distance
+    values.  Time and leading point calculations remain the same: they are not
+    affected by the altitude bonus or stopped distance values. 
+\end{quote}
+
+This appendix, expands on this brief but broad statement (see
+~\ref{sec:distance-stopped-tasks}) showing how and when distance or bonus
+distances are used in calculating validities and weights and when allocation
+points.
+
+\subsection{Launch}
+
+\begin{lstlisting}
+double launch_validity =
+    CalcLaunchValidity
+        ( sp.No_of_pilots_flying
+        , sp.No_of_pilots_present
+        , sfg
+        );
+\end{lstlisting}
+
+\subsection{Time}
+
+\begin{lstlisting}
+double time_validity =
+    CalcTimeValidity
+        ( time_validity_time
+        , (double)sfg.Nom_time
+        , sp.Best_dist
+        , sfg.Nom_dist
+        );
+\end{lstlisting}
+
+\subsection{Distance}
+
+\begin{lstlisting}
+double distance_validity =
+    CalcDistanceValidity
+        ( sp.Sum_real_dist_over_min
+        , sp.No_of_pilots_flying
+        , (double)sfg.Nom_goal
+        , sfg.Nom_dist
+        , sfg.Min_dist
+        , sp.Best_real_dist
+        );
+\end{lstlisting}
+
+\subsection{Stop}
+
+\begin{lstlisting}
+double stop_validity =
+    CalcStopValidity
+        ( sfg
+        , sp.Last_start_time
+        , task_state.TaskStopTime
+        , sp.Best_real_dist
+        , sp.Launch_to_ess_distance
+        , avg_distance
+        , stdev_distance
+        , sp.No_of_pilots_landed_before_stop
+        , sp.No_of_pilots_flying
+        , sp.No_of_pilots_reaching_ES
+        , task_state.IsStopped
+        );
+\end{lstlisting}
+
+\subsection{Day}
+
+\begin{lstlisting}
+double day_quality =
+    CalcDayQuality
+        ( time_validity
+        , launch_validity
+        , distance_validity
+        , stop_validity
+        );
+\end{lstlisting}
+
+\end{document}
