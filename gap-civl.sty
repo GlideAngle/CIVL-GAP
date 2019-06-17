@@ -201,7 +201,6 @@
   commentstyle=\color{gray}\upshape
 }
 
-
 \lstdefinelanguage{XML}
 {
   morestring=[s][\color{mauve}]{"}{"},
@@ -225,4 +224,12 @@
   , ss, es, goal, groundstart
   , tracklog_folder, tracklog_filename
   } % list your attributes here
+}
+
+% NOTE: Color within a listing using delimiters.
+% SEE: https://tex.stackexchange.com/questions/115547/textcolor-within-lstlisting
+\lstdefinestyle{base}{
+  basicstyle=\ttfamily\footnotesize\color{black},
+  moredelim=**[is][\color{blue}]{<@}{<@},
+  moredelim=**[is][\color{red}]{@>}{@>},
 }

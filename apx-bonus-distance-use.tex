@@ -17,9 +17,7 @@ This appendix, expands on this brief but broad statement (see
 distances are used in calculating validities and weights and when allocation
 points.
 
-\subsection{Launch}
-
-\begin{lstlisting}
+\begin{lstlisting}[style=base, caption={Launch Validity doesn't depend on distance inputs.}]
 double launch_validity =
     CalcLaunchValidity
         ( sp.No_of_pilots_flying
@@ -28,41 +26,35 @@ double launch_validity =
         );
 \end{lstlisting}
 
-\subsection{Time}
-
-\begin{lstlisting}
-double time_validity =
+\begin{lstlisting}[style=base, caption={Time Validity depends on \textcolor{red}{bonus} distance input.}]
+double @>time_validity@> =
     CalcTimeValidity
         ( time_validity_time
         , (double)sfg.Nom_time
-        , sp.Best_dist
+        , sp.@>Best_dist@>
         , sfg.Nom_dist
         );
 \end{lstlisting}
 
-\subsection{Distance}
-
-\begin{lstlisting}
-double distance_validity =
+\begin{lstlisting}[style=base, caption={Distance Validity depends on \textcolor{blue}{real} distance inputs.}]
+double <@distance_validity<@ =
     CalcDistanceValidity
-        ( sp.Sum_real_dist_over_min
+        ( sp.<@Sum_real_dist_over_min<@
         , sp.No_of_pilots_flying
         , (double)sfg.Nom_goal
         , sfg.Nom_dist
         , sfg.Min_dist
-        , sp.Best_real_dist
+        , sp.<@Best_real_dist<@
         );
 \end{lstlisting}
 
-\subsection{Stop}
-
-\begin{lstlisting}
-double stop_validity =
+\begin{lstlisting}[style=base, caption={Stop Validity depends on \textcolor{blue}{real} distance inputs.}]
+double <@stop_validity<@ =
     CalcStopValidity
         ( sfg
         , sp.Last_start_time
         , task_state.TaskStopTime
-        , sp.Best_real_dist
+        , sp.<@Best_real_dist<@
         , sp.Launch_to_ess_distance
         , avg_distance
         , stdev_distance
@@ -73,15 +65,13 @@ double stop_validity =
         );
 \end{lstlisting}
 
-\subsection{Day}
-
-\begin{lstlisting}
-double day_quality =
+\begin{lstlisting}[style=base, caption={Day Quality depends on \textcolor{red}{bonus} distance.}]
+double @>day_quality@> =
     CalcDayQuality
-        ( time_validity
+        ( @>time_validity@>
         , launch_validity
-        , distance_validity
-        , stop_validity
+        , <@distance_validity<@
+        , <@stop_validity<@
         );
 \end{lstlisting}
 
