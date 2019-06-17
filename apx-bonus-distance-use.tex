@@ -13,11 +13,11 @@
 \end{quote}
 
 This appendix, expands on this brief but broad statement (see
-~\ref{sec:distance-stopped-tasks}) showing how and when distance or bonus
-distances are used in calculating validities and weights and when allocation
+~\ref{sec:distance-stopped-tasks}) showing how and when bonus distance or real
+distance is used in calculating validities and weights and when allocating
 points.
 
-\begin{lstlisting}[style=base, caption={Launch Validity doesn't depend on distance inputs.}]
+\begin{lstlisting}[style=base, caption={Launch validity doesn't depend on distance inputs.}]
 double launch_validity =
     CalcLaunchValidity
         ( sp.No_of_pilots_flying
@@ -26,7 +26,7 @@ double launch_validity =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Time Validity depends on \textcolor{red}{bonus} distance input.}]
+\begin{lstlisting}[style=base, caption={Time validity depends on \textcolor{red}{bonus} distance input.}]
 double @>time_validity@> =
     CalcTimeValidity
         ( time_validity_time
@@ -36,7 +36,7 @@ double @>time_validity@> =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Distance Validity depends on \textcolor{blue}{real} distance inputs.}]
+\begin{lstlisting}[style=base, caption={Distance validity depends on \textcolor{blue}{real} distance inputs.}]
 double <@distance_validity<@ =
     CalcDistanceValidity
         ( sp.<@Sum_real_dist_over_min<@
@@ -48,7 +48,7 @@ double <@distance_validity<@ =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Stop Validity depends on \textcolor{blue}{real} distance inputs.}]
+\begin{lstlisting}[style=base, caption={Stop validity depends on \textcolor{blue}{real} distance inputs.}]
 sp.<@Sum_flown_distances<@ += p.<@_real_distance<@;
 <@distances<@[distance_counter++] = p.<@_real_distance<@;
 
@@ -77,7 +77,7 @@ double <@stop_validity<@ =
         );
 \end{lstlisting}
 
-\begin{lstlisting}[style=base, caption={Day Quality depends on \textcolor{red}{bonus} distance.}]
+\begin{lstlisting}[style=base, caption={Day quality depends on \textcolor{red}{bonus} distance.}]
 double @>day_quality@> =
     CalcDayQuality
         ( @>time_validity@>
@@ -85,6 +85,67 @@ double @>day_quality@> =
         , <@distance_validity<@
         , <@stop_validity<@
         );
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Arrival weight and departure weight don't depend on distance inputs.}]
+double dummy_arr_weight = 0;
+if (sfg.Use_arrival_time_points && !sfg.Use_leading_points)
+    dummy_arr_weight = (1.0 - sp.Distance_weight) / 4.0;
+else
+    dummy_arr_weight = (1.0 - sp.Distance_weight) / 8.0;
+
+if (sp.No_of_pilots_reaching_ES > 0)
+{
+    if (sfg.Use_arrival_points)
+        sp.Arrival_weight = dummy_arr_weight;
+
+    if (sfg.Use_departure_points)
+        sp.Departure_weight = dummy_arr_weight * 1.4;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Distance weight doesn't depend on distance inputs.}]
+sp.GoalRatio = 0;
+if (sp.Best_time > 0 && sfg.Use_time_points)
+{
+    sp.Max_time_to_get_time_points = sp.Best_time + Math.Sqrt(sp.Best_time);
+    foreach (Participant p in ps)
+    {
+        double time = p.Result.Ss_Time_Dec_Hours;
+        if (time > 0
+           && time < sp.Max_time_to_get_time_points
+           && (sfg.Time_points_if_not_in_goal > 0 || p.<@RealDistance<@ >= t.DistanceExact))
+            sp.<@No_of_pilots_with_time_points<@++;
+    }
+    sp.GoalRatio = sp.No_of_pilots_reaching_goal * 1.0 / sp.No_of_pilots_flying;
+}
+sp.Distance_weight =
+    0.9
+    - 1.665 * sp.GoalRatio
+    + 1.713 * Math.Pow(sp.GoalRatio, 2)
+    - 0.587 * Math.Pow(sp.GoalRatio, 3);
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Leading weight depends on \textcolor{red}{bonus} distance.}]
+if (sp.No_of_pilots_reaching_goal == 0
+    && sfg.Use_proportional_leading_weight_if_nobody_in_goal)
+{
+    sp.Leading_weight = Math.Min(sp.@>Best_dist@> / sp.Task_distance * 0.1d, 0.1d);
+}
+else
+{
+    sp.Leading_weight = dummy_arr_weight * 1.4;
+    if (sfg.Double_leading_weight)
+        sp.Leading_weight *= 2;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[style=base, caption={Time weight depends on \textcolor{red}{bonus} distance.}]
+sp.@>Time_weight@> =
+    (1 - sp.Distance_weight)
+    - sp.Arrival_weight
+    - sp.Departure_weight
+    - sp.@>Leading_weight@>;
 \end{lstlisting}
 
 \end{document}
