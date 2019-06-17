@@ -196,6 +196,8 @@ double @>day_quality@> =
         );
 \end{lstlisting}
 
+\pagebreak
+
 \begin{lstlisting}[style=base, caption={Arrival weight and departure weight don't depend on distance inputs.}]
 double dummy_arr_weight = 0;
 if (sfg.Use_arrival_time_points && !sfg.Use_leading_points)
@@ -217,15 +219,6 @@ if (sp.No_of_pilots_reaching_ES > 0)
 sp.GoalRatio = 0;
 if (sp.Best_time > 0 && sfg.Use_time_points)
 {
-    sp.Max_time_to_get_time_points = sp.Best_time + Math.Sqrt(sp.Best_time);
-    foreach (Participant p in ps)
-    {
-        double time = p.Result.Ss_Time_Dec_Hours;
-        if (time > 0
-           && time < sp.Max_time_to_get_time_points
-           && (sfg.Time_points_if_not_in_goal > 0 || p.<@RealDistance<@ >= t.DistanceExact))
-            sp.<@No_of_pilots_with_time_points<@++;
-    }
     sp.GoalRatio = sp.No_of_pilots_reaching_goal * 1.0 / sp.No_of_pilots_flying;
 }
 sp.Distance_weight =
@@ -256,6 +249,8 @@ else
         sp.Leading_weight *= 2;
 }
 \end{lstlisting}
+
+\pagebreak
 
 \begin{lstlisting}[style=base, caption={Arrival point allocation depends on \textcolor{blue}{real} distance.}]
 double arrival_points = 0;
