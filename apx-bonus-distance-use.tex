@@ -17,6 +17,72 @@ This appendix, expands on this brief but broad statement (see
 distance is used in calculating validities and weights and when allocating
 points.
 
+\begin{table}[!ht]
+    \begin{tabularx}{\textwidth}{|l|X|c|c|}
+    \hline
+        \textbf{Aspect of Scoring}
+        & \textbf{Part of Aspect}
+        & \textbf{Real}
+        & \textbf{Bonus}
+        \\
+    \hline
+        \multirow{5}{*}{Validity}
+        & Launch
+        &
+        &
+        \\
+    \cline{2-4}
+        & Time
+        &
+        & $\checkmark$
+        \\
+    \cline{2-4}
+        & Distance
+        & $\checkmark$
+        &
+        \\
+    \cline{2-4}
+        & Stop
+        & $\checkmark$
+        &
+        \\
+    \cline{2-4}
+        & Task (Day Quality)
+        &
+        & $\checkmark$
+        \\
+    \hline
+        \multirow{5}{*}{Weight}
+        & Arrival
+        &
+        &
+        \\
+    \cline{2-4}
+        & Departure
+        &
+        &
+        \\
+    \cline{2-4}
+        & Distance
+        &
+        &
+        \\
+    \cline{2-4}
+        & Leading
+        &
+        & $\checkmark$
+        \\
+    \cline{2-4}
+        & Time
+        &
+        & $\checkmark$
+        \\
+    \hline
+    \end{tabularx}
+    \caption{Default values for GAP parameters from FS.}
+    \label{tab:gap-defaults}
+\end{table}
+
 \begin{lstlisting}[style=base, caption={Launch validity doesn't depend on distance inputs.}]
 double launch_validity =
     CalcLaunchValidity
