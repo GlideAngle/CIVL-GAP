@@ -1,0 +1,113 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass{article}
+\usepackage{gap-civl}
+\usepackage{subfiles}
+
+\begin{document}
+\label{sec:jtg}
+\subsection{Penalty Ordering}
+
+
+\begin{quotation}
+Clarification of order in which penalties are applied
+We have three categories of penalties in hang-gliding competitions, and two
+categories in paragliding competitions. We specify in which order they are
+applied.
+
+3.3 12.4 Penalties
+3.3.1 Status quo
+ 	These penalties are completely independent of any “Jump the Gun”-Penalty a pilot may have incurred
+3.3.2 Proposal
+     If a pilot incurs multiple penalties or bonuses, these are applied in the following order:
+          1. “Jump the Gun”-Penalty
+          2. Percentage penalty or bonus
+          3. Absolute points penalty or bonus
+     3.3.3 Reasoning
+     Specify exactly the order in which penalties are applied.
+\end{quotation}
+
+Arguments
+
+Can we please not do this? I don't want to see the idiosyncracies of FS
+leaking into the rules.
+
+What are the categories of penalties?
+
+There's percentage (fractional) and point (absolute) penalties and then
+there's something else related to jumping the gun.
+
+Sticking with just fractional and point types for now, it is common sense in
+which order these should be applied. We want to apply the fractional ones
+first and then the absolute ones. The fractional ones are never going to
+change the point ones but if we were to apply the points ones first then we'd
+be taking a fraction of a subtotal and so the points demerited or
+awarded would be changed.
+
+Let's look how we can combine them if we have multiple penalties. If we take
+the fractional ones, we can multiply them together before applying their
+fractional product to the total. This gets us the same result as applying the
+second one to the subtotal after multiplying the first with the total and so
+on. Absolute penalties we can sum together before applying. This gets us the
+same result as adding the second one to the subtotal after adding the first
+to the total and so on.
+
+On to jump the gun. The discipline of hang gliding has some tolerance of this
+but paragliding has none. Start early in paragliding and you will be scored
+for the distance between the launch point and the start. Start too early in
+hang gliding and you will be scored for minimum distance. So both disciplines
+will give you a score that is neither a fractional or an absolute change in
+your total points. Your score is reset to some low value equivalent to some
+poor pilot not getting very far along the course. A tough penalty indeed.
+
+The way this is implemented in FS is a bit of a kludge but fits with one
+reading of the rules. Unfortunately this convenience of implementation has
+some unwanted side effects. Done this way, it is not a penalty that acts only
+on the pilot the penalty is intended for. True, it takes away points from the
+pilot starting too early but it also shifts the distribution of points to
+other pilots. It's as if FS feeds a truncated track for this pilot through
+the system, not their actual track. Any interactions relative to other pilots
+are lost. If this pilot lead all the way, was the first to arrive at goal and
+was the fastest then top points in these areas that would otherwise have been
+awarded are shifted to the next in line. The pilot most closely following the
+leader will now get the top leading points, the second to arrive will get the
+top arrival points and the second fastest pilot will get the top time points.
+
+This setup invites a strategy for one pilot to take all the risks but confer
+top points to the next pilot, their team mate, if by starting early they can
+get ahead and drag a second around the course. I can't say how practical this
+is in practice, not having flown at the level of competition where this might
+come into play.
+
+What I can say as a software developer, is that testing this setup is harder
+than going with a reset penalty. With it, we cannot test the algebra of
+penalties in isolation, without also bringing along all the other parts of
+scoring that calculate and assign points that then get doled out to the other
+pilots.
+
+If as an implementation detail we introduce a reset penalty then scoring
+proceeds as if there is no such thing as jumping the gun. Those that started
+too early get their points assigned in full but then reset, a very simple
+calculation, a swap, a replacement. No points are shifted among the remaining
+pilots. This is dead simple. The application of penalties and the interaction
+of the fractional, absolute and reset penalties can be tested in isolation
+from the other parts of the scoring implementation.
+
+Adding resets as another type of penalty also fits with the reading of the
+rules. A reset penalty should be applied last in order, after fractional and
+absolute penalties have been applied. Where a reset is intended as a demerit,
+intended to reduce a pilot's score then the reset cannot lift a pilot's score
+back to the reset level in the situation where other penalties have already
+lowered it below the reset level.
+
+In hang gliding if someone jumps the gun by only a little, within a tolerance
+window, then the early time is converted to an absolute penalty. These
+accumulate at a rate of points per second and can then be treated like any
+other absolute penalty.
+
+Back to the proposal to apply penalties in order of jump-the-gun (reset or
+absolute), fractional and then absolute. I would rather the order is
+fractional, absolute (including absolute from jumping the gun) and then
+reset (from jumping the gun).
+
+\end{document}
